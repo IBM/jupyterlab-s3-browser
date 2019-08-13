@@ -1,0 +1,84 @@
+{
+  "name": "jupyterlab-s3-browser",
+  "version": "0.1.0",
+  "description": "JupyterLab viewer for S3 repositories",
+  "keywords": [
+    "s3",
+    "cloud",
+    "object",
+    "storage",
+    "jupyter",
+    "jupyterlab",
+    "jupyterlab-extension"
+  ],
+  "homepage": "https://github.com/IBM/jupyterlab-s3-browser",
+  "bugs": {
+    "url": "https://github.com/IBM/jupyterlab-s3-browser/issues"
+  },
+  "license": "Apache-2.0",
+  "author": "James Reeve",
+  "files": [
+    "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
+    "style/**/*.{css,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBM/jupyterlab-s3-browser.git"
+  },
+  "style": "style/index.css",
+  "scripts": {
+    "build": "tsc",
+    "build:test": "cd test && ./build-tests.sh",
+    "clean": "rimraf lib",
+    "precommit": "lint-staged",
+    "prettier": "prettier --write '**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}'",
+    "test": "cd test && ./run-tests.sh",
+    "watch": "tsc -w"
+  },
+  "dependencies": {
+    "@jupyterlab/application": "^1.0.0",
+    "@jupyterlab/apputils": "^1.0.0",
+    "@jupyterlab/coreutils": "3.0.0",
+    "@jupyterlab/docmanager": "^1.0.0",
+    "@jupyterlab/docregistry": "^1.0.0",
+    "@jupyterlab/filebrowser": "^1.0.0",
+    "@jupyterlab/services": "^4.0.0",
+    "@phosphor/algorithm": "^1.1.3",
+    "@phosphor/messaging": "^1.2.3",
+    "@phosphor/signaling": "^1.2.3",
+    "@phosphor/widgets": "^1.8.1",
+    "base64-js": "^1.2.3"
+  },
+  "devDependencies": {
+    "@types/base64-js": "^1.2.5",
+    "@types/text-encoding": "^0.0.32",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^2.6.3",
+    "subpackage": "^1.1.0",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^1.3.0",
+    "typescript": "^3.1.6"
+  },
+  "lint-staged": {
+    "**/*{.ts,.tsx,.css,.json,.md}": ["prettier --write", "git add"]
+  },
+  "jupyterlab": {
+    "extension": true,
+    "discovery": {
+      "server": {
+        "managers": ["pip"],
+        "base": {
+          "name": "jupyterlab_s3_browser"
+        }
+      }
+    }
+  }
+}

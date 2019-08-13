@@ -1,0 +1,14 @@
+.env
+lib/
+dist/
+__pycache__/
+node_modules/
+.vscode/
+npm-debug.log
+yarn-error.log
+package-lock.json
+MANIFEST
+jupyterlab_s3_browser.egg-info/
+.ipynb_checkpoints/
+.jupyterlab/
+*.ipynb

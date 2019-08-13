@@ -1,0 +1,7 @@
+{
+  "jupyter.lab.setting-icon-class": "jp-S3-icon",
+  "jupyter.lab.setting-icon-label": "S3 Browser",
+  "title": "S3 Browser",
+  "description": "Settings for the S3 Browser plugin.",
+  "type": "object"
+}
