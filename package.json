@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-s3-browser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "JupyterLab viewer for S3 repositories",
   "keywords": [
     "s3",
