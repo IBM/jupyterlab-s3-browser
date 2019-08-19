@@ -15,12 +15,12 @@ cmdclass = create_cmdclass(data_files_spec=data_files_spec)
 
 setup_dict = dict(
     name='jupyterlab_s3_browser',
-    description='A Jupyter Notebook server extension which acts a proxy for the S3 API.',
+    description='A Jupyter server extension for the JupyterLab S3 Browser extension',
     packages=find_packages(),
     cmdclass=cmdclass,
-    author='Jupyter Development Team',
-    author_email='jupyter@googlegroups.com',
-    url='http://jupyter.org',
+    author='James Reeve',
+    author_email='james.reeve@ibm.com',
+    url='https://github.com/IBM/jupyterlab-s3-browser',
     license='Apache 2',
     platforms="Linux, Mac OS X, Windows",
     keywords=['Jupyter', 'JupyterLab', 'S3'],
@@ -50,6 +50,6 @@ except ValueError as e:
     )
 
 setuptools.setup(
-    version='0.1.1',
+    version='0.2.0',
     **setup_dict
 )

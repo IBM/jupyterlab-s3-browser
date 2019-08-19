@@ -1,7 +1,7 @@
 {
   "name": "jupyterlab-s3-browser",
-  "version": "0.1.1",
-  "description": "JupyterLab viewer for S3 repositories",
+  "version": "0.2.0",
+  "description": "JupyterLab extension for browsing S3-compatible object storage",
   "keywords": [
     "s3",
     "cloud",
