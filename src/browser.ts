@@ -99,6 +99,11 @@ namespace Private {
     return VirtualDOM.realize(
       h.div(
         { className: "s3form" },
+        h.h4("S3 Object Storage Browser"),
+        h.div(
+          "This extension allows you to browse S3-compatible object storage instances, such as AWS S3 and IBM Cloud Object Storage."
+        ),
+        h.br(),
         h.form(
           { id: "s3form", method: "post" },
           h.p(
