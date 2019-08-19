@@ -158,81 +158,81 @@ class S3Handler(APIHandler):
         and directories/prefixes based on the path.
         """
 
-        if not self.s3:
-            self.s3 = S3Resource(self.config).s3_resource
+        try:
+            if not self.s3:
+                self.s3 = S3Resource(self.config).s3_resource
 
-        if path == "/":
-            # requesting the root path, just return all buckets
-            all_buckets = self.s3.buckets.all()
-            result = [{
-                'name': bucket.name,
-                'path': bucket.name,
-                'type': 'directory'
-            } for bucket in all_buckets]
-        else:
-            bucket_name, path = self.parse_bucket_name_and_path(path)
-            bucket = self.s3.Bucket(bucket_name)
-            objects = list(bucket.objects.filter(Prefix=path))
-            num_matches = len(objects)
-
-            if num_matches == 1 and objects[0].key == path:
-                # we're getting a specific object
-                obj = self.s3.Object(bucket_name, path)
-                result = {
-                    'path': '{}/{}'.format(bucket_name, path),
-                    'type': 'file',
-                    'mimetype': obj.content_type,
-                    'content': base64.encodebytes(obj.get()['Body'].read()).decode('ascii')
-                }
-            elif num_matches > 0:
-                # we're getting a "directory", i.e. a prefix
-
-                if path != "":
-                    # need to add / to the prefix if not at the "root" of a bucket
-                    path = path + "/"
-
-                all_objects = [
-                    obj for obj in bucket.objects.filter(Prefix=path)
-                ]
-                result = set()
-                Content = namedtuple(
-                    'Content', ['name', 'path', 'type', 'mimetype']
-                )
-                for obj in all_objects:
-                    # regex to only get objects that are at the path's
-                    # current depth e.g. for 'mypath/' we want
-                    # 'mypath/obj1', 'mypath/obj2', but not 'mypath/myprefix/obj3'
-                    matches = re.search(
-                        r'('+re.escape(path)+r'[^\/]+\/?)', obj.key)
-                    if matches:
-                        # capture filename/object and directory/prefix names
-                        match = matches.group(0)
-                        if match.endswith('/'):
-                            # dealing with a directory/prefix
-                            directory_name = match.split('/')[-2]
-                            result.add(
-                                Content(directory_name, match, 'directory', 'json'))
-                        else:
-                            # dealing with a file/object
-                            file_name = match.split('/')[-1]
-                            result.add(Content(file_name, obj.key, 'file',
-                                               obj.Object().content_type))
-                result = list(result)
+            if path == "/":
+                # requesting the root path, just return all buckets
+                all_buckets = self.s3.buckets.all()
                 result = [{
-                    'name': content.name,
-                    'path': '{}/{}'.format(bucket_name, content.path),
-                    'type': content.type,
-                    'mimetype': content.mimetype
-                } for content in result]
-
+                    'name': bucket.name,
+                    'path': bucket.name,
+                    'type': 'directory'
+                } for bucket in all_buckets]
             else:
-                result = {
-                    'error': 404, 'message': 'The requested resource could not be found.'
-                }
+                bucket_name, path = self.parse_bucket_name_and_path(path)
+                bucket = self.s3.Bucket(bucket_name)
+                objects = list(bucket.objects.filter(Prefix=path))
+                num_matches = len(objects)
 
-        # except Exception as e:
-        #     print(e)
-        #     result = {'error': 500, 'message': str(e)}
+                if num_matches == 1 and objects[0].key == path:
+                    # we're getting a specific object
+                    obj = self.s3.Object(bucket_name, path)
+                    result = {
+                        'path': '{}/{}'.format(bucket_name, path),
+                        'type': 'file',
+                        'mimetype': obj.content_type,
+                        'content': base64.encodebytes(obj.get()['Body'].read()).decode('ascii')
+                    }
+                elif num_matches > 0:
+                    # we're getting a "directory", i.e. a prefix
+
+                    if path != "":
+                        # need to add / to the prefix if not at the "root" of a bucket
+                        path = path + "/"
+
+                    all_objects = [
+                        obj for obj in bucket.objects.filter(Prefix=path)
+                    ]
+                    result = set()
+                    Content = namedtuple(
+                        'Content', ['name', 'path', 'type', 'mimetype']
+                    )
+                    for obj in all_objects:
+                        # regex to only get objects that are at the path's
+                        # current depth e.g. for 'mypath/' we want
+                        # 'mypath/obj1', 'mypath/obj2', but not 'mypath/myprefix/obj3'
+                        matches = re.search(
+                            r'('+re.escape(path)+r'[^\/]+\/?)', obj.key)
+                        if matches:
+                            # capture filename/object and directory/prefix names
+                            match = matches.group(0)
+                            if match.endswith('/'):
+                                # dealing with a directory/prefix
+                                directory_name = match.split('/')[-2]
+                                result.add(
+                                    Content(directory_name, match, 'directory', 'json'))
+                            else:
+                                # dealing with a file/object
+                                file_name = match.split('/')[-1]
+                                result.add(Content(file_name, obj.key, 'file',
+                                                   obj.Object().content_type))
+                    result = list(result)
+                    result = [{
+                        'name': content.name,
+                        'path': '{}/{}'.format(bucket_name, content.path),
+                        'type': content.type,
+                        'mimetype': content.mimetype
+                    } for content in result]
+
+                else:
+                    result = {
+                        'error': 404, 'message': 'The requested resource could not be found.'
+                    }
+        except Exception as e:
+            print(e)
+            result = {'error': 500, 'message': str(e)}
 
         self.finish(json.dumps(result))
 
