@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-s3-browser",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "JupyterLab extension for browsing S3-compatible object storage",
   "keywords": [
     "s3",
@@ -43,7 +43,7 @@
   "dependencies": {
     "@jupyterlab/application": "^1.0.0",
     "@jupyterlab/apputils": "^1.0.0",
-    "@jupyterlab/coreutils": "3.0.0",
+    "@jupyterlab/coreutils": "3.1.0",
     "@jupyterlab/docmanager": "^1.0.0",
     "@jupyterlab/docregistry": "^1.0.0",
     "@jupyterlab/filebrowser": "^1.0.0",
@@ -68,13 +68,18 @@
     "typescript": "^3.1.6"
   },
   "lint-staged": {
-    "**/*{.ts,.tsx,.css,.json,.md}": ["prettier --write", "git add"]
+    "**/*{.ts,.tsx,.css,.json,.md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "jupyterlab": {
     "extension": true,
     "discovery": {
       "server": {
-        "managers": ["pip"],
+        "managers": [
+          "pip"
+        ],
         "base": {
           "name": "jupyterlab_s3_browser"
         }
