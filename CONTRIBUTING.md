@@ -2,7 +2,6 @@
 
 Contributions to this extension are welcome.
 
-
 ## Setting up a Development Environment
 
 ### Initial Setup
@@ -15,7 +14,7 @@ Contributions to this extension are welcome.
 - Make sure you have the correct version of JupyterLab installed:
 
 ```
-conda install -c conda-forge jupyterlab==1.0.6
+conda install -c conda-forge jupyterlab==1.2.3
 ```
 
 - install dependencies and build: `yarn install && yarn run build`
