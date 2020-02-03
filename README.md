@@ -10,3 +10,9 @@ To install, run:
 jupyter labextension install jupyterlab-s3-browser
 pip install jupyterlab-s3-browser
 ```
+
+You may also need to run:
+```
+jupyter serverextension enable --py jupyterlab_s3_browser
+```
+to make sure the serverextension is enabled.
