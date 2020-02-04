@@ -4,6 +4,8 @@
 
 A JupyterLab extension for browsing S3-compatible object storage.
 
+## Installation
+
 To install, run:
 
 ```
@@ -12,7 +14,17 @@ pip install jupyterlab-s3-browser
 ```
 
 You may also need to run:
+
 ```
 jupyter serverextension enable --py jupyterlab_s3_browser
 ```
-to make sure the serverextension is enabled.
+
+to make sure the serverextension is enabled and then restart (stop and start) JupyterLab.
+
+#### Amazon SageMaker
+
+[View installation instructions specific to SageMaker here.](docs/SAGEMAKER.md)
+
+## Contributing
+
+Contributions to this extension are welcome! [View CONTRIBUTING.md to get started.](docs/CONTRIBUTING.md)
