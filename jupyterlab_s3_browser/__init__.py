@@ -45,10 +45,7 @@ class S3Resource:
     def __init__(self, config):
         c = S3Config().instance(config=config)
         self.s3_resource = boto3.resource(
-            's3',
-            aws_access_key_id=c.client_id,
-            aws_secret_access_key=c.client_secret,
-            endpoint_url=c.endpoint_url
+            's3'
         )
 
 
@@ -56,25 +53,6 @@ class AuthHandler(APIHandler):
     """
     handle api requests to change auth info
     """
-
-    def testS3Credentials(self, endpoint_url, client_id, client_secret):
-        """
-        Checks if we're able to list buckets with these credentials.
-        If not, it throws an exception.
-        """
-        test = boto3.resource(
-            's3',
-            aws_access_key_id=client_id,
-            aws_secret_access_key=client_secret,
-            endpoint_url=endpoint_url
-        )
-        all_buckets = test.buckets.all()
-        result = [{
-            'name': bucket.name+'/',
-            'path': bucket.name+'/',
-            'type': 'directory'
-        } for bucket in all_buckets]
-
     @gen.coroutine
     def get(self, path=''):
         """
@@ -84,17 +62,7 @@ class AuthHandler(APIHandler):
 
         try:
             c = S3Config.instance()
-            if not (c.endpoint_url and c.client_id and c.client_secret):
-                self.finish(json.dumps({
-                    'authenticated': False
-                }))
-            else:
-                self.testS3Credentials(
-                    c.endpoint_url, c.client_id, c.client_secret)
-
-                # If no exceptions were encountered during testS3Credentials,
-                # then assume we're authenticated
-                self.finish(json.dumps({
+            self.finish(json.dumps({
                     'authenticated': True
                 }))
 
@@ -113,17 +81,7 @@ class AuthHandler(APIHandler):
         """
 
         try:
-            req = json.loads(self.request.body)
-            endpoint_url = req['endpoint_url']
-            client_id = req['client_id']
-            client_secret = req['client_secret']
-
-            self.testS3Credentials(endpoint_url, client_id, client_secret)
-
             c = S3Config.instance()
-            c.endpoint_url = endpoint_url
-            c.client_id = client_id
-            c.client_secret = client_secret
             S3Resource(self.config)
 
             self.finish(json.dumps({
