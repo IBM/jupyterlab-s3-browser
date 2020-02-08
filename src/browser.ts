@@ -27,7 +27,7 @@ export class S3FileBrowser extends Widget {
      * Function to handle setting credentials that are read
      * from the s3AuthenticationForm widget.
      */
-/*    
+/*      
     const s3AuthenticationFormSubmit = () => {
       const settings = ServerConnection.makeSettings();
       ServerConnection.makeRequest(
