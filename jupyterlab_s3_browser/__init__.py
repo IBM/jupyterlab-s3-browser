@@ -64,6 +64,7 @@ class AuthHandler(APIHandler):
 
         try:
             #c = S3Config.instance()
+            c = S3Config.instance()
             S3Resource(self.config)
 
             self.finish(json.dumps({
