@@ -18,32 +18,14 @@ import boto3
 from singleton_decorator import singleton
 
 
-class S3Config(SingletonConfigurable):
-    """
-    Allows configuration of access to the S3 api
-    """
-    endpoint_url = Unicode(
-        '', config=True,
-        help="The url for the S3 api"
-    )
-    client_id = Unicode(
-        '', config=True,
-        help="The client ID for the S3 api"
-    )
-    client_secret = Unicode(
-        '', config=True,
-        help="The client secret for the S3 api"
-    )
-
-
-@singleton
 class S3Resource:
     """
     Singleton wrapper around a boto3 resource
     """
 
     def __init__(self, config):
-        c = S3Config().instance(config=config)
+
+        #c = S3Config().instance(config=config)
         self.s3_resource = boto3.resource(
             's3'
         )
@@ -61,7 +43,7 @@ class AuthHandler(APIHandler):
         """
 
         try:
-            c = S3Config.instance()
+            #c = S3Config.instance()
             self.finish(json.dumps({
                     'authenticated': True
                 }))
@@ -81,7 +63,7 @@ class AuthHandler(APIHandler):
         """
 
         try:
-            c = S3Config.instance()
+            #c = S3Config.instance()
             S3Resource(self.config)
 
             self.finish(json.dumps({
@@ -204,10 +186,10 @@ def _jupyter_server_extension_paths():
 def load_jupyter_server_extension(nb_server_app):
     """
     Called when the extension is loaded.
-
     Args:
         nb_server_app (NotebookWebApplication): handle to the Notebook webserver instance.
     """
+    print("load_jupyter_server_extension: ...")
     web_app = nb_server_app.web_app
     base_url = web_app.settings['base_url']
     endpoint = url_path_join(base_url, 's3')
