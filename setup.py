@@ -50,6 +50,6 @@ except ValueError as e:
     )
 
 setuptools.setup(
-    version='0.2.4',
+    version='0.3.0',
     **setup_dict
 )

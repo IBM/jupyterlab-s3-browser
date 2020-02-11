@@ -44,18 +44,34 @@ class S3Resource:
 
     def __init__(self, config):
         c = S3Config().instance(config=config)
-        self.s3_resource = boto3.resource(
-            's3',
-            aws_access_key_id=c.client_id,
-            aws_secret_access_key=c.client_secret,
-            endpoint_url=c.endpoint_url
-        )
+        if c.endpoint_url and c.client_id and c.client_secret:
+
+          self.s3_resource = boto3.resource(
+              's3',
+              aws_access_key_id=c.client_id,
+              aws_secret_access_key=c.client_secret,
+              endpoint_url=c.endpoint_url
+          )
+        else:
+          self.s3_resource = boto3.resource('s3')
 
 
 class AuthHandler(APIHandler):
     """
     handle api requests to change auth info
     """
+
+    def testAWSS3RoleAccess(self):
+      """
+      Checks if we have access to AWS S3 through role-based access
+      """
+      test = boto3.resource('s3')
+      all_buckets = test.buckets.all()
+      result = [{
+          'name': bucket.name+'/',
+          'path': bucket.name+'/',
+          'type': 'directory'
+      } for bucket in all_buckets]
 
     def testS3Credentials(self, endpoint_url, client_id, client_secret):
         """
@@ -81,30 +97,35 @@ class AuthHandler(APIHandler):
         Checks if the user is already authenticated
         against an s3 instance.
         """
-
+        authenticated = False
         try:
-            c = S3Config.instance()
-            if not (c.endpoint_url and c.client_id and c.client_secret):
-                self.finish(json.dumps({
-                    'authenticated': False
-                }))
-            else:
+          self.testAWSS3RoleAccess()
+          # if no exceptions, assume authenticated
+          authenticated = True
+        except Exception as err:
+          pass
+
+        if not authenticated:
+
+          try:
+              c = S3Config.instance()
+              if c.endpoint_url and c.client_id and c.client_secret:
                 self.testS3Credentials(
                     c.endpoint_url, c.client_id, c.client_secret)
 
                 # If no exceptions were encountered during testS3Credentials,
                 # then assume we're authenticated
-                self.finish(json.dumps({
-                    'authenticated': True
-                }))
+                authenticated = True
 
-        except Exception as err:
-            # If an exception was encountered,
-            # assume that we're not yet authenticated
-            # or invalid credentials were provided
-            self.finish(json.dumps({
-                'authenticated': False
-            }))
+          except Exception as err:
+              # If an exception was encountered,
+              # assume that we're not yet authenticated
+              # or invalid credentials were provided
+              pass
+
+        self.finish(json.dumps({
+            'authenticated': authenticated
+        }))
 
     @gen.coroutine
     def post(self, path=''):
