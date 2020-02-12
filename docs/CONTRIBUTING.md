@@ -6,6 +6,8 @@ Contributions to this extension are welcome.
 
 ### Initial Setup
 
+- [Install pre-commit](https://pre-commit.com/#installation) and run `pre-commit install`
+
 - Create a conda environment for developing this extension:
   - `conda create -n jupyterlab-s3-browser`
 
