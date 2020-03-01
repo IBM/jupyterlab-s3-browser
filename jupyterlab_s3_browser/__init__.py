@@ -6,8 +6,11 @@ import json
 import re
 from collections import namedtuple
 
+#  from dataclasses import dataclass
+
 import boto3
 import tornado.gen as gen
+from botocore.exceptions import NoCredentialsError
 from notebook.base.handlers import APIHandler
 from notebook.utils import url_path_join
 from singleton_decorator import singleton
@@ -45,7 +48,7 @@ class S3Resource:  # pylint: disable=too-few-public-methods
             self.s3_resource = boto3.resource("s3")
 
 
-def test_aws_s3_role_access():
+def _test_aws_s3_role_access():
     """
   Checks if we have access to AWS S3 through role-based access
   """
@@ -55,7 +58,18 @@ def test_aws_s3_role_access():
         {"name": bucket.name + "/", "path": bucket.name + "/", "type": "directory"}
         for bucket in all_buckets
     ]
-    assert result
+    return result
+
+
+def has_aws_s3_role_access():
+    """
+    Returns true if the user has access to an S3 bucket
+    """
+    try:
+        _test_aws_s3_role_access()
+        return True
+    except NoCredentialsError:
+        return False
 
 
 def test_s3_credentials(endpoint_url, client_id, client_secret):
@@ -90,7 +104,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
         """
         authenticated = False
         try:
-            test_aws_s3_role_access()
+            _test_aws_s3_role_access()
             # if no exceptions, assume authenticated
             authenticated = True
         except Exception as err:
@@ -142,20 +156,104 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
             self.finish(json.dumps({"success": False, "message": str(err)}))
 
 
+class S3ResourceNotFoundException(Exception):
+    pass
+
+
+# TODO: use this
+#  @dataclass
+#  class S3GetResult:
+#  name: str
+#  type: str
+#  path: str
+
+
+def parse_bucket_name_and_path(raw_path):
+    if "/" not in raw_path[1:]:
+        bucket_name = raw_path[1:]
+        path = ""
+    else:
+        bucket_name, path = raw_path[1:].split("/", 1)
+    return (bucket_name, path)
+
+
+def get_s3_objects_from_path(s3, path):
+
+    if path == "/":
+        # requesting the root path, just return all buckets
+        all_buckets = s3.buckets.all()
+        result = [
+            {"name": bucket.name, "path": bucket.name, "type": "directory"}
+            for bucket in all_buckets
+        ]
+        return result
+    else:
+        bucket_name, path = parse_bucket_name_and_path(path)
+        bucket = s3.Bucket(bucket_name)
+        objects = list(bucket.objects.filter(Prefix=path))
+        num_matches = len(objects)
+
+        if num_matches == 1 and objects[0].key == path:
+            # we're getting a specific object
+            obj = s3.Object(bucket_name, path)
+            result = {
+                "path": "{}/{}".format(bucket_name, path),
+                "type": "file",
+                "mimetype": obj.content_type,
+                "content": base64.encodebytes(obj.get()["Body"].read()).decode("ascii"),
+            }
+        elif num_matches > 0:
+            # we're getting a "directory", i.e. a prefix
+
+            if path != "":
+                # need to add / to the prefix if not at the "root" of a bucket
+                path = path + "/"
+
+            all_objects = [obj for obj in bucket.objects.filter(Prefix=path)]
+            result = set()
+            Content = namedtuple("Content", ["name", "path", "type", "mimetype"])
+            for obj in all_objects:
+                # regex to only get objects that are at the path's
+                # current depth e.g. for 'mypath/' we want
+                # 'mypath/obj1', 'mypath/obj2', but not 'mypath/myprefix/obj3'
+                matches = re.search(r"(" + re.escape(path) + r"[^\/]+\/?)", obj.key)
+                if matches:
+                    # capture filename/object and directory/prefix names
+                    match = matches.group(0)
+                    if match.endswith("/"):
+                        # dealing with a directory/prefix
+                        directory_name = match.split("/")[-2]
+                        result.add(Content(directory_name, match, "directory", "json"))
+                    else:
+                        # dealing with a file/object
+                        file_name = match.split("/")[-1]
+                        result.add(
+                            Content(
+                                file_name, obj.key, "file", obj.Object().content_type,
+                            )
+                        )
+            result = list(result)
+            result = [
+                {
+                    "name": content.name,
+                    "path": "{}/{}".format(bucket_name, content.path),
+                    "type": content.type,
+                    "mimetype": content.mimetype,
+                }
+                for content in result
+            ]
+            return result
+
+        else:
+            raise S3ResourceNotFoundException()
+
+
 class S3Handler(APIHandler):
     """
     Handles requests for getting S3 objects
     """
 
     s3 = None  # an S3Resource instance to be used for requests
-
-    def parse_bucket_name_and_path(self, raw_path):
-        if "/" not in raw_path[1:]:
-            bucket_name = raw_path[1:]
-            path = ""
-        else:
-            bucket_name, path = raw_path[1:].split("/", 1)
-        return (bucket_name, path)
 
     @gen.coroutine
     def get(self, path=""):
@@ -167,86 +265,12 @@ class S3Handler(APIHandler):
         try:
             if not self.s3:
                 self.s3 = S3Resource(self.config).s3_resource
-
-            if path == "/":
-                # requesting the root path, just return all buckets
-                all_buckets = self.s3.buckets.all()
-                result = [
-                    {"name": bucket.name, "path": bucket.name, "type": "directory"}
-                    for bucket in all_buckets
-                ]
-            else:
-                bucket_name, path = self.parse_bucket_name_and_path(path)
-                bucket = self.s3.Bucket(bucket_name)
-                objects = list(bucket.objects.filter(Prefix=path))
-                num_matches = len(objects)
-
-                if num_matches == 1 and objects[0].key == path:
-                    # we're getting a specific object
-                    obj = self.s3.Object(bucket_name, path)
-                    result = {
-                        "path": "{}/{}".format(bucket_name, path),
-                        "type": "file",
-                        "mimetype": obj.content_type,
-                        "content": base64.encodebytes(obj.get()["Body"].read()).decode(
-                            "ascii"
-                        ),
-                    }
-                elif num_matches > 0:
-                    # we're getting a "directory", i.e. a prefix
-
-                    if path != "":
-                        # need to add / to the prefix if not at the "root" of a bucket
-                        path = path + "/"
-
-                    all_objects = [obj for obj in bucket.objects.filter(Prefix=path)]
-                    result = set()
-                    Content = namedtuple(
-                        "Content", ["name", "path", "type", "mimetype"]
-                    )
-                    for obj in all_objects:
-                        # regex to only get objects that are at the path's
-                        # current depth e.g. for 'mypath/' we want
-                        # 'mypath/obj1', 'mypath/obj2', but not 'mypath/myprefix/obj3'
-                        matches = re.search(
-                            r"(" + re.escape(path) + r"[^\/]+\/?)", obj.key
-                        )
-                        if matches:
-                            # capture filename/object and directory/prefix names
-                            match = matches.group(0)
-                            if match.endswith("/"):
-                                # dealing with a directory/prefix
-                                directory_name = match.split("/")[-2]
-                                result.add(
-                                    Content(directory_name, match, "directory", "json")
-                                )
-                            else:
-                                # dealing with a file/object
-                                file_name = match.split("/")[-1]
-                                result.add(
-                                    Content(
-                                        file_name,
-                                        obj.key,
-                                        "file",
-                                        obj.Object().content_type,
-                                    )
-                                )
-                    result = list(result)
-                    result = [
-                        {
-                            "name": content.name,
-                            "path": "{}/{}".format(bucket_name, content.path),
-                            "type": content.type,
-                            "mimetype": content.mimetype,
-                        }
-                        for content in result
-                    ]
-
-                else:
-                    result = {
-                        "error": 404,
-                        "message": "The requested resource could not be found.",
-                    }
+            result = get_s3_objects_from_path(self.s3, path)
+        except S3ResourceNotFoundException as e:
+            result = {
+                "error": 404,
+                "message": "The requested resource could not be found.",
+            }
         except Exception as e:
             print(e)
             result = {"error": 500, "message": str(e)}

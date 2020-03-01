@@ -1,0 +1,6 @@
+[run]
+branch = True
+omit = jupyterlab_s3_browser/tests/*
+
+[report]
+fail_under = 80

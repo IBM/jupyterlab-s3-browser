@@ -1,16 +1,27 @@
+---
 language: python
 python: '3.6'
 cache:
   yarn: true
   pip: true
   directories:
-  - node_modules
+    - node_modules
+before_install:
+  - sudo apt-get update
+  - nvm install 10
+  - nvm use 10
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - source "$HOME/miniconda/etc/profile.d/conda.sh"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda config --set restore_free_channel true
+  - conda update -q conda
+  - conda info -a
 install:
-- yarn install
-- yarn run build
-- pip install .
+  - make setup
 script:
-- echo "no tests implemented"
+  - make test
 deploy:
   - provider: npm
     email: reevejamesd@gmail.com

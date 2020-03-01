@@ -1,4 +1,4 @@
-import { PanelLayout, Widget } from "@phosphor/widgets";
+import { PanelLayout, Widget } from "@lumino/widgets";
 
 import { FileBrowser } from "@jupyterlab/filebrowser";
 
@@ -6,7 +6,7 @@ import { S3Drive } from "./contents";
 
 import { IDocumentManager } from "@jupyterlab/docmanager";
 
-import { h, VirtualDOM } from "@phosphor/virtualdom";
+import { h, VirtualDOM } from "@lumino/virtualdom";
 
 import { ServerConnection } from "@jupyterlab/services";
 

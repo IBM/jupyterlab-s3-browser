@@ -1,4 +1,4 @@
-import { Signal, ISignal } from "@phosphor/signaling";
+import { Signal, ISignal } from "@lumino/signaling";
 
 import { URLExt } from "@jupyterlab/coreutils";
 
@@ -213,7 +213,7 @@ export class S3Drive implements Contents.IDrive {
   private _fileChanged = new Signal<this, Contents.IChangedArgs>(this);
 
   jupyterPathToS3Path(path: string): string {
-    if (path == "") {
+    if (path === "") {
       path = "/";
     }
     return path;
@@ -223,7 +223,7 @@ export class S3Drive implements Contents.IDrive {
     const result = {
       name: s3Content.name,
       path: s3Content.path,
-      format: "json", //this._registry.getFileType('text').fileFormat,
+      format: "json", // this._registry.getFileType('text').fileFormat,
       type: s3Content.type,
       created: "",
       writable: false,
@@ -260,7 +260,7 @@ export class S3Drive implements Contents.IDrive {
           .json()
           .then((content: any) => {
             if (content.error) {
-              var errorMessage = `Server returned status code ${content.error}. Error message: ${content.message}.`;
+              let errorMessage = `Server returned status code ${content.error}. Error message: ${content.message}.`;
               console.error(errorMessage);
               Private.showErrorMessage(errorMessage);
               reject(errorMessage);
@@ -359,13 +359,13 @@ namespace Private {
     return decoder.decode(bytes);
   }
 
-  export var availableContentTypes: any = {};
+  export let availableContentTypes: any = {};
 
   export let currentPath: string;
 
   export function showErrorMessage(message: string) {
-    this.hideDirectoryLoadingSpinner();
-    var filebrowserListing = document.querySelector(
+    Private.hideDirectoryLoadingSpinner();
+    let filebrowserListing = document.querySelector(
       "#s3-filebrowser > .jp-DirListing"
     ) as HTMLElement;
     filebrowserListing.insertAdjacentHTML(
@@ -373,20 +373,20 @@ namespace Private {
       `<div class="s3-error"><p>${message}</p></div>`
     );
     filebrowserListing.style.display = "none";
-    this.showingError = true;
+    Private.showingError = true;
   }
 
-  export var showingError = false;
+  export let showingError = false;
 
   export function hideErrorMessage() {
-    var filebrowserListing = document.querySelector(
+    let filebrowserListing = document.querySelector(
       "#s3-filebrowser > .jp-DirListing"
     ) as HTMLElement;
     filebrowserListing.style.display = "block";
     if (document.querySelector(".s3-error")) {
       document.querySelector(".s3-error")!.remove();
     }
-    this.showingError = false;
+    Private.showingError = false;
   }
 
   export function showDirectoryLoadingSpinner() {
