@@ -23,7 +23,7 @@ to make sure the serverextension is enabled and then restart (stop and start) Ju
 
 #### Amazon SageMaker
 
-[View installation instructions specific to SageMaker here.](docs/SAGEMAKER.md)
+[View installation instructions specific to SageMaker here.](docs/SAGEMAKER.md) Thanks to [Bipin Pandey](https://github.com/Bipin007) for helping figure this out.
 
 ## Contributing
 
