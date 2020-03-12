@@ -21,7 +21,7 @@ dependencies:
   - jsonschema=3.2.0
   - jupyter_client=6.0.0
   - jupyter_core=4.6.3
-  - jupyterlab=2.0.0
+  - jupyterlab=2.0.1
   - jupyterlab_server=1.0.6
   - libcxx=9.0.1
   - libffi=3.2.1
