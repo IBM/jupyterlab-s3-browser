@@ -55,6 +55,7 @@ function activateFileBrowser(
 
   const browser = factory.createFileBrowser(NAMESPACE, {
     driveName: drive.name,
+    state: null,
     refreshInterval: 300000
   });
 

@@ -212,9 +212,11 @@ export class S3Drive implements Contents.IDrive {
   private _isDisposed = false;
   private _fileChanged = new Signal<this, Contents.IChangedArgs>(this);
 
-  jupyterPathToS3Path(path: string): string {
+  jupyterPathToS3Path(path: string, isDir: boolean): string {
     if (path === "") {
       path = "/";
+    } else if (isDir) {
+      path += "/";
     }
     return path;
   }
@@ -235,7 +237,6 @@ export class S3Drive implements Contents.IDrive {
   }
 
   pathToJupyterContents(path: string): Promise<Contents.IModel> {
-    let s3path = this.jupyterPathToS3Path(path);
     if (
       path !== Private.currentPath && // if we're changing paths...
       Private.availableContentTypes[path] !== "file" // it's not a file
@@ -245,8 +246,12 @@ export class S3Drive implements Contents.IDrive {
       }
       Private.showDirectoryLoadingSpinner();
     }
+    var s3path: string;
     if (Private.availableContentTypes[path] !== "file") {
       Private.currentPath = path;
+      s3path = this.jupyterPathToS3Path(path, true);
+    } else {
+      s3path = this.jupyterPathToS3Path(path, false);
     }
 
     return new Promise((resolve, reject) => {
