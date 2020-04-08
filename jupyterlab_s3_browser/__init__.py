@@ -178,10 +178,20 @@ def parse_bucket_name_and_path(raw_path):
         bucket_name, path = raw_path[1:].split("/", 1)
     return (bucket_name, path)
 
-def prep_entry_name(bucket_prefix, response_prefix):
-    bucket_prefix_len = len(bucket_prefix)
+Content = namedtuple("Content", ["name", "path", "type", "mimetype"])
+
+# call with
+# request_prefix: the prefix we sent to s3 with the request
+# response_prefix: full path of object or directory as returned by s3
+# returns:
+# subtracts the request_prefix from response_prefix and returns
+# the basename of request_prefix
+# e.g. request_prefix=rawtransactions/2020-04-01 response_prefix=rawtransactions/2020-04-01/file1
+# this method returns file1
+def get_basename(request_prefix, response_prefix):
+    request_prefix_len = len(request_prefix)
     response_prefix_len = len(response_prefix)
-    response_prefix = response_prefix[bucket_prefix_len:response_prefix_len]
+    response_prefix = response_prefix[request_prefix_len:response_prefix_len]
     if (response_prefix.endswith("/")):
         response_prefix_len = len(response_prefix) - 1
         response_prefix = response_prefix[0:response_prefix_len]
@@ -201,14 +211,14 @@ def do_list_objects_v2(s3client, bucket_name, prefix):
             contents = response['Contents']
             for one_object in contents:
                 obj_key = one_object['Key']
-                obj_key = prep_entry_name(prefix, obj_key)
-                list_of_objects.append(obj_key)
+                obj_key_basename = get_basename(prefix, obj_key)
+                list_of_objects.append(Content(obj_key_basename, obj_key, "file", "json"))
         if 'CommonPrefixes' in response:
             common_prefixes = response['CommonPrefixes']
             for common_prefix in common_prefixes:
                 prfx = common_prefix['Prefix']
-                prfx = prep_entry_name(prefix, prfx)
-                list_of_directories.append(prfx)
+                prfx_basename = get_basename(prefix, prfx)
+                list_of_directories.append(Content(prfx_basename, prfx, "directory", "json"))
     except Exception as e:
         traceback.print_exc()
 
@@ -247,13 +257,12 @@ def get_s3_objects_from_path(s3, path):
         if (path == "" or path.endswith("/")):
             list_of_objects, list_of_directories = do_list_objects_v2(s3client, bucket_name, path)
             result = set()
-            Content = namedtuple("Content", ["name", "path", "type", "mimetype"])
             if (len(list_of_directories) > 0):
                 for one_dir in list_of_directories:
-                    result.add(Content(one_dir, path + "/" + one_dir, "directory", "json"))
+                    result.add(one_dir)
             if (len(list_of_objects) > 0):
                 for one_object in list_of_objects:
-                    result.add(Content(one_object, path + one_object, "file", "json"))
+                    result.add(one_object)
 
             result = list(result)
             result = [
