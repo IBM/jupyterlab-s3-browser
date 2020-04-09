@@ -212,7 +212,8 @@ def do_list_objects_v2(s3client, bucket_name, prefix):
             for one_object in contents:
                 obj_key = one_object['Key']
                 obj_key_basename = get_basename(prefix, obj_key)
-                list_of_objects.append(Content(obj_key_basename, obj_key, "file", "json"))
+                if len(obj_key_basename) > 0:
+                    list_of_objects.append(Content(obj_key_basename, obj_key, "file", "json"))
         if 'CommonPrefixes' in response:
             common_prefixes = response['CommonPrefixes']
             for common_prefix in common_prefixes:
