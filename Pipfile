@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+e1839a8 = {editable = true,path = "."}
+jupyterlab = "==2.1.1"
+coverage = "*"
+pytest = "*"
+moto = "*"
+
+[requires]
+python_version = "3.7"

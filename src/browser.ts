@@ -29,7 +29,6 @@ export class S3FileBrowser extends Widget {
     this.addClass("jp-S3Browser");
     this.layout = new PanelLayout();
 
-    console.log("test");
     /**
      * Function to handle setting credentials that are read
      * from the s3AuthenticationForm widget.

@@ -6,33 +6,29 @@ PYTHON_PACKAGE_NAME=jupyterlab_s3_browser
 
 default: setup
 
-setup: setup_conda_env build_lab_extension install_lab_extension
+setup: setup_pipenv build_lab_extension install_lab_extension
 
-setup_conda_env: clean
-	@conda env create -f environment.yml
-	@$(CONDA_ACTIVATE) $(CONDA_ENV_NAME)
+setup_pipenv:
+	@pipenv install
 
 build_lab_extension:
 	@yarn install
 	@yarn run build
 
 install_lab_extension: build_lab_extension
-	@$(CONDA_ACTIVATE) $(CONDA_ENV_NAME) && jupyter labextension link .
+	@pipenv run jupyter labextension link .
 
-install_server_extension:
-	@$(CONDA_ACTIVATE) $(CONDA_ENV_NAME) && pip install . && jupyter labextension link . && jupyter serverextension enable --py $(PYTHON_PACKAGE_NAME)
+enable_server_extension:
+	@pipenv run jupyter serverextension enable --py $(PYTHON_PACKAGE_NAME)
 
-dev: install_lab_extension install_server_extension
-	@$(CONDA_ACTIVATE) $(CONDA_ENV_NAME) && yarn run watch
+dev: setup install_lab_extension
+	@yarn run watch
 
 run:
-	@$(CONDA_ACTIVATE) $(CONDA_ENV_NAME) && jupyter lab --watch
+	@pipenv run jupyter lab --watch
 
 test:
-	@$(CONDA_ACTIVATE) $(CONDA_ENV_NAME) && coverage run -m pytest $(PYTHON_PACKAGE_NAME) && coverage report --fail-under 50
+	@pipenv run coverage run -m pytest $(PYTHON_PACKAGE_NAME) && coverage report --fail-under 50
 
 clean:
-	@echo "cleaning up any existing environment"
-	@conda env remove -n $(CONDA_ENV_NAME) || echo "no existing conda environment"
 	@rm -rf node_modules/
-	@echo "finished cleaning"

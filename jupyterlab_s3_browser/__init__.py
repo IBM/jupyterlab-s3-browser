@@ -3,12 +3,9 @@ Placeholder
 """
 import base64
 import json
-import re
-from collections import namedtuple
 import logging
 import traceback
-
-#  from dataclasses import dataclass
+from collections import namedtuple
 
 import boto3
 import tornado.gen as gen
@@ -18,6 +15,8 @@ from notebook.utils import url_path_join
 from singleton_decorator import singleton
 from traitlets import Unicode
 from traitlets.config import SingletonConfigurable
+
+#  from dataclasses import dataclass
 
 
 class S3Config(SingletonConfigurable):
@@ -37,6 +36,9 @@ class S3Resource:  # pylint: disable=too-few-public-methods
     """
 
     def __init__(self, config):
+        print(
+            "************************************************************************"
+        )
         config = S3Config().instance(config=config)
         if config.endpoint_url and config.client_id and config.client_secret:
 
@@ -178,7 +180,9 @@ def parse_bucket_name_and_path(raw_path):
         bucket_name, path = raw_path[1:].split("/", 1)
     return (bucket_name, path)
 
+
 Content = namedtuple("Content", ["name", "path", "type", "mimetype"])
+
 
 # call with
 # request_prefix: the prefix we sent to s3 with the request
@@ -186,61 +190,69 @@ Content = namedtuple("Content", ["name", "path", "type", "mimetype"])
 # returns:
 # subtracts the request_prefix from response_prefix and returns
 # the basename of request_prefix
-# e.g. request_prefix=rawtransactions/2020-04-01 response_prefix=rawtransactions/2020-04-01/file1
+# e.g.
+# request_prefix=rawtransactions/2020-04-01
+# response_prefix=rawtransactions/2020-04-01/file1
 # this method returns file1
 def get_basename(request_prefix, response_prefix):
     request_prefix_len = len(request_prefix)
     response_prefix_len = len(response_prefix)
     response_prefix = response_prefix[request_prefix_len:response_prefix_len]
-    if (response_prefix.endswith("/")):
+    if response_prefix.endswith("/"):
         response_prefix_len = len(response_prefix) - 1
         response_prefix = response_prefix[0:response_prefix_len]
     return response_prefix
+
 
 def do_list_objects_v2(s3client, bucket_name, prefix):
     list_of_objects = []
     list_of_directories = []
     try:
-        prefix_len = len(prefix)
-        response = s3client.list_objects_v2(Bucket=bucket_name,
-                Delimiter="/",
-                EncodingType='url',
-                Prefix=prefix,
-                )
-        if 'Contents' in response:
-            contents = response['Contents']
+        response = s3client.list_objects_v2(
+            Bucket=bucket_name, Delimiter="/", EncodingType="url", Prefix=prefix,
+        )
+        if "Contents" in response:
+            contents = response["Contents"]
             for one_object in contents:
-                obj_key = one_object['Key']
+                obj_key = one_object["Key"]
                 obj_key_basename = get_basename(prefix, obj_key)
                 if len(obj_key_basename) > 0:
-                    list_of_objects.append(Content(obj_key_basename, obj_key, "file", "json"))
-        if 'CommonPrefixes' in response:
-            common_prefixes = response['CommonPrefixes']
+                    list_of_objects.append(
+                        Content(obj_key_basename, obj_key, "file", "json")
+                    )
+        if "CommonPrefixes" in response:
+            common_prefixes = response["CommonPrefixes"]
             for common_prefix in common_prefixes:
-                prfx = common_prefix['Prefix']
+                prfx = common_prefix["Prefix"]
                 prfx_basename = get_basename(prefix, prfx)
-                list_of_directories.append(Content(prfx_basename, prfx, "directory", "json"))
+                list_of_directories.append(
+                    Content(prfx_basename, prfx, "directory", "json")
+                )
     except Exception as e:
+        print(e)
         traceback.print_exc()
 
-    return list_of_objects, list_of_directories;
+    return list_of_objects, list_of_directories
+
 
 def do_get_object(s3client, bucket_name, path):
     try:
         response = s3client.get_object(Bucket=bucket_name, Key=path)
-        if 'Body' in response:
-            if 'ContentType' in response:
-                content_type = response['ContentType']
+        if "Body" in response:
+            if "ContentType" in response:
+                content_type = response["ContentType"]
             else:
-                content_type = 'Unknown'
-            streaming_body = response['Body']
+                content_type = "Unknown"
+            streaming_body = response["Body"]
             data = streaming_body.read()
             return content_type, data
         else:
             return None
     except Exception as e:
+        print(e)
         traceback.print_exc()
         return None
+
 
 def get_s3_objects_from_path(s3, path):
 
@@ -255,13 +267,15 @@ def get_s3_objects_from_path(s3, path):
     else:
         bucket_name, path = parse_bucket_name_and_path(path)
         s3client = s3.meta.client
-        if (path == "" or path.endswith("/")):
-            list_of_objects, list_of_directories = do_list_objects_v2(s3client, bucket_name, path)
+        if path == "" or path.endswith("/"):
+            list_of_objects, list_of_directories = do_list_objects_v2(
+                s3client, bucket_name, path
+            )
             result = set()
-            if (len(list_of_directories) > 0):
+            if len(list_of_directories) > 0:
                 for one_dir in list_of_directories:
                     result.add(one_dir)
-            if (len(list_of_objects) > 0):
+            if len(list_of_objects) > 0:
                 for one_object in list_of_objects:
                     result.add(one_object)
 
@@ -277,8 +291,10 @@ def get_s3_objects_from_path(s3, path):
             ]
             return result
         else:
-            object_content_type, object_data = do_get_object(s3client, bucket_name, path)
-            if object_content_type != None:
+            object_content_type, object_data = do_get_object(
+                s3client, bucket_name, path
+            )
+            if object_content_type is not None:
                 result = {
                     "path": "{}/{}".format(bucket_name, path),
                     "type": "file",
@@ -291,6 +307,7 @@ def get_s3_objects_from_path(s3, path):
                     "error": 404,
                     "message": "The requested resource could not be found.",
                 }
+
 
 class S3Handler(APIHandler):
     """
@@ -306,13 +323,14 @@ class S3Handler(APIHandler):
         and directories/prefixes based on the path.
         """
 
-        # boto3.set_stream_logger('boto3.resources', logging.DEBUG)
-        # boto3.set_stream_logger('botocore', logging.DEBUG)
+        boto3.set_stream_logger("boto3.resources", logging.DEBUG)
+        boto3.set_stream_logger("botocore", logging.DEBUG)
         try:
             if not self.s3:
                 self.s3 = S3Resource(self.config).s3_resource
             result = get_s3_objects_from_path(self.s3, path)
         except S3ResourceNotFoundException as e:
+            print(e)
             result = {
                 "error": 404,
                 "message": "The requested resource could not be found.",

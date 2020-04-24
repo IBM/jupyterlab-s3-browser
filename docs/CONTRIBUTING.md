@@ -4,17 +4,17 @@ Contributions to this extension are welcome.
 
 ## Setting up a Development Environment
 
-### Initial Setup
+### Prerequisites
 
 - [Install pre-commit](https://pre-commit.com/#installation) and run `pre-commit install`
+- [Install pipenv](https://github.com/pypa/pipenv#installation)
 
 ### Development
 
-- Run `make setup` to prepare your development environment.
-- To watch and automatically rebuild the lab extension run `make dev`
+- Run `make dev` to create the development environment and begin watching the typescript files for changes. When changes are detected the extension will automatically be rebuilt.
 - In a separate terminal pane, run `make run` to start jupyterlab.
 - Changes to the lab extension will trigger automatic rebuilds of the extension as you make changes.
-- Changes made to the server extension (i.e. the python code in `jupyterlab_s3_browser/`) will require you to run `make dev` and `make run` again.
+- Changes made to the server extension (i.e. the python code in `jupyterlab_s3_browser/`) will require you to ctrl+c and `make run` again.
 
 ## Release Publishing
 

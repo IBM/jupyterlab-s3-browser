@@ -246,7 +246,7 @@ export class S3Drive implements Contents.IDrive {
       }
       Private.showDirectoryLoadingSpinner();
     }
-    var s3path: string;
+    let s3path: string;
     if (Private.availableContentTypes[path] !== "file") {
       Private.currentPath = path;
       s3path = this.jupyterPathToS3Path(path, true);
