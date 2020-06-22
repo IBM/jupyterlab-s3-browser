@@ -1,0 +1,8 @@
+version: '3'
+services:
+  jupyterlab:
+    build: .
+    ports:
+      - "8888:8888"
+    # volumes:
+      # - /<path_to_home>/.aws/:/root/.aws/
