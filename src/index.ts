@@ -4,7 +4,7 @@ import {
   JupyterFrontEndPlugin
 } from "@jupyterlab/application";
 
-import { ISettingRegistry } from "@jupyterlab/settingregistry";
+import { ISettingRegistry } from "@jupyterlab/coreutils";
 
 import { IDocumentManager } from "@jupyterlab/docmanager";
 
