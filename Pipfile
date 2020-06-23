@@ -6,11 +6,12 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-e1839a8 = {editable = true,path = "."}
+e1839a8 = {path = ".",editable = true}
 jupyterlab = "==2.1.1"
 coverage = "*"
 pytest = "*"
 moto = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.7"
