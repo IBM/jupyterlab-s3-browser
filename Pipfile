@@ -11,7 +11,7 @@ jupyterlab = "==1.2.16"
 coverage = "*"
 pytest = "*"
 moto = "*"
-boto3 = "*"
+boto3 = "==1.14.9"
 jupyter = "*"
 
 [requires]
