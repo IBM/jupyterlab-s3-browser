@@ -6,6 +6,7 @@ import json
 import logging
 import traceback
 from collections import namedtuple
+from os import environ
 
 import boto3
 import tornado.gen as gen
@@ -24,9 +25,21 @@ class S3Config(SingletonConfigurable):
     Allows configuration of access to an S3 api
     """
 
-    endpoint_url = Unicode("", config=True, help="The url for the S3 api")
-    client_id = Unicode("", config=True, help="The client ID for the S3 api")
-    client_secret = Unicode("", config=True, help="The client secret for the S3 api")
+    endpoint_url = Unicode(
+        environ.get("JUPYTERLAB_S3_ENDPOINT", ""),
+        config=True,
+        help="The url for the S3 api",
+    )
+    client_id = Unicode(
+        environ.get("JUPYTERLAB_S3_ACCESS_KEY_ID", ""),
+        config=True,
+        help="The client ID for the S3 api",
+    )
+    client_secret = Unicode(
+        environ.get("JUPYTERLAB_S3_SECRET_ACCESS_KEY", ""),
+        config=True,
+        help="The client secret for the S3 api",
+    )
 
 
 @singleton
