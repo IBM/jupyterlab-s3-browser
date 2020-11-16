@@ -29,7 +29,7 @@ If you have a ~/.aws/credentials file available or have already set up role-base
 
 If you wish to configure through environment variables, you can do so using environment variables, for example:
 
-bash```
+```bash
 export JUPYTERLAB_S3_ENDPOINT="https://s3.us.cloud-object-storage.appdomain.cloud"
 export JUPYTERLAB_S3_ACCESS_KEY_ID="my-access-key-id"
 export JUPYTERLAB_S3_SECRET_ACCESS_KEY="secret"
