@@ -1,4 +1,5 @@
 .env
+**/.minio.sys/*
 lib/
 dist/
 __pycache__/
@@ -12,5 +13,6 @@ jupyterlab_s3_browser.egg-info/
 .ipynb_checkpoints/
 .jupyterlab/
 *.ipynb
+*.pipeline
 .coverage
 htmlcov/

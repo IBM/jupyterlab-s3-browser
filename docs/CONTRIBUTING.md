@@ -6,15 +6,15 @@ Contributions to this extension are welcome.
 
 ### Prerequisites
 
+- [Install docker](https://docs.docker.com/get-docker/)
+- [Install docker-compose](https://docs.docker.com/compose/install/)
 - [Install pre-commit](https://pre-commit.com/#installation) and run `pre-commit install`
-- [Install pipenv](https://github.com/pypa/pipenv#installation)
 
 ### Development
 
-- Run `make dev` to create the development environment and begin watching the typescript files for changes. When changes are detected the extension will automatically be rebuilt.
-- In a separate terminal pane, run `make run` to start jupyterlab.
-- Changes to the lab extension will trigger automatic rebuilds of the extension as you make changes.
-- Changes made to the server extension (i.e. the python code in `jupyterlab_s3_browser/`) will require you to ctrl+c and `make run` again.
+- Run `make build` to build development docker images.
+- Run `make run` to start the docker images. JupyterLab will eventually start on [localhost:8888](http://localhost:8888) and a minio instance will start on [localhost:9000](http://localhost:9000). Changes made to either the labextension (typescript files) or serverextension (python files) will be picked up automatically, but will require a browser refresh. The reload is not instantaneous, so watch the logs to see when the reload is complete.
+- Run `make test` to run tests (work-in-progress, very little coverage right now)
 
 ## Release Publishing
 

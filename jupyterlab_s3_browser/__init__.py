@@ -17,8 +17,6 @@ from singleton_decorator import singleton
 from traitlets import Unicode
 from traitlets.config import SingletonConfigurable
 
-#  from dataclasses import dataclass
-
 
 class S3Config(SingletonConfigurable):
     """
@@ -53,6 +51,7 @@ class S3Resource:  # pylint: disable=too-few-public-methods
             "************************************************************************"
         )
         config = S3Config().instance(config=config)
+
         if config.endpoint_url and config.client_id and config.client_secret:
 
             self.s3_resource = boto3.resource(
@@ -63,6 +62,19 @@ class S3Resource:  # pylint: disable=too-few-public-methods
             )
         else:
             self.s3_resource = boto3.resource("s3")
+
+
+def _test_env_var_access():
+    """
+  Checks if we have access to through environment variable configuration
+  """
+    test = boto3.resource("s3")
+    all_buckets = test.buckets.all()
+    result = [
+        {"name": bucket.name + "/", "path": bucket.name + "/", "type": "directory"}
+        for bucket in all_buckets
+    ]
+    return result
 
 
 def _test_aws_s3_role_access():
@@ -101,11 +113,12 @@ def test_s3_credentials(endpoint_url, client_id, client_secret):
         endpoint_url=endpoint_url,
     )
     all_buckets = test.buckets.all()
-    result = [
-        {"name": bucket.name + "/", "path": bucket.name + "/", "type": "directory"}
-        for bucket in all_buckets
-    ]
-    assert result
+    logging.debug(
+        [
+            {"name": bucket.name + "/", "path": bucket.name + "/", "type": "directory"}
+            for bucket in all_buckets
+        ]
+    )
 
 
 class AuthHandler(APIHandler):  # pylint: disable=abstract-method
@@ -126,15 +139,33 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
             authenticated = True
         except Exception as err:
             print(err)
+        try:
+            _test_aws_s3_role_access()
+            # if no exceptions, assume authenticated
+            authenticated = True
+        except Exception as err:
+            print(err)
 
         if not authenticated:
 
             try:
+                # hmm
                 config = S3Config.instance()
+                if not has_aws_s3_role_access():
+                    config.endpoint_url = environ.get("JUPYTERLAB_S3_ENDPOINT", "")
+                    config.client_id = environ.get("JUPYTERLAB_S3_ACCESS_KEY_ID", "")
+                    config.client_secret = environ.get(
+                        "JUPYTERLAB_S3_SECRET_ACCESS_KEY", ""
+                    )
                 if config.endpoint_url and config.client_id and config.client_secret:
+                    logging.warning("TESTING S3 CREDS!!!")
+                    logging.warning(config.endpoint_url)
+                    logging.warning(config.client_id)
+                    logging.warning(config.client_secret)
                     test_s3_credentials(
                         config.endpoint_url, config.client_id, config.client_secret
                     )
+                    logging.warning("AUTHENTICATED!")
 
                     # If no exceptions were encountered during testS3Credentials,
                     # then assume we're authenticated
@@ -144,7 +175,8 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
                 # If an exception was encountered,
                 # assume that we're not yet authenticated
                 # or invalid credentials were provided
-                print(err)
+                logging.warning("FAILED TO AUTHENTICATE")
+                logging.warning(err)
 
         self.finish(json.dumps({"authenticated": authenticated}))
 
@@ -335,15 +367,16 @@ class S3Handler(APIHandler):
         Takes a path and returns lists of files/objects
         and directories/prefixes based on the path.
         """
+        logging.info("GET: {}".format(path))
 
-        boto3.set_stream_logger("boto3.resources", logging.DEBUG)
-        boto3.set_stream_logger("botocore", logging.DEBUG)
+        #  boto3.set_stream_logger("boto3.resources", logging.DEBUG)
+        #  boto3.set_stream_logger("botocore", logging.DEBUG)
         try:
             if not self.s3:
                 self.s3 = S3Resource(self.config).s3_resource
             result = get_s3_objects_from_path(self.s3, path)
         except S3ResourceNotFoundException as e:
-            print(e)
+            logging.info(e)
             result = {
                 "error": 404,
                 "message": "The requested resource could not be found.",

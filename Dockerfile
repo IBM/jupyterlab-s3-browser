@@ -1,9 +1,11 @@
-FROM python:3.7.7-alpine3.12
-RUN apk add --update gcc musl-dev libffi-dev openssl-dev python3-dev cython zeromq-dev nodejs nodejs-npm
-RUN pip install pipenv
+FROM python:3.7-slim
+RUN apt-get update && apt-get install -y \
+  npm \
+  nodejs \
+  && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 COPY . .
-# RUN pipenv install
-# RUN pipenv run jupyter labextension link . --debug
-# RUN pipenv run jupyter serverextension enable --py jupyterlab_s3_browser
+RUN pip install -e .[dev]
+RUN jupyter labextension link . && jupyter serverextension enable --py jupyterlab_s3_browser
 EXPOSE 8888
-CMD ["pipenv", "run", "jupyter", "lab", "--ip=0.0.0.0", "--LabApp.token=''", "--allow-root", "--no-browser"]
+CMD ["jupyter", "lab"]
