@@ -2,6 +2,10 @@
 build:
 	@docker-compose build
 
+.PHONY: build-labextension
+build-labextension:
+	@docker-compose run jupyterlab /bin/bash -c 'jupyter labextension build'
+
 .PHONY: run
 run:
 	@docker-compose up

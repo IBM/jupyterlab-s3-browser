@@ -16,3 +16,4 @@ jupyterlab_s3_browser.egg-info/
 *.pipeline
 .coverage
 htmlcov/
+jupyterlab_s3_browser/labextension

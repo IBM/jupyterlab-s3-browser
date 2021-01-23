@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-s3-browser",
-  "version": "0.7.0",
+  "version": "0.8.0-dev.0",
   "description": "JupyterLab extension for browsing S3-compatible object storage",
   "keywords": [
     "s3",
@@ -56,6 +56,7 @@
     "base64-js": "^1.2.3"
   },
   "devDependencies": {
+    "@jupyterlab/builder": "^3.0.1",
     "@types/base64-js": "^1.2.5",
     "@types/text-encoding": "^0.0.32",
     "husky": "^0.14.3",
@@ -82,6 +83,7 @@
           "name": "jupyterlab_s3_browser"
         }
       }
-    }
+    },
+    "outputDir": "jupyterlab_s3_browser/labextension"
   }
 }

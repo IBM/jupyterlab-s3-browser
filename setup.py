@@ -50,4 +50,4 @@ except ValueError as e:
         )
     )
 
-setuptools.setup(version="0.7.0", **setup_dict)
+setuptools.setup(version="0.8.0-dev.0", **setup_dict)
