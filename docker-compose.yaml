@@ -24,9 +24,9 @@ services:
       - "JUPYTERLAB_S3_SECRET_ACCESS_KEY=SECRET_KEY"
     links:
       - minio
-  jupyterlab-npm-watch:
+  jupyterlab-watch:
     image: dev
-    command: npm run watch
+    command: yarn run watch
     volumes:
       - ./:/app
   minio:
