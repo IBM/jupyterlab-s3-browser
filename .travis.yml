@@ -8,18 +8,10 @@ cache:
     - node_modules
 before_install:
   - sudo apt-get update
-  - nvm install 10
-  - nvm use 10
-  # - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-  # - bash miniconda.sh -b -p $HOME/miniconda
-  # - source "$HOME/miniconda/etc/profile.d/conda.sh"
-  # - hash -r
-  # - conda config --set always_yes yes --set changeps1 no
-  # - conda config --set restore_free_channel true
-  # - conda update -q conda
-  # - conda info -a
+  - nvm install 14
+  - nvm use 14
 install:
-  - make setup
+  - make build
 script:
   - echo "need to update tests"
   # - make test
