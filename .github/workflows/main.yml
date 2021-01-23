@@ -48,13 +48,10 @@ jobs:
 
     - name: Create server extension and pip install
       run: |
-        # Trick to use custom parameters
         pip install .
         jupyter server extension list 2>&1 | grep -ie "jupyterlab_s3_browser.*OK"
         jupyter labextension list 2>&1 | grep -ie "jupyterlab_s3_browser.*OK"
         python -m jupyterlab.browser_check
-        pip uninstall -y my_extension jupyterlab
-        rm -rf my_extension
 
     # - name: Create server extension pip develop
       # run: |
