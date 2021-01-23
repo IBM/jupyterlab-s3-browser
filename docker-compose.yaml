@@ -6,10 +6,10 @@ services:
     command:
       - jupyter
       - lab
-      - --ip='0.0.0.0'
+      - --ip=0.0.0.0
       - --no-browser
-      - --NotebookApp.password=''
-      - --NotebookApp.token=''
+      - --ServerApp.password=
+      - --ServerApp.token=
       - --allow-root
       - --autoreload # comment out if you're only doing labextension development
       - --watch # comment out if you're only doing serverextension development

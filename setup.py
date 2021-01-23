@@ -37,7 +37,7 @@ setup_dict = dict(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
     ],
-    install_requires=["notebook", "boto3", "singleton-decorator", "jupyterlab==2.1.1"],
+    install_requires=["notebook", "boto3", "singleton-decorator", "jupyterlab>=3.0.0"],
     extras_require={"dev": ["pytest", "moto", "coverage"]},
 )
 
