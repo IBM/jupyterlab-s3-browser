@@ -49,7 +49,8 @@ jobs:
     - name: Create server extension and pip install
       run: |
         pip install .
-        echo "test"
+        jupyter serverextension list
+        jupyter labextension list
         # jupyter server extension list 2>&1 | grep -ie "jupyterlab_s3_browser.*OK"
         # jupyter labextension list 2>&1 | grep -ie "jupyterlab_s3_browser.*OK"
         # python -m jupyterlab.browser_check
