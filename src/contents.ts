@@ -258,7 +258,7 @@ export class S3Drive implements Contents.IDrive {
     return new Promise((resolve, reject) => {
       let settings = ServerConnection.makeSettings(); // can be stored as class var
       ServerConnection.makeRequest(
-        URLExt.join(settings.baseUrl, "s3/files", s3path),
+        URLExt.join(settings.baseUrl, "jupyterlab_s3_browser/files", s3path),
         {},
         settings
       ).then(response => {

@@ -59,7 +59,7 @@ if is_repo:
 else:
     cmdclass["jsdeps"] = skip_if_exists(jstargets, js_command)
 
-long_description = (HERE / "README.md").read_text()
+#  long_description = (HERE / "README.md").read_text()
 
 setup_args = dict(
     name=name,

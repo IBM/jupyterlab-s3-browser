@@ -18,7 +18,6 @@ from singleton_decorator import singleton
 from traitlets import Unicode
 from traitlets.config import SingletonConfigurable
 
-
 HERE = Path(__file__).parent.resolve()
 
 with (HERE / "labextension" / "package.json").open() as fid:
@@ -399,6 +398,10 @@ class S3Handler(APIHandler):
         self.finish(json.dumps(result))
 
 
+def _jupyter_server_extension_points():
+    return [{"module": "jupyterlab_s3_browser"}]
+
+
 def _jupyter_server_extension_paths():
     return [{"module": "jupyterlab_s3_browser"}]
 
@@ -413,7 +416,25 @@ def load_jupyter_server_extension(nb_server_app):
     """
     web_app = nb_server_app.web_app
     base_url = web_app.settings["base_url"]
-    endpoint = url_path_join(base_url, "s3")
+    endpoint = url_path_join(base_url, "jupyterlab_s3_browser")
+    handlers = [
+        (url_path_join(endpoint, "auth") + "(.*)", AuthHandler),
+        (url_path_join(endpoint, "files") + "(.*)", S3Handler),
+    ]
+    web_app.add_handlers(".*$", handlers)
+
+
+def _load_jupyter_server_extension(nb_server_app):
+    """
+    Called when the extension is loaded.
+
+    Args:
+        nb_server_app (NotebookWebApplication):
+        handle to the Notebook webserver instance.
+    """
+    web_app = nb_server_app.web_app
+    base_url = web_app.settings["base_url"]
+    endpoint = url_path_join(base_url, "jupyterlab_s3_browser")
     handlers = [
         (url_path_join(endpoint, "auth") + "(.*)", AuthHandler),
         (url_path_join(endpoint, "files") + "(.*)", S3Handler),

@@ -42,7 +42,7 @@ export class S3FileBrowser extends Widget {
       });
       const settings = ServerConnection.makeSettings();
       ServerConnection.makeRequest(
-        URLExt.join(settings.baseUrl, "s3/auth"),
+        URLExt.join(settings.baseUrl, "jupyterlab_s3_browser/auth"),
         {
           method: "POST",
           body: JSON.stringify(formDataJSON)
@@ -149,7 +149,7 @@ namespace Private {
     return new Promise((resolve, reject) => {
       const settings = ServerConnection.makeSettings();
       ServerConnection.makeRequest(
-        URLExt.join(settings.baseUrl, "s3/auth"),
+        URLExt.join(settings.baseUrl, "jupyterlab_s3_browser/auth"),
         {
           method: "GET"
         },
