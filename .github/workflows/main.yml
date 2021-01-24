@@ -10,7 +10,7 @@ on: push
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Checkout
@@ -53,6 +53,10 @@ jobs:
     - name: Create server extension and pip install
       run: |
         pip install .
+
+    - name: Build labextension
+      run: |
+        jupyter labextension build
 
     - name: Package extension
       run: |
