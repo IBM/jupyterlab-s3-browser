@@ -8,8 +8,8 @@ services:
       - lab
       - --ip=0.0.0.0
       - --no-browser
-      - --ServerApp.password=
-      - --ServerApp.token=
+      - --ServerApp.password=''
+      - --ServerApp.token=''
       - --allow-root
       - --autoreload # comment out if you're only doing labextension development
       - --watch # comment out if you're only doing serverextension development
@@ -26,7 +26,7 @@ services:
       - minio
   jupyterlab-watch:
     image: dev
-    command: yarn run watch
+    command: jlpm run watch
     volumes:
       - ./:/app
   minio:

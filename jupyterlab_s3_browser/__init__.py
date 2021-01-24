@@ -6,6 +6,7 @@ import json
 import logging
 import traceback
 from collections import namedtuple
+from pathlib import Path
 from os import environ
 
 import boto3
@@ -16,6 +17,16 @@ from notebook.utils import url_path_join
 from singleton_decorator import singleton
 from traitlets import Unicode
 from traitlets.config import SingletonConfigurable
+
+
+HERE = Path(__file__).parent.resolve()
+
+with (HERE / "labextension" / "package.json").open() as fid:
+    data = json.load(fid)
+
+
+def _jupyter_labextension_paths():
+    return [{"src": "labextension", "dest": data["name"]}]
 
 
 class S3Config(SingletonConfigurable):
@@ -47,7 +58,7 @@ class S3Resource:  # pylint: disable=too-few-public-methods
     """
 
     def __init__(self, config):
-        print(
+        logging.error(
             "************************************************************************"
         )
         config = S3Config().instance(config=config)
@@ -138,13 +149,13 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
             # if no exceptions, assume authenticated
             authenticated = True
         except Exception as err:
-            print(err)
+            logging.error(err)
         try:
             _test_aws_s3_role_access()
             # if no exceptions, assume authenticated
             authenticated = True
         except Exception as err:
-            print(err)
+            logging.error(err)
 
         if not authenticated:
 
@@ -158,7 +169,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
                         "JUPYTERLAB_S3_SECRET_ACCESS_KEY", ""
                     )
                 if config.endpoint_url and config.client_id and config.client_secret:
-                    logging.warning("TESTING S3 CREDS!!!")
+                    logging.warning("Testing s3 credentials")
                     logging.warning(config.endpoint_url)
                     logging.warning(config.client_id)
                     logging.warning(config.client_secret)
@@ -274,7 +285,7 @@ def do_list_objects_v2(s3client, bucket_name, prefix):
                     Content(prfx_basename, prfx, "directory", "json")
                 )
     except Exception as e:
-        print(e)
+        logging.error(e)
         traceback.print_exc()
 
     return list_of_objects, list_of_directories
@@ -294,7 +305,7 @@ def do_get_object(s3client, bucket_name, path):
         else:
             return None
     except Exception as e:
-        print(e)
+        logging.error(e)
         traceback.print_exc()
         return None
 
@@ -382,7 +393,7 @@ class S3Handler(APIHandler):
                 "message": "The requested resource could not be found.",
             }
         except Exception as e:
-            print(e)
+            logging.error(e)
             result = {"error": 500, "message": str(e)}
 
         self.finish(json.dumps(result))

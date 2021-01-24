@@ -88,6 +88,7 @@ export class S3Drive implements Contents.IDrive {
    * path if necessary.
    */
   getDownloadUrl(path: string): Promise<string> {
+    console.log("not yet implemented");
     return Promise.reject("Not yet implemented");
   }
 
@@ -244,7 +245,7 @@ export class S3Drive implements Contents.IDrive {
       if (Private.showingError) {
         Private.hideErrorMessage();
       }
-      Private.showDirectoryLoadingSpinner();
+      // Private.showDirectoryLoadingSpinner();
     }
     let s3path: string;
     if (Private.availableContentTypes[path] !== "file") {
@@ -395,6 +396,7 @@ namespace Private {
   }
 
   export function showDirectoryLoadingSpinner() {
+    console.log("showing loading spinner");
     if (document.querySelector("#s3-spinner")) {
       return;
     }
@@ -412,6 +414,7 @@ namespace Private {
   }
 
   export function hideDirectoryLoadingSpinner() {
+    console.log("trying to hide loading spinner");
     let loadingSpinner = document.querySelector("#s3-spinner");
     (document.querySelector("#s3-filebrowser") as HTMLElement).classList.remove(
       "loading"
