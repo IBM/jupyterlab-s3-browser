@@ -52,7 +52,7 @@ jobs:
 
     - name: Create server extension and pip install
       run: |
-        pip install .
+        pip install .[dev]
 
     - name: Build labextension
       run: |
