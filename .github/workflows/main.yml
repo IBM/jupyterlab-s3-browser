@@ -53,6 +53,7 @@ jobs:
         python -m pip install -e .[dev]
 
     - name: Create server extension and pip install
+      run: |
         jupyter labextension build
         jupyter labextension develop . --overwrite
         pip install .[dev] && jupyter serverextension enable --py jupyterlab_s3_browser
