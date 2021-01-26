@@ -4,7 +4,6 @@ jupyterlab_s3_browser setup
 import json
 from pathlib import Path
 
-import setuptools
 from jupyter_packaging import (
     create_cmdclass,
     install_npm,
@@ -12,6 +11,7 @@ from jupyter_packaging import (
     combine_commands,
     skip_if_exists,
 )
+import setuptools
 
 HERE = Path(__file__).parent.resolve()
 
@@ -44,6 +44,7 @@ data_files_spec = [
         "jupyterlab_s3_browser.json",
     ),
 ]
+
 
 cmdclass = create_cmdclass(
     "jsdeps", package_data_spec=package_data_spec, data_files_spec=data_files_spec
