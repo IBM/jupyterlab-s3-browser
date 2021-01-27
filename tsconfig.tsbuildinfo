@@ -651,22 +651,22 @@
         "signature": "d19a06c41eaad55f6b6ba111802478cae97572833cced273f7e8218ae6f2b1a6",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent.d.ts": {
         "version": "d1dbebf193f3122f34a883ec910beb7c5e6d2921a56cc3065c33c91ff27a01d5",
         "signature": "d1dbebf193f3122f34a883ec910beb7c5e6d2921a56cc3065c33c91ff27a01d5",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent2.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent2.d.ts": {
         "version": "4e81cedd4aca5f757c315cbf9a4ac69acfa79d178af0f60511f6cca9f55f82a2",
         "signature": "4e81cedd4aca5f757c315cbf9a4ac69acfa79d178af0f60511f6cca9f55f82a2",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent.d.ts": {
         "version": "93bb365a11749a610355844b9cec34b2b2390581fa49619cec047610b0e92432",
         "signature": "93bb365a11749a610355844b9cec34b2b2390581fa49619cec047610b0e92432",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent2.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent2.d.ts": {
         "version": "f2c9ddb2fe02d13686be12dc202659ff0de37837859bbc40c004c0296b424bfa",
         "signature": "f2c9ddb2fe02d13686be12dc202659ff0de37837859bbc40c004c0296b424bfa",
         "affectsGlobalScope": false
@@ -706,22 +706,22 @@
         "signature": "3ceb238111cbea7ba1b9b25a4833c5a0432637610f3245c6b1cf5804acfcfbb8",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconContents.d.ts": {
+      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconcontents.d.ts": {
         "version": "e133efe7fd5a1467149abf111686337d3e65d61d7f38e13ba5a6134201315958",
         "signature": "e133efe7fd5a1467149abf111686337d3e65d61d7f38e13ba5a6134201315958",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconNames.d.ts": {
+      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconnames.d.ts": {
         "version": "142dbe9097101d33df9e7595a040ac838c006ab3900a00ccaefbd819d392d1d4",
         "signature": "142dbe9097101d33df9e7595a040ac838c006ab3900a00ccaefbd819d392d1d4",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/icons/lib/esm/iconName.d.ts": {
+      "./node_modules/@blueprintjs/icons/lib/esm/iconname.d.ts": {
         "version": "f83b02a0e5d2ea81b9a14362a1cadafd534392bacdf731e461afc330c476980d",
         "signature": "f83b02a0e5d2ea81b9a14362a1cadafd534392bacdf731e461afc330c476980d",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconSvgPaths.d.ts": {
+      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconsvgpaths.d.ts": {
         "version": "f634926161579868440ca5372c890f0e20200b1323af31802a7075c4efdabe04",
         "signature": "f634926161579868440ca5372c890f0e20200b1323af31802a7075c4efdabe04",
         "affectsGlobalScope": false
@@ -746,32 +746,32 @@
         "signature": "75eaa6171bc3ce74f87a9fea83c35e5d2bfda3518eec74466cf3551fadded8fe",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/compareUtils.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/compareutils.d.ts": {
         "version": "0898dae9f289fcec89935e18892fe9fefbd5496f3d25ab75fec6460dc1cac6a4",
         "signature": "0898dae9f289fcec89935e18892fe9fefbd5496f3d25ab75fec6460dc1cac6a4",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domUtils.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domutils.d.ts": {
         "version": "5fe0701f446d17874b6ab8c141985faf0fe9c898cea9a84b009a30911cc86bee",
         "signature": "5fe0701f446d17874b6ab8c141985faf0fe9c898cea9a84b009a30911cc86bee",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/functionUtils.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/functionutils.d.ts": {
         "version": "8802ee7636d5e15d7f732f8dd5d52e972f7c139c279f15f0b2768a1af183e1fc",
         "signature": "8802ee7636d5e15d7f732f8dd5d52e972f7c139c279f15f0b2768a1af183e1fc",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/jsUtils.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/jsutils.d.ts": {
         "version": "0fda3389ad3f08a948f0b31014354ba66b85741005c1bb0b11c01378b6603ff2",
         "signature": "0fda3389ad3f08a948f0b31014354ba66b85741005c1bb0b11c01378b6603ff2",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactUtils.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactutils.d.ts": {
         "version": "b5d7adc7a11865fbf57ee146c0323f7935208e2221465fcdb419a10aaa7abb3f",
         "signature": "b5d7adc7a11865fbf57ee146c0323f7935208e2221465fcdb419a10aaa7abb3f",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/safeInvokeMember.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/safeinvokemember.d.ts": {
         "version": "76a73ecc334a853411ba43d5e977bc56811b90448dafb383b4062acdd716c310",
         "signature": "76a73ecc334a853411ba43d5e977bc56811b90448dafb383b4062acdd716c310",
         "affectsGlobalScope": false
@@ -791,7 +791,7 @@
         "signature": "8a9f92150f8d5aa704119e16e7ac921ca2c54f4baf6b94dd0fbbc97df3fca7c8",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractButton.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractbutton.d.ts": {
         "version": "7d24790c6d1444ebaea21814542d83549e234242d87c29ab736e6d3092594599",
         "signature": "7d24790c6d1444ebaea21814542d83549e234242d87c29ab736e6d3092594599",
         "affectsGlobalScope": false
@@ -806,12 +806,12 @@
         "signature": "0d3274a244ed670fd779f5e1b49b6340e91a7f763b843c9104d069fe261a4684",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputGroup.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputgroup.d.ts": {
         "version": "29e7012b8ac3fcc998464926e748540aff6b284506d24d4512603cd7f6a9cc9b",
         "signature": "29e7012b8ac3fcc998464926e748540aff6b284506d24d4512603cd7f6a9cc9b",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/accessibility/focusStyleManager.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/accessibility/focusstylemanager.d.ts": {
         "version": "45764e880cd0158b4a1692c38670441b7d60ddfe6f8835641ca9bfceb5f78b9e",
         "signature": "45764e880cd0158b4a1692c38670441b7d60ddfe6f8835641ca9bfceb5f78b9e",
         "affectsGlobalScope": false
@@ -821,22 +821,22 @@
         "signature": "30b5e83c2c380e084df3b84fcf910e70f43abfe11448875356cd38e7a3bbf7cd",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent.d.ts": {
         "version": "d1dbebf193f3122f34a883ec910beb7c5e6d2921a56cc3065c33c91ff27a01d5",
         "signature": "d1dbebf193f3122f34a883ec910beb7c5e6d2921a56cc3065c33c91ff27a01d5",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent2.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent2.d.ts": {
         "version": "4e81cedd4aca5f757c315cbf9a4ac69acfa79d178af0f60511f6cca9f55f82a2",
         "signature": "4e81cedd4aca5f757c315cbf9a4ac69acfa79d178af0f60511f6cca9f55f82a2",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent.d.ts": {
         "version": "93bb365a11749a610355844b9cec34b2b2390581fa49619cec047610b0e92432",
         "signature": "93bb365a11749a610355844b9cec34b2b2390581fa49619cec047610b0e92432",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent2.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent2.d.ts": {
         "version": "f2c9ddb2fe02d13686be12dc202659ff0de37837859bbc40c004c0296b424bfa",
         "signature": "f2c9ddb2fe02d13686be12dc202659ff0de37837859bbc40c004c0296b424bfa",
         "affectsGlobalScope": false
@@ -896,32 +896,32 @@
         "signature": "75eaa6171bc3ce74f87a9fea83c35e5d2bfda3518eec74466cf3551fadded8fe",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/compareUtils.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/compareutils.d.ts": {
         "version": "0898dae9f289fcec89935e18892fe9fefbd5496f3d25ab75fec6460dc1cac6a4",
         "signature": "0898dae9f289fcec89935e18892fe9fefbd5496f3d25ab75fec6460dc1cac6a4",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/domUtils.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/domutils.d.ts": {
         "version": "5fe0701f446d17874b6ab8c141985faf0fe9c898cea9a84b009a30911cc86bee",
         "signature": "5fe0701f446d17874b6ab8c141985faf0fe9c898cea9a84b009a30911cc86bee",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/functionUtils.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/functionutils.d.ts": {
         "version": "8802ee7636d5e15d7f732f8dd5d52e972f7c139c279f15f0b2768a1af183e1fc",
         "signature": "8802ee7636d5e15d7f732f8dd5d52e972f7c139c279f15f0b2768a1af183e1fc",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/jsUtils.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/jsutils.d.ts": {
         "version": "0fda3389ad3f08a948f0b31014354ba66b85741005c1bb0b11c01378b6603ff2",
         "signature": "0fda3389ad3f08a948f0b31014354ba66b85741005c1bb0b11c01378b6603ff2",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactUtils.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactutils.d.ts": {
         "version": "b5d7adc7a11865fbf57ee146c0323f7935208e2221465fcdb419a10aaa7abb3f",
         "signature": "b5d7adc7a11865fbf57ee146c0323f7935208e2221465fcdb419a10aaa7abb3f",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/safeInvokeMember.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/safeinvokemember.d.ts": {
         "version": "76a73ecc334a853411ba43d5e977bc56811b90448dafb383b4062acdd716c310",
         "signature": "76a73ecc334a853411ba43d5e977bc56811b90448dafb383b4062acdd716c310",
         "affectsGlobalScope": false
@@ -936,12 +936,12 @@
         "signature": "6646d1446d9958fc1fef81b60208835665d44df47880fc1264a7f721329aed11",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/common/configureDom4.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/common/configuredom4.d.ts": {
         "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenu.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenu.d.ts": {
         "version": "9e3c4f9cbf53096fcdc9c514a3e6a5e406cd35344a7d08322a3df65a1815aa57",
         "signature": "9e3c4f9cbf53096fcdc9c514a3e6a5e406cd35344a7d08322a3df65a1815aa57",
         "affectsGlobalScope": false
@@ -966,7 +966,7 @@
         "signature": "bbb772cd5a75a4fd8ad3b989f8f72233e4a01b2ec7740273e1aa3ad689f2924b",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowList.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowlist.d.ts": {
         "version": "40e6ce9d1b6c02c8887c5ac83d1f08e0f23277b63b11b86e977fd7bbfe09d9de",
         "signature": "40e6ce9d1b6c02c8887c5ac83d1f08e0f23277b63b11b86e977fd7bbfe09d9de",
         "affectsGlobalScope": false
@@ -976,7 +976,7 @@
         "signature": "1873db8f2261ba4f248bde3e5bb4c79b1fdc990315054e9604fce8f41ddd1587",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoverSharedProps.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoversharedprops.d.ts": {
         "version": "4cff5908d06fab5cf67bfb44fd1dfecf6fe93b55fff2feec988a18c2a21a3f2d",
         "signature": "4cff5908d06fab5cf67bfb44fd1dfecf6fe93b55fff2feec988a18c2a21a3f2d",
         "affectsGlobalScope": false
@@ -991,7 +991,7 @@
         "signature": "fb8be8008008946ed8466fa042ea95184b1931e3c316c6eb90c0d3f0ac36cb04",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractButton.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractbutton.d.ts": {
         "version": "5fae3a3a78a3055d0f16bed0528a053a998533d529e8ff50d8e913ee91648181",
         "signature": "5fae3a3a78a3055d0f16bed0528a053a998533d529e8ff50d8e913ee91648181",
         "affectsGlobalScope": false
@@ -1001,7 +1001,7 @@
         "signature": "d50d6c45f64c4c48eb52e8725975c59357009d4a832db761549214c28e8075bc",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/button/buttonGroup.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/button/buttongroup.d.ts": {
         "version": "8605f73799a74075e99fc72cf0a6855ad0347df1daed18df530f983f24c08f81",
         "signature": "8605f73799a74075e99fc72cf0a6855ad0347df1daed18df530f983f24c08f81",
         "affectsGlobalScope": false
@@ -1021,17 +1021,17 @@
         "signature": "0d3274a244ed670fd779f5e1b49b6340e91a7f763b843c9104d069fe261a4684",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuItem.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuitem.d.ts": {
         "version": "dcbb32195b624bd18ce88ad2419f4b3db520d79bd48f042766b57170a3de4592",
         "signature": "dcbb32195b624bd18ce88ad2419f4b3db520d79bd48f042766b57170a3de4592",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsibleList.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsiblelist.d.ts": {
         "version": "476c0dfa19520c7950c12105b3b8e62be1a5852d0aa6c43c8933bc1106efa705",
         "signature": "476c0dfa19520c7950c12105b3b8e62be1a5852d0aa6c43c8933bc1106efa705",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenuTarget.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenutarget.d.ts": {
         "version": "0cd151767065e503ba2cb1f9f8ccbde4ff9765ed04e1cd088df7001d032385d2",
         "signature": "0cd151767065e503ba2cb1f9f8ccbde4ff9765ed04e1cd088df7001d032385d2",
         "affectsGlobalScope": false
@@ -1041,12 +1041,12 @@
         "signature": "307682f4e06cd5f62e9148ddf3367fc4c4ddbd46e7a68bb2ebcd7642d5b841bc",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogStep.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogstep.d.ts": {
         "version": "60d3f9e1d2ff0cb6d8753ce9ed18996acb4d26119095418d2a9ac2c77b275f13",
         "signature": "60d3f9e1d2ff0cb6d8753ce9ed18996acb4d26119095418d2a9ac2c77b275f13",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepDialog.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepdialog.d.ts": {
         "version": "a9960301d428513bd5e2b7e14bcfb52522e481052ba0c7fd7079c66558c889ca",
         "signature": "a9960301d428513bd5e2b7e14bcfb52522e481052ba0c7fd7079c66558c889ca",
         "affectsGlobalScope": false
@@ -1061,12 +1061,12 @@
         "signature": "ccb5741f6cd38935fbb1a651bc2029bbdbd1f54bcd6bcd6349681336f549ee11",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editableText.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editabletext.d.ts": {
         "version": "ac004a794b7c4bc7eee2e709da82f11f1959130e7027a91dc5fcfd90ec192e7f",
         "signature": "ac004a794b7c4bc7eee2e709da82f11f1959130e7027a91dc5fcfd90ec192e7f",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlGroup.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlgroup.d.ts": {
         "version": "8d442b5f7d5f07f91786d5c41deead32cdbc5616098d3e8d64d3e264e348cc59",
         "signature": "8d442b5f7d5f07f91786d5c41deead32cdbc5616098d3e8d64d3e264e348cc59",
         "affectsGlobalScope": false
@@ -1076,32 +1076,32 @@
         "signature": "91ffbe9547d2fe75a57ec8f1da9595c7f8e033d0f6440dec2fe338f8bff33013",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileInput.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileinput.d.ts": {
         "version": "d8a8e0f0cb8250377632a0d94876d3709ec366e0cc59696c657244e9b1901a5a",
         "signature": "d8a8e0f0cb8250377632a0d94876d3709ec366e0cc59696c657244e9b1901a5a",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/formGroup.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/formgroup.d.ts": {
         "version": "62ff7c4f0eb9367b9ccb9685c74444559eaf9e0d92ffcab4126af02729b42ba5",
         "signature": "62ff7c4f0eb9367b9ccb9685c74444559eaf9e0d92ffcab4126af02729b42ba5",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputGroup.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputgroup.d.ts": {
         "version": "29e7012b8ac3fcc998464926e748540aff6b284506d24d4512603cd7f6a9cc9b",
         "signature": "29e7012b8ac3fcc998464926e748540aff6b284506d24d4512603cd7f6a9cc9b",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericInput.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericinput.d.ts": {
         "version": "5a10a42e5a5d92cf7eda30ce6c8f08703bd14060caa125330b0ead4c29870e1b",
         "signature": "5a10a42e5a5d92cf7eda30ce6c8f08703bd14060caa125330b0ead4c29870e1b",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/radioGroup.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/radiogroup.d.ts": {
         "version": "95cc70c4d529719911fc464abb0cfab7deb1b210577a4e1fbc6d1805dd750ce4",
         "signature": "95cc70c4d529719911fc464abb0cfab7deb1b210577a4e1fbc6d1805dd750ce4",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/textArea.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/textarea.d.ts": {
         "version": "832734560bd87a5290cbb853e2154bb7001d7fada4793b1d07d97c545e9b7701",
         "signature": "832734560bd87a5290cbb853e2154bb7001d7fada4793b1d07d97c545e9b7701",
         "affectsGlobalScope": false
@@ -1111,17 +1111,17 @@
         "signature": "3f39474d72edcd1979d78580b91d755d81386fe7222b831e16fb886ae2299831",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlSelect.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlselect.d.ts": {
         "version": "3ef3d45dda5ffe1fa48708654f9ae1a6c94fe8ef2cb25358767708144f3aa036",
         "signature": "3ef3d45dda5ffe1fa48708654f9ae1a6c94fe8ef2cb25358767708144f3aa036",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmlTable.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmltable.d.ts": {
         "version": "40cf1e86dd12ec94d3ec05f669b85d3e57c3f32de4070c5d6534f71be392b2c1",
         "signature": "40cf1e86dd12ec94d3ec05f669b85d3e57c3f32de4070c5d6534f71be392b2c1",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts": {
         "version": "af878249a46ff427c2fc5a09f09290c17c9f8c584c2ee73372841677d57ec605",
         "signature": "af878249a46ff427c2fc5a09f09290c17c9f8c584c2ee73372841677d57ec605",
         "affectsGlobalScope": false
@@ -1136,27 +1136,27 @@
         "signature": "3725c7de590bd75fa87b60011d48583c135f59437abecbaa5f49408f3f3c0586",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keyCombo.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keycombo.d.ts": {
         "version": "087af28431eec997d958d83bf9354a765a575f2dfeeeca77037c6c9d1aac8ec7",
         "signature": "087af28431eec997d958d83bf9354a765a575f2dfeeeca77037c6c9d1aac8ec7",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyParser.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyparser.d.ts": {
         "version": "25ff1b9cce87802468e368a8f5cfa1fc6b441ed7f042e74f4cf0774970a55d78",
         "signature": "25ff1b9cce87802468e368a8f5cfa1fc6b441ed7f042e74f4cf0774970a55d78",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysEvents.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysevents.d.ts": {
         "version": "d442718e27311698feab5e56acc9cd7f9f1d7901f909d29577c66409aa36816e",
         "signature": "d442718e27311698feab5e56acc9cd7f9f1d7901f909d29577c66409aa36816e",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTarget.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystarget.d.ts": {
         "version": "4d8b0b0195e20ce1fa5e72511eb81d31388e70820ff68646dc7eb43fd582d295",
         "signature": "4d8b0b0195e20ce1fa5e72511eb81d31388e70820ff68646dc7eb43fd582d295",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysDialog.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysdialog.d.ts": {
         "version": "12c2e8adc7de9f8ea260c55fedcacd26bb6dda520d4294b6550dab5a962f0f39",
         "signature": "12c2e8adc7de9f8ea260c55fedcacd26bb6dda520d4294b6550dab5a962f0f39",
         "affectsGlobalScope": false
@@ -1166,7 +1166,7 @@
         "signature": "cb578d9ba6614469f18b85155a91c4916fbb1709d943a6a64e06f3b2546a3717",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuDivider.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menudivider.d.ts": {
         "version": "29e4e1ac6b5601d38de4dc20ad8fabb8e899d9f525405d234a5f60df9fc7cb5f",
         "signature": "29e4e1ac6b5601d38de4dc20ad8fabb8e899d9f525405d234a5f60df9fc7cb5f",
         "affectsGlobalScope": false
@@ -1176,17 +1176,17 @@
         "signature": "7f5d9ab01ae26a16224ba95d381adb79a932bc244375fe9062ebbca0f78803c2",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarDivider.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbardivider.d.ts": {
         "version": "199fb38b462aef3170790638fadb0d07f81df196aff8fb79ffb9caab90dda33e",
         "signature": "199fb38b462aef3170790638fadb0d07f81df196aff8fb79ffb9caab90dda33e",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarGroup.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbargroup.d.ts": {
         "version": "0f64982d11d7976cd1215f23194d78ba5cca38c5f6bd73d0a3b097d5c76d4e10",
         "signature": "0f64982d11d7976cd1215f23194d78ba5cca38c5f6bd73d0a3b097d5c76d4e10",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarHeading.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarheading.d.ts": {
         "version": "7c28e8b7697e425d0fb48327d5c0035338b33a7a411407cc10969575e0cddc62",
         "signature": "7c28e8b7697e425d0fb48327d5c0035338b33a7a411407cc10969575e0cddc62",
         "affectsGlobalScope": false
@@ -1196,7 +1196,7 @@
         "signature": "76bc136e8aae33abe7696585c97efb26256e2b1f003fe727085e495098740a1d",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonIdealState.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonidealstate.d.ts": {
         "version": "83e2832757571c6fdb66656ca8babe1cb3c3c9b47be0723adf39b41bbf4c9d4a",
         "signature": "83e2832757571c6fdb66656ca8babe1cb3c3c9b47be0723adf39b41bbf4c9d4a",
         "affectsGlobalScope": false
@@ -1206,12 +1206,12 @@
         "signature": "d01d72d6a68c12213c1cf8157afb704d717f1e1102fe270692822bc7be910bc0",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelProps.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelprops.d.ts": {
         "version": "87d10a151f7b52b1131df33b492811430ba9d2b762761cc77e46d1639bf34d7d",
         "signature": "87d10a151f7b52b1131df33b492811430ba9d2b762761cc77e46d1639bf34d7d",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelStack.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelstack.d.ts": {
         "version": "6d74b8e17233ef13ac5c0fa0b2ee6d0330c8d9f751e1613e51bf78a75a074b47",
         "signature": "6d74b8e17233ef13ac5c0fa0b2ee6d0330c8d9f751e1613e51bf78a75a074b47",
         "affectsGlobalScope": false
@@ -1226,32 +1226,32 @@
         "signature": "7f8a71f8988fd83c29df1cab5723b233e481dbc85bc33196f69b49e59e72a0f2",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressBar.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressbar.d.ts": {
         "version": "a57c4044aed7282d7db8f441d9e2325ca7624750cb0dda51d806d52401258444",
         "signature": "a57c4044aed7282d7db8f441d9e2325ca7624750cb0dda51d806d52401258444",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeObserverTypes.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeobservertypes.d.ts": {
         "version": "76d5e91c944c990249e830165a33335f90630e1b02bd72624e38658c0d87c72d",
         "signature": "76d5e91c944c990249e830165a33335f90630e1b02bd72624e38658c0d87c72d",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeSensor.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizesensor.d.ts": {
         "version": "91c0a37704f2d84eb41aa68f0ffd6b720b027d4d15889fa07aa99dafe72e1606",
         "signature": "91c0a37704f2d84eb41aa68f0ffd6b720b027d4d15889fa07aa99dafe72e1606",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleProps.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleprops.d.ts": {
         "version": "dbe4eb1eddee70e13ae50972ca71e616f6684678de330faa0218852d5dfda167",
         "signature": "dbe4eb1eddee70e13ae50972ca71e616f6684678de330faa0218852d5dfda167",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/multiSlider.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/multislider.d.ts": {
         "version": "cd6270f48e99225e086cf19f01f7a29e504d0bcde57f7672ec035b2b416c31c7",
         "signature": "cd6270f48e99225e086cf19f01f7a29e504d0bcde57f7672ec035b2b416c31c7",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeSlider.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeslider.d.ts": {
         "version": "b2710a6ad07b5b46ba25f44bcfeb4d1d42740e985e920efb3f6f0ca22133b50f",
         "signature": "b2710a6ad07b5b46ba25f44bcfeb4d1d42740e985e920efb3f6f0ca22133b50f",
         "affectsGlobalScope": false
@@ -1281,7 +1281,7 @@
         "signature": "b45521886741901cb570ac59c6921ac5fc9139cc3488dd2edd51b4cf62088ce4",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/tagInput.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/taginput.d.ts": {
         "version": "4c140358a4a1e238f06ad9df2cfea8d0a3c34d776d76b5cf94304e1eccb65ad4",
         "signature": "4c140358a4a1e238f06ad9df2cfea8d0a3c34d776d76b5cf94304e1eccb65ad4",
         "affectsGlobalScope": false
@@ -1301,7 +1301,7 @@
         "signature": "f9e4ffe8bd410a2180581ab7ece6c9bd6c276560b4262db51d4ce751df5856fa",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/core/lib/esm/components/tree/treeNode.d.ts": {
+      "./node_modules/@blueprintjs/core/lib/esm/components/tree/treenode.d.ts": {
         "version": "869a2aaa1ed72c61bacac93127a8540cede16c61426cd07f6e8ef5fb6a838c14",
         "signature": "869a2aaa1ed72c61bacac93127a8540cede16c61426cd07f6e8ef5fb6a838c14",
         "affectsGlobalScope": false
@@ -1326,17 +1326,17 @@
         "signature": "90c50a5e678eb8160b1331b4c4d107f0cf1d2005c7d063cacf367283774d8791",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsUtils.d.ts": {
+      "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsutils.d.ts": {
         "version": "875b2375b7214808f47c525b583c22ff7e18864c5eb8ab6fb019e04d78d14653",
         "signature": "875b2375b7214808f47c525b583c22ff7e18864c5eb8ab6fb019e04d78d14653",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/select/lib/cjs/common/itemListRenderer.d.ts": {
+      "./node_modules/@blueprintjs/select/lib/cjs/common/itemlistrenderer.d.ts": {
         "version": "65f924b906eea12184a1076148a4e05163f62d197e70007d5254b6dbea5b7075",
         "signature": "65f924b906eea12184a1076148a4e05163f62d197e70007d5254b6dbea5b7075",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/select/lib/cjs/common/itemRenderer.d.ts": {
+      "./node_modules/@blueprintjs/select/lib/cjs/common/itemrenderer.d.ts": {
         "version": "360c80aa8c2bb72df69ac5c0ea32b1767d9a7e54294bf92c56d6fe0e6fd504cf",
         "signature": "360c80aa8c2bb72df69ac5c0ea32b1767d9a7e54294bf92c56d6fe0e6fd504cf",
         "affectsGlobalScope": false
@@ -1346,7 +1346,7 @@
         "signature": "27b3f549994f28c3b738ce39a929a8829ac9252653dc7d3ad8aa829f4d6cef7a",
         "affectsGlobalScope": false
       },
-      "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsProps.d.ts": {
+      "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsprops.d.ts": {
         "version": "6a19d960bcfd2bff5907754fd3e506d2f7d044c28eaea45d8dea520ad7ed2b87",
         "signature": "6a19d960bcfd2bff5907754fd3e506d2f7d044c28eaea45d8dea520ad7ed2b87",
         "affectsGlobalScope": false
@@ -1867,13 +1867,13 @@
         "affectsGlobalScope": false
       },
       "./src/contents.ts": {
-        "version": "755f4c916e0b62036ddacb23fcff719d4db7ca105209ec6ccbbfe78856886eef",
-        "signature": "3d1f7b9849bf41eed7e0a259e332e725d3c5e78d2d6d8482ba4d259754ef05f8",
+        "version": "8a3defde0abfa8472ff78477b7a8b008a0819136b678f4bd38ff0318ffe7d136",
+        "signature": "09108e05e4632312d14fd5dd87ae32c0f001333d94eb323943fdb4cedd55f881",
         "affectsGlobalScope": false
       },
       "./src/browser.ts": {
-        "version": "dddd458439ed6d992ae681e5e67b657f303629a19c731e77ae3522ce519e89b8",
-        "signature": "17b1f11e5e2f1d8a02e49ea43a0f5627a7500462683d857bcb219d2a143c3758",
+        "version": "19ef14ca94f0340455d615927e70883f9c975c776e92557876cfb87a8c21b46a",
+        "signature": "dec4d244e5542e0d4380dae1beaee14c127706087fdbc1251ded20da61c996d3",
         "affectsGlobalScope": false
       },
       "./node_modules/@jupyterlab/application/lib/tokens.d.ts": {
@@ -1937,12 +1937,12 @@
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "528650ff6b6a3f74be3f468b97f40cf968d93f99df0b96b881648051aa9ae807",
-        "signature": "9ed98c1f49db768a477477ee2baca38618fd84e56e4c618f8662f1ae0218db07",
+        "version": "944cd87dd3f452614b8e193b38d571a9d06a5436dfa08898422876d2c4711827",
+        "signature": "b8ee29e6d6a2cfb7b2cfd601d2f9e08721e9a01b8465a9b5e3606e71de2680a0",
         "affectsGlobalScope": false
       },
       "./src/version.ts": {
-        "version": "e7a58be0e696ca97865c503b452d7bbc0a72c5b66278fdd5cc8cc5db2c79524e",
+        "version": "fd6b9a749b11790cd4a698655cdf965c59052516f352dfc8c3e7f8f014a9fc5c",
         "signature": "6d983badbfd70676841e194319a85c40a8ca4611de0bf946b50d9a33fd6a5b02",
         "affectsGlobalScope": false
       }
@@ -1956,7 +1956,7 @@
       "jsx": 2,
       "module": 99,
       "moduleResolution": 2,
-      "noEmitOnError": true,
+      "noEmitOnError": false,
       "noImplicitAny": true,
       "noUnusedLocals": true,
       "preserveWatchOutput": true,
@@ -1967,20 +1967,19 @@
       "strictNullChecks": false,
       "target": 4,
       "types": [],
-      "watch": true,
       "configFilePath": "./tsconfig.json"
     },
     "referencedMap": {
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent2.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent2.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent2.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent2.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/cjs/common/classes.d.ts": [
@@ -1990,10 +1989,10 @@
         "./node_modules/@blueprintjs/core/lib/cjs/common/position.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/cjs/common/index.d.ts": [
-        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent2.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent2.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent2.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent2.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/common/alignment.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/common/boundary.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/common/classes.d.ts",
@@ -2013,29 +2012,29 @@
         "./node_modules/@blueprintjs/icons/lib/esm/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domUtils.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domutils.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/cjs/common/utils/index.d.ts": [
         "./node_modules/@blueprintjs/core/lib/cjs/common/refs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/compareUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/functionUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/jsUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/safeInvokeMember.d.ts"
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/compareutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/functionutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/jsutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/safeinvokemember.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactUtils.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactutils.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractButton.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractbutton.d.ts": [
         "./node_modules/@blueprintjs/core/lib/cjs/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/cjs/components/button/buttons.d.ts": [
         "./node_modules/@blueprintjs/core/lib/cjs/common/refs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractButton.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractbutton.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/cjs/components/collapse/collapse.d.ts": [
@@ -2048,7 +2047,7 @@
         "./node_modules/@blueprintjs/core/lib/cjs/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputgroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/cjs/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/components/icon/icon.d.ts",
@@ -2060,18 +2059,18 @@
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/accessibility/index.d.ts": [
-        "./node_modules/@blueprintjs/core/lib/esm/accessibility/focusStyleManager.d.ts"
+        "./node_modules/@blueprintjs/core/lib/esm/accessibility/focusstylemanager.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent2.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent2.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent2.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent2.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/common/classes.d.ts": [
@@ -2081,10 +2080,10 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/position.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts": [
-        "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent2.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent2.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent2.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent2.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/alignment.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/boundary.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/classes.d.ts",
@@ -2104,19 +2103,19 @@
         "./node_modules/@blueprintjs/icons/lib/esm/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/domUtils.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/domutils.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/common/utils/index.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/refs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/compareUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/domUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/functionUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/jsUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/safeInvokeMember.d.ts"
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/compareutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/domutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/functionutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/jsutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/safeinvokemember.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactUtils.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactutils.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/alert/alert.d.ts": [
@@ -2132,23 +2131,23 @@
       "./node_modules/@blueprintjs/core/lib/esm/components/breadcrumbs/breadcrumbs.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/breadcrumbs/breadcrumb.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowList.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowlist.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractButton.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractbutton.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/button/buttonGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/button/buttongroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/button/buttons.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/refs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractButton.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractbutton.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/callout/callout.d.ts": [
@@ -2166,17 +2165,17 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsibleList.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsiblelist.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/boundary.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuItem.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuitem.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenu.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenu.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenuTarget.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenutarget.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/constructor.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -2187,16 +2186,16 @@
         "./node_modules/@blueprintjs/core/lib/esm/components/overlay/overlay.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogStep.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogstep.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepDialog.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepdialog.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/button/buttons.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialog.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogStep.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogstep.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/divider/divider.d.ts": [
@@ -2212,12 +2211,12 @@
         "./node_modules/@blueprintjs/core/lib/esm/components/overlay/overlay.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editableText.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editabletext.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlgroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
@@ -2227,33 +2226,33 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileInput.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileinput.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/formGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/formgroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputgroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericInput.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericinput.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/icons/lib/esm/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/radioGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/radiogroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/textArea.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/textarea.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
@@ -2264,48 +2263,48 @@
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeys.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysDialog.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysdialog.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkey.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysEvents.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysevents.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkey.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyParser.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyparser.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTarget.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystarget.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/constructor.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysEvents.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysevents.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/index.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkey.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyParser.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyparser.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeys.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysDialog.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTarget.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keyCombo.d.ts"
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysdialog.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystarget.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keycombo.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keyCombo.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keycombo.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlSelect.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlselect.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmlTable.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmltable.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -2322,79 +2321,79 @@
         "./node_modules/@blueprintjs/core/lib/esm/components/alert/alert.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/breadcrumbs/breadcrumb.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/breadcrumbs/breadcrumbs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/button/buttonGroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/button/buttongroup.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/button/buttons.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/callout/callout.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/card/card.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/collapse/collapse.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsibleList.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenu.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenuTarget.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsiblelist.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenu.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenutarget.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialog.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogStep.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepDialog.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogstep.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepdialog.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/divider/divider.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/drawer/drawer.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editableText.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlGroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editabletext.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlgroup.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/forms/controls.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileInput.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/formGroup.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputGroup.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericInput.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/radioGroup.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/textArea.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileinput.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/formgroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputgroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericinput.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/radiogroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/textarea.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlSelect.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmlTable.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlselect.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmltable.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/html/html.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/menu/menu.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuDivider.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuItem.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menudivider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuitem.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbar.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarDivider.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarGroup.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarHeading.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonIdealState.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowList.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbardivider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbargroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarheading.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonidealstate.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowlist.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/overlay/overlay.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelProps.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelStack.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelprops.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelstack.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoverSharedProps.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoversharedprops.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/portal/portal.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressBar.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeObserverTypes.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeSensor.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleProps.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multiSlider.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeSlider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressbar.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeobservertypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizesensor.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleprops.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multislider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeslider.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/slider/slider.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/spinner/spinner.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/tabs/tab.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/tabs/tabs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/tagInput.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/taginput.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/tag/tag.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/text/text.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/toast/toast.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/toast/toaster.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/tooltip/tooltip.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/tree/tree.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/tree/treeNode.d.ts"
+        "./node_modules/@blueprintjs/core/lib/esm/components/tree/treenode.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/menu/menu.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuDivider.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuItem.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menudivider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuitem.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuDivider.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menudivider.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuItem.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuitem.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
@@ -2403,33 +2402,33 @@
       "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbar.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarDivider.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarGroup.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarHeading.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbardivider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbargroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarheading.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarDivider.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbardivider.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbargroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarHeading.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarheading.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonIdealState.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonidealstate.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowList.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowlist.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/boundary.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
@@ -2439,21 +2438,21 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelProps.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelprops.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelStack.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelstack.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelProps.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelprops.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoverSharedProps.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoversharedprops.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoverSharedProps.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoversharedprops.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/overlay/overlay.d.ts",
         "./node_modules/@types/react/index.d.ts",
@@ -2464,34 +2463,34 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressBar.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressbar.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeSensor.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizesensor.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeObserverTypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeobservertypes.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleProps.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleprops.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/multiSlider.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/multislider.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleProps.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleprops.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeSlider.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeslider.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multiSlider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multislider.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/slider/slider.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multiSlider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multislider.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/spinner/spinner.d.ts": [
@@ -2510,7 +2509,7 @@
         "./node_modules/@blueprintjs/core/lib/esm/components/tabs/tab.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/tagInput.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/taginput.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
@@ -2543,15 +2542,15 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoverSharedProps.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoversharedprops.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/tree/tree.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/tree/treeNode.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/tree/treenode.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/tree/treeNode.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/tree/treenode.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
@@ -2561,39 +2560,39 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconSvgPaths.d.ts": [
-        "./node_modules/@blueprintjs/icons/lib/esm/iconName.d.ts"
+      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconsvgpaths.d.ts": [
+        "./node_modules/@blueprintjs/icons/lib/esm/iconname.d.ts"
       ],
-      "./node_modules/@blueprintjs/icons/lib/esm/iconName.d.ts": [
-        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconNames.d.ts"
+      "./node_modules/@blueprintjs/icons/lib/esm/iconname.d.ts": [
+        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconnames.d.ts"
       ],
       "./node_modules/@blueprintjs/icons/lib/esm/index.d.ts": [
-        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconContents.d.ts",
-        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconNames.d.ts",
-        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconSvgPaths.d.ts",
-        "./node_modules/@blueprintjs/icons/lib/esm/iconName.d.ts"
+        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconcontents.d.ts",
+        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconnames.d.ts",
+        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconsvgpaths.d.ts",
+        "./node_modules/@blueprintjs/icons/lib/esm/iconname.d.ts"
       ],
       "./node_modules/@blueprintjs/select/lib/cjs/common/index.d.ts": [
         "./node_modules/@blueprintjs/select/lib/cjs/common/classes.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/itemListRenderer.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/itemRenderer.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsProps.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsUtils.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/itemlistrenderer.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/itemrenderer.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsprops.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsutils.d.ts",
         "./node_modules/@blueprintjs/select/lib/cjs/common/predicate.d.ts"
       ],
-      "./node_modules/@blueprintjs/select/lib/cjs/common/itemListRenderer.d.ts": [
+      "./node_modules/@blueprintjs/select/lib/cjs/common/itemlistrenderer.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/index.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsUtils.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsutils.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/select/lib/cjs/common/itemRenderer.d.ts": [
+      "./node_modules/@blueprintjs/select/lib/cjs/common/itemrenderer.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsProps.d.ts": [
+      "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsprops.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/index.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/itemListRenderer.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/itemRenderer.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsUtils.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/itemlistrenderer.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/itemrenderer.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsutils.d.ts",
         "./node_modules/@blueprintjs/select/lib/cjs/common/predicate.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -3394,7 +3393,7 @@
         "./node_modules/@blueprintjs/core/lib/cjs/components/button/buttons.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/components/collapse/collapse.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/components/forms/controls.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputGroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputgroup.d.ts",
         "./node_modules/@blueprintjs/select/lib/cjs/components/select/select.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -3756,16 +3755,16 @@
       ]
     },
     "exportedModulesMap": {
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent2.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent2.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent2.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent2.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/cjs/common/classes.d.ts": [
@@ -3775,10 +3774,10 @@
         "./node_modules/@blueprintjs/core/lib/cjs/common/position.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/cjs/common/index.d.ts": [
-        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent2.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent2.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent2.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent2.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/common/alignment.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/common/boundary.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/common/classes.d.ts",
@@ -3798,29 +3797,29 @@
         "./node_modules/@blueprintjs/icons/lib/esm/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domUtils.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domutils.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/cjs/common/utils/index.d.ts": [
         "./node_modules/@blueprintjs/core/lib/cjs/common/refs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/compareUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/functionUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/jsUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/safeInvokeMember.d.ts"
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/compareutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/functionutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/jsutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/common/utils/safeinvokemember.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactUtils.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactutils.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractButton.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractbutton.d.ts": [
         "./node_modules/@blueprintjs/core/lib/cjs/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/cjs/components/button/buttons.d.ts": [
         "./node_modules/@blueprintjs/core/lib/cjs/common/refs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractButton.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractbutton.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/cjs/components/collapse/collapse.d.ts": [
@@ -3833,7 +3832,7 @@
         "./node_modules/@blueprintjs/core/lib/cjs/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputgroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/cjs/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/components/icon/icon.d.ts",
@@ -3845,18 +3844,18 @@
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/accessibility/index.d.ts": [
-        "./node_modules/@blueprintjs/core/lib/esm/accessibility/focusStyleManager.d.ts"
+        "./node_modules/@blueprintjs/core/lib/esm/accessibility/focusstylemanager.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent2.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent2.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent2.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent2.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/common/classes.d.ts": [
@@ -3866,10 +3865,10 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/position.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts": [
-        "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent2.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent2.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent2.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent2.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/alignment.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/boundary.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/classes.d.ts",
@@ -3889,19 +3888,19 @@
         "./node_modules/@blueprintjs/icons/lib/esm/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/domUtils.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/domutils.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/common/utils/index.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/refs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/compareUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/domUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/functionUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/jsUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactUtils.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/common/utils/safeInvokeMember.d.ts"
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/compareutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/domutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/functionutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/jsutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactutils.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/common/utils/safeinvokemember.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactUtils.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactutils.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/alert/alert.d.ts": [
@@ -3917,23 +3916,23 @@
       "./node_modules/@blueprintjs/core/lib/esm/components/breadcrumbs/breadcrumbs.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/breadcrumbs/breadcrumb.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowList.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowlist.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractButton.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractbutton.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/button/buttonGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/button/buttongroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/button/buttons.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/refs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractButton.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractbutton.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/callout/callout.d.ts": [
@@ -3951,17 +3950,17 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsibleList.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsiblelist.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/boundary.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuItem.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuitem.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenu.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenu.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenuTarget.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenutarget.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/constructor.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -3972,16 +3971,16 @@
         "./node_modules/@blueprintjs/core/lib/esm/components/overlay/overlay.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogStep.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogstep.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepDialog.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepdialog.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/button/buttons.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialog.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogStep.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogstep.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/divider/divider.d.ts": [
@@ -3997,12 +3996,12 @@
         "./node_modules/@blueprintjs/core/lib/esm/components/overlay/overlay.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editableText.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editabletext.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlgroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
@@ -4012,33 +4011,33 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileInput.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileinput.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/formGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/formgroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputgroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericInput.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericinput.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/icons/lib/esm/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/radioGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/radiogroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/textArea.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/textarea.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
@@ -4049,48 +4048,48 @@
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeys.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysDialog.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysdialog.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkey.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysEvents.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysevents.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkey.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyParser.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyparser.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTarget.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystarget.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/constructor.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysEvents.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysevents.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/index.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkey.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyParser.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyparser.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeys.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysDialog.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTarget.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keyCombo.d.ts"
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysdialog.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystarget.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keycombo.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keyCombo.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keycombo.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlSelect.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlselect.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmlTable.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmltable.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -4107,79 +4106,79 @@
         "./node_modules/@blueprintjs/core/lib/esm/components/alert/alert.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/breadcrumbs/breadcrumb.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/breadcrumbs/breadcrumbs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/button/buttonGroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/button/buttongroup.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/button/buttons.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/callout/callout.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/card/card.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/collapse/collapse.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsibleList.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenu.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenuTarget.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsiblelist.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenu.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenutarget.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialog.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogStep.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepDialog.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogstep.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepdialog.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/divider/divider.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/drawer/drawer.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editableText.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlGroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editabletext.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlgroup.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/forms/controls.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileInput.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/formGroup.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputGroup.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericInput.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/radioGroup.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/forms/textArea.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileinput.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/formgroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputgroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericinput.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/radiogroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/forms/textarea.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlSelect.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmlTable.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlselect.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmltable.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/html/html.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/menu/menu.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuDivider.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuItem.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menudivider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuitem.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbar.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarDivider.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarGroup.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarHeading.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonIdealState.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowList.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbardivider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbargroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarheading.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonidealstate.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowlist.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/overlay/overlay.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelProps.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelStack.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelprops.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelstack.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoverSharedProps.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoversharedprops.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/portal/portal.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressBar.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeObserverTypes.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeSensor.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleProps.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multiSlider.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeSlider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressbar.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeobservertypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizesensor.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleprops.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multislider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeslider.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/slider/slider.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/spinner/spinner.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/tabs/tab.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/tabs/tabs.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/tagInput.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/taginput.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/tag/tag.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/text/text.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/toast/toast.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/toast/toaster.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/tooltip/tooltip.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/tree/tree.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/tree/treeNode.d.ts"
+        "./node_modules/@blueprintjs/core/lib/esm/components/tree/treenode.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/menu/menu.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuDivider.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuItem.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menudivider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuitem.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuDivider.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menudivider.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuItem.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuitem.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
@@ -4188,33 +4187,33 @@
       "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbar.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarDivider.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarGroup.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarHeading.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbardivider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbargroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarheading.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarDivider.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbardivider.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarGroup.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbargroup.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarHeading.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarheading.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonIdealState.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonidealstate.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowList.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowlist.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/boundary.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
@@ -4224,21 +4223,21 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelProps.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelprops.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelStack.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelstack.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelProps.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelprops.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoverSharedProps.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoversharedprops.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoverSharedProps.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoversharedprops.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/overlay/overlay.d.ts",
         "./node_modules/@types/react/index.d.ts",
@@ -4249,34 +4248,34 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressBar.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressbar.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeSensor.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizesensor.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeObserverTypes.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeobservertypes.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleProps.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleprops.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/multiSlider.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/multislider.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleProps.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleprops.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeSlider.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeslider.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multiSlider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multislider.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/slider/slider.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multiSlider.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/slider/multislider.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/spinner/spinner.d.ts": [
@@ -4295,7 +4294,7 @@
         "./node_modules/@blueprintjs/core/lib/esm/components/tabs/tab.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/tagInput.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/taginput.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
@@ -4328,15 +4327,15 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoverSharedProps.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoversharedprops.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/@blueprintjs/core/lib/esm/components/tree/tree.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
-        "./node_modules/@blueprintjs/core/lib/esm/components/tree/treeNode.d.ts",
+        "./node_modules/@blueprintjs/core/lib/esm/components/tree/treenode.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/core/lib/esm/components/tree/treeNode.d.ts": [
+      "./node_modules/@blueprintjs/core/lib/esm/components/tree/treenode.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
         "./node_modules/@types/react/index.d.ts"
@@ -4346,39 +4345,39 @@
         "./node_modules/@blueprintjs/core/lib/esm/common/index.d.ts",
         "./node_modules/@blueprintjs/core/lib/esm/components/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconSvgPaths.d.ts": [
-        "./node_modules/@blueprintjs/icons/lib/esm/iconName.d.ts"
+      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconsvgpaths.d.ts": [
+        "./node_modules/@blueprintjs/icons/lib/esm/iconname.d.ts"
       ],
-      "./node_modules/@blueprintjs/icons/lib/esm/iconName.d.ts": [
-        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconNames.d.ts"
+      "./node_modules/@blueprintjs/icons/lib/esm/iconname.d.ts": [
+        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconnames.d.ts"
       ],
       "./node_modules/@blueprintjs/icons/lib/esm/index.d.ts": [
-        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconContents.d.ts",
-        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconNames.d.ts",
-        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconSvgPaths.d.ts",
-        "./node_modules/@blueprintjs/icons/lib/esm/iconName.d.ts"
+        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconcontents.d.ts",
+        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconnames.d.ts",
+        "./node_modules/@blueprintjs/icons/lib/esm/generated/iconsvgpaths.d.ts",
+        "./node_modules/@blueprintjs/icons/lib/esm/iconname.d.ts"
       ],
       "./node_modules/@blueprintjs/select/lib/cjs/common/index.d.ts": [
         "./node_modules/@blueprintjs/select/lib/cjs/common/classes.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/itemListRenderer.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/itemRenderer.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsProps.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsUtils.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/itemlistrenderer.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/itemrenderer.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsprops.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsutils.d.ts",
         "./node_modules/@blueprintjs/select/lib/cjs/common/predicate.d.ts"
       ],
-      "./node_modules/@blueprintjs/select/lib/cjs/common/itemListRenderer.d.ts": [
+      "./node_modules/@blueprintjs/select/lib/cjs/common/itemlistrenderer.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/index.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsUtils.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsutils.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/select/lib/cjs/common/itemRenderer.d.ts": [
+      "./node_modules/@blueprintjs/select/lib/cjs/common/itemrenderer.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsProps.d.ts": [
+      "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsprops.d.ts": [
         "./node_modules/@blueprintjs/core/lib/esm/index.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/itemListRenderer.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/itemRenderer.d.ts",
-        "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsUtils.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/itemlistrenderer.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/itemrenderer.d.ts",
+        "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsutils.d.ts",
         "./node_modules/@blueprintjs/select/lib/cjs/common/predicate.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -5179,7 +5178,7 @@
         "./node_modules/@blueprintjs/core/lib/cjs/components/button/buttons.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/components/collapse/collapse.d.ts",
         "./node_modules/@blueprintjs/core/lib/cjs/components/forms/controls.d.ts",
-        "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputGroup.d.ts",
+        "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputgroup.d.ts",
         "./node_modules/@blueprintjs/select/lib/cjs/components/select/select.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -5530,10 +5529,10 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractComponent2.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractPureComponent2.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractcomponent2.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/common/abstractpurecomponent2.d.ts",
       "./node_modules/@blueprintjs/core/lib/cjs/common/alignment.d.ts",
       "./node_modules/@blueprintjs/core/lib/cjs/common/boundary.d.ts",
       "./node_modules/@blueprintjs/core/lib/cjs/common/classes.d.ts",
@@ -5546,30 +5545,30 @@
       "./node_modules/@blueprintjs/core/lib/cjs/common/position.d.ts",
       "./node_modules/@blueprintjs/core/lib/cjs/common/props.d.ts",
       "./node_modules/@blueprintjs/core/lib/cjs/common/refs.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/compareUtils.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domUtils.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/functionUtils.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/compareutils.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/domutils.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/functionutils.d.ts",
       "./node_modules/@blueprintjs/core/lib/cjs/common/utils/index.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/jsUtils.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactUtils.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/safeInvokeMember.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractButton.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/jsutils.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/reactutils.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/common/utils/safeinvokemember.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/components/button/abstractbutton.d.ts",
       "./node_modules/@blueprintjs/core/lib/cjs/components/button/buttons.d.ts",
       "./node_modules/@blueprintjs/core/lib/cjs/components/collapse/collapse.d.ts",
       "./node_modules/@blueprintjs/core/lib/cjs/components/forms/controls.d.ts",
-      "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputGroup.d.ts",
+      "./node_modules/@blueprintjs/core/lib/cjs/components/forms/inputgroup.d.ts",
       "./node_modules/@blueprintjs/core/lib/cjs/components/icon/icon.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/accessibility/focusStyleManager.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/accessibility/focusstylemanager.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/accessibility/index.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractComponent2.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/abstractPureComponent2.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractcomponent2.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/abstractpurecomponent2.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/common/alignment.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/common/boundary.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/common/classes.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/common/colors.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/configureDom4.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/configuredom4.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/common/constructor.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/common/context.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/common/elevation.d.ts",
@@ -5579,98 +5578,98 @@
       "./node_modules/@blueprintjs/core/lib/esm/common/position.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/common/props.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/common/refs.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/compareUtils.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/domUtils.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/functionUtils.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/compareutils.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/domutils.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/functionutils.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/common/utils/index.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/jsUtils.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactUtils.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/common/utils/safeInvokeMember.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/jsutils.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/reactutils.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/common/utils/safeinvokemember.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/alert/alert.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/breadcrumbs/breadcrumb.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/breadcrumbs/breadcrumbs.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractButton.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/button/buttonGroup.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/button/abstractbutton.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/button/buttongroup.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/button/buttons.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/callout/callout.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/card/card.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/collapse/collapse.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsibleList.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenu.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextMenuTarget.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/collapsible-list/collapsiblelist.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenu.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/context-menu/contextmenutarget.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialog.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogStep.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepDialog.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/dialogstep.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/dialog/multistepdialog.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/divider/divider.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/drawer/drawer.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editableText.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlGroup.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/editable-text/editabletext.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/controlgroup.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/forms/controls.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileInput.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/formGroup.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputGroup.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericInput.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/radioGroup.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/forms/textArea.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/fileinput.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/formgroup.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/inputgroup.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/numericinput.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/radiogroup.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/forms/textarea.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkey.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyParser.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeyparser.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeys.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysDialog.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysEvents.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTarget.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysTypes.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysdialog.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeysevents.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystarget.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/hotkeystypes.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/index.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keyCombo.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlSelect.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmlTable.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/hotkeys/keycombo.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/html-select/htmlselect.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/html-table/htmltable.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/html/html.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/icon/icon.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/index.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/menu/menu.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuDivider.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuItem.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menudivider.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/menu/menuitem.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbar.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarDivider.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarGroup.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarHeading.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonIdealState.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowList.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbardivider.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbargroup.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/navbar/navbarheading.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/non-ideal-state/nonidealstate.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/overflow-list/overflowlist.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/overlay/overlay.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelProps.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelStack.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelprops.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/panel-stack/panelstack.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/popover/popover.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoverSharedProps.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/popover/popoversharedprops.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/portal/portal.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressBar.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeObserverTypes.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeSensor.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleProps.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/multiSlider.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeSlider.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/progress-bar/progressbar.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizeobservertypes.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/resize-sensor/resizesensor.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/handleprops.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/multislider.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/slider/rangeslider.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/slider/slider.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/spinner/spinner.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/tabs/tab.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/tabs/tabs.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/tagInput.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/tag-input/taginput.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/tag/tag.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/text/text.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/toast/toast.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/toast/toaster.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/tooltip/tooltip.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/components/tree/tree.d.ts",
-      "./node_modules/@blueprintjs/core/lib/esm/components/tree/treeNode.d.ts",
+      "./node_modules/@blueprintjs/core/lib/esm/components/tree/treenode.d.ts",
       "./node_modules/@blueprintjs/core/lib/esm/index.d.ts",
-      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconContents.d.ts",
-      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconNames.d.ts",
-      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconSvgPaths.d.ts",
-      "./node_modules/@blueprintjs/icons/lib/esm/iconName.d.ts",
+      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconcontents.d.ts",
+      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconnames.d.ts",
+      "./node_modules/@blueprintjs/icons/lib/esm/generated/iconsvgpaths.d.ts",
+      "./node_modules/@blueprintjs/icons/lib/esm/iconname.d.ts",
       "./node_modules/@blueprintjs/icons/lib/esm/index.d.ts",
       "./node_modules/@blueprintjs/select/lib/cjs/common/classes.d.ts",
       "./node_modules/@blueprintjs/select/lib/cjs/common/index.d.ts",
-      "./node_modules/@blueprintjs/select/lib/cjs/common/itemListRenderer.d.ts",
-      "./node_modules/@blueprintjs/select/lib/cjs/common/itemRenderer.d.ts",
-      "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsProps.d.ts",
-      "./node_modules/@blueprintjs/select/lib/cjs/common/listItemsUtils.d.ts",
+      "./node_modules/@blueprintjs/select/lib/cjs/common/itemlistrenderer.d.ts",
+      "./node_modules/@blueprintjs/select/lib/cjs/common/itemrenderer.d.ts",
+      "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsprops.d.ts",
+      "./node_modules/@blueprintjs/select/lib/cjs/common/listitemsutils.d.ts",
       "./node_modules/@blueprintjs/select/lib/cjs/common/predicate.d.ts",
       "./node_modules/@blueprintjs/select/lib/cjs/components/select/select.d.ts",
       "./node_modules/@jupyterlab/application/lib/connectionlost.d.ts",

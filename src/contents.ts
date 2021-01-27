@@ -1,12 +1,12 @@
-import { Signal, ISignal } from "@lumino/signaling";
+import { Signal, ISignal } from '@lumino/signaling';
 
-import { URLExt } from "@jupyterlab/coreutils";
+import { URLExt } from '@jupyterlab/coreutils';
 
-import { DocumentRegistry } from "@jupyterlab/docregistry";
+import { DocumentRegistry } from '@jupyterlab/docregistry';
 
-import { Contents, ServerConnection } from "@jupyterlab/services";
+import { Contents, ServerConnection } from '@jupyterlab/services';
 
-import * as base64js from "base64-js";
+import * as base64js from 'base64-js';
 
 /**
  * A Contents.IDrive implementation for s3-api-compatible object storage.
@@ -27,8 +27,8 @@ export class S3Drive implements Contents.IDrive {
   /**
    * The name of the drive.
    */
-  get name(): "S3" {
-    return "S3";
+  get name(): 'S3' {
+    return 'S3';
   }
 
   /**
@@ -88,8 +88,8 @@ export class S3Drive implements Contents.IDrive {
    * path if necessary.
    */
   getDownloadUrl(path: string): Promise<string> {
-    console.log("not yet implemented");
-    return Promise.reject("Not yet implemented");
+    console.log('not yet implemented');
+    return Promise.reject('Not yet implemented');
   }
 
   /**
@@ -101,7 +101,7 @@ export class S3Drive implements Contents.IDrive {
    *    file is created.
    */
   newUntitled(options: Contents.ICreateOptions = {}): Promise<Contents.IModel> {
-    return Promise.reject("Not yet implemented");
+    return Promise.reject('Not yet implemented');
   }
 
   /**
@@ -112,7 +112,7 @@ export class S3Drive implements Contents.IDrive {
    * @returns A promise which resolves when the file is deleted.
    */
   delete(path: string): Promise<void> {
-    return Promise.reject("Not yet implemented");
+    return Promise.reject('Not yet implemented');
   }
 
   /**
@@ -126,7 +126,7 @@ export class S3Drive implements Contents.IDrive {
    *   the file is renamed.
    */
   rename(path: string, newPath: string): Promise<Contents.IModel> {
-    return Promise.reject("Not yet implemented");
+    return Promise.reject('Not yet implemented');
   }
 
   /**
@@ -143,7 +143,7 @@ export class S3Drive implements Contents.IDrive {
     path: string,
     options: Partial<Contents.IModel>
   ): Promise<Contents.IModel> {
-    return Promise.reject("Not yet implemented");
+    return Promise.reject('Not yet implemented');
   }
 
   /**
@@ -157,7 +157,7 @@ export class S3Drive implements Contents.IDrive {
    *  file is copied.
    */
   copy(fromFile: string, toDir: string): Promise<Contents.IModel> {
-    return Promise.reject("Not yet implemented");
+    return Promise.reject('Not yet implemented');
   }
 
   /**
@@ -169,7 +169,7 @@ export class S3Drive implements Contents.IDrive {
    *   checkpoint is created.
    */
   createCheckpoint(path: string): Promise<Contents.ICheckpointModel> {
-    return Promise.reject("Not yet implemented");
+    return Promise.reject('Not yet implemented');
   }
 
   /**
@@ -194,7 +194,7 @@ export class S3Drive implements Contents.IDrive {
    * @returns A promise which resolves when the checkpoint is restored.
    */
   restoreCheckpoint(path: string, checkpointID: string): Promise<void> {
-    return Promise.reject("Not yet implemented");
+    return Promise.reject('Not yet implemented');
   }
 
   /**
@@ -207,17 +207,17 @@ export class S3Drive implements Contents.IDrive {
    * @returns A promise which resolves when the checkpoint is deleted.
    */
   deleteCheckpoint(path: string, checkpointID: string): Promise<void> {
-    return Promise.reject("Read only");
+    return Promise.reject('Read only');
   }
 
   private _isDisposed = false;
   private _fileChanged = new Signal<this, Contents.IChangedArgs>(this);
 
   jupyterPathToS3Path(path: string, isDir: boolean): string {
-    if (path === "") {
-      path = "/";
+    if (path === '') {
+      path = '/';
     } else if (isDir) {
-      path += "/";
+      path += '/';
     }
     return path;
   }
@@ -226,11 +226,11 @@ export class S3Drive implements Contents.IDrive {
     const result = {
       name: s3Content.name,
       path: s3Content.path,
-      format: "json", // this._registry.getFileType('text').fileFormat,
+      format: 'json', // this._registry.getFileType('text').fileFormat,
       type: s3Content.type,
-      created: "",
+      created: '',
       writable: false,
-      last_modified: "",
+      last_modified: '',
       mimetype: s3Content.mimetype,
       content: s3Content.content
     } as Contents.IModel;
@@ -240,7 +240,7 @@ export class S3Drive implements Contents.IDrive {
   pathToJupyterContents(path: string): Promise<Contents.IModel> {
     if (
       path !== Private.currentPath && // if we're changing paths...
-      Private.availableContentTypes[path] !== "file" // it's not a file
+      Private.availableContentTypes[path] !== 'file' // it's not a file
     ) {
       if (Private.showingError) {
         Private.hideErrorMessage();
@@ -248,7 +248,7 @@ export class S3Drive implements Contents.IDrive {
       // Private.showDirectoryLoadingSpinner();
     }
     let s3path: string;
-    if (Private.availableContentTypes[path] !== "file") {
+    if (Private.availableContentTypes[path] !== 'file') {
       Private.currentPath = path;
       s3path = this.jupyterPathToS3Path(path, true);
     } else {
@@ -256,9 +256,9 @@ export class S3Drive implements Contents.IDrive {
     }
 
     return new Promise((resolve, reject) => {
-      let settings = ServerConnection.makeSettings(); // can be stored as class var
+      const settings = ServerConnection.makeSettings(); // can be stored as class var
       ServerConnection.makeRequest(
-        URLExt.join(settings.baseUrl, "jupyterlab_s3_browser/files", s3path),
+        URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', s3path),
         {},
         settings
       ).then(response => {
@@ -266,7 +266,7 @@ export class S3Drive implements Contents.IDrive {
           .json()
           .then((content: any) => {
             if (content.error) {
-              let errorMessage = `Server returned status code ${content.error}. Error message: ${content.message}.`;
+              const errorMessage = `Server returned status code ${content.error}. Error message: ${content.message}.`;
               console.error(errorMessage);
               Private.showErrorMessage(errorMessage);
               reject(errorMessage);
@@ -275,40 +275,41 @@ export class S3Drive implements Contents.IDrive {
             if (Array.isArray(content)) {
               // why is everything's name ''?
               Private.hideDirectoryLoadingSpinner();
-              Private.availableContentTypes = {};
+              // why was this line here?
+              // Private.availableContentTypes = {};
               content.forEach(i => {
                 Private.availableContentTypes[i.path] = i.type;
               });
               resolve({
-                type: "directory",
+                type: 'directory',
                 path: path.trim(),
-                name: "",
-                format: "json",
+                name: '',
+                format: 'json',
                 content: content.map(c => {
                   return this.s3ToJupyterContents(c);
                 }),
-                created: "",
+                created: '',
                 writable: false,
-                last_modified: "",
-                mimetype: ""
+                last_modified: '',
+                mimetype: ''
               });
             } else {
               const types = this._registry.getFileTypesForPath(path);
               const fileType =
                 types.length === 0
-                  ? this._registry.getFileType("text")!
+                  ? this._registry.getFileType('text')!
                   : types[0];
               const mimetype = fileType.mimeTypes[0];
               const format = fileType.fileFormat;
               let parsedContent;
               switch (format) {
-                case "text":
+                case 'text':
                   parsedContent = Private.b64DecodeUTF8(content.content);
                   break;
-                case "base64":
+                case 'base64':
                   parsedContent = content.content;
                   break;
-                case "json":
+                case 'json':
                   parsedContent = JSON.parse(
                     Private.b64DecodeUTF8(content.content)
                   );
@@ -319,25 +320,25 @@ export class S3Drive implements Contents.IDrive {
                   );
               }
               resolve({
-                type: "file",
+                type: 'file',
                 path,
-                name: "",
+                name: '',
                 format,
                 content: parsedContent,
-                created: "",
+                created: '',
                 writable: false,
-                last_modified: "",
+                last_modified: '',
                 mimetype
               });
             }
           })
           .then((content: any) => {
-            if (Private.currentPath === "") {
-              document.querySelector("#s3-filebrowser")!.classList.add("root");
+            if (Private.currentPath === '') {
+              document.querySelector('#s3-filebrowser')!.classList.add('root');
             } else {
               document
-                .querySelector("#s3-filebrowser")!
-                .classList.remove("root");
+                .querySelector('#s3-filebrowser')!
+                .classList.remove('root');
             }
             return content;
           });
@@ -353,7 +354,7 @@ namespace Private {
   /**
    * Decoder from bytes to UTF-8.
    */
-  const decoder = new TextDecoder("utf8");
+  const decoder = new TextDecoder('utf8');
 
   /**
    * Decode a base-64 encoded string into unicode.
@@ -361,63 +362,61 @@ namespace Private {
    * See https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#Solution_2_%E2%80%93_rewrite_the_DOMs_atob()_and_btoa()_using_JavaScript's_TypedArrays_and_UTF-8
    */
   export function b64DecodeUTF8(str: string): string {
-    const bytes = base64js.toByteArray(str.replace(/\n/g, ""));
+    const bytes = base64js.toByteArray(str.replace(/\n/g, ''));
     return decoder.decode(bytes);
   }
 
-  export let availableContentTypes: any = {};
-
+  export const availableContentTypes: any = {};
   export let currentPath: string;
+  export let showingError = false;
 
-  export function showErrorMessage(message: string) {
+  export function showErrorMessage(message: string): void {
     Private.hideDirectoryLoadingSpinner();
-    let filebrowserListing = document.querySelector(
-      "#s3-filebrowser > .jp-DirListing"
+    const filebrowserListing = document.querySelector(
+      '#s3-filebrowser > .jp-DirListing'
     ) as HTMLElement;
     filebrowserListing.insertAdjacentHTML(
-      "afterend",
+      'afterend',
       `<div class="s3-error"><p>${message}</p></div>`
     );
-    filebrowserListing.style.display = "none";
+    filebrowserListing.style.display = 'none';
     Private.showingError = true;
   }
 
-  export let showingError = false;
-
-  export function hideErrorMessage() {
-    let filebrowserListing = document.querySelector(
-      "#s3-filebrowser > .jp-DirListing"
+  export function hideErrorMessage(): void {
+    const filebrowserListing = document.querySelector(
+      '#s3-filebrowser > .jp-DirListing'
     ) as HTMLElement;
-    filebrowserListing.style.display = "block";
-    if (document.querySelector(".s3-error")) {
-      document.querySelector(".s3-error")!.remove();
+    filebrowserListing.style.display = 'block';
+    if (document.querySelector('.s3-error')) {
+      document.querySelector('.s3-error')!.remove();
     }
     Private.showingError = false;
   }
 
-  export function showDirectoryLoadingSpinner() {
-    console.log("showing loading spinner");
-    if (document.querySelector("#s3-spinner")) {
+  export function showDirectoryLoadingSpinner(): void {
+    console.log('showing loading spinner');
+    if (document.querySelector('#s3-spinner')) {
       return;
     }
-    (document.querySelector("#s3-filebrowser") as HTMLElement).classList.add(
-      "loading"
+    (document.querySelector('#s3-filebrowser') as HTMLElement).classList.add(
+      'loading'
     );
 
-    let browserContent = document.querySelector(
-      "#s3-filebrowser .jp-DirListing-content"
+    const browserContent = document.querySelector(
+      '#s3-filebrowser .jp-DirListing-content'
     );
-    let loadingSpinner = document.createElement("div");
-    loadingSpinner.classList.add("jp-SpinnerContent");
-    loadingSpinner.id = "s3-spinner";
+    const loadingSpinner = document.createElement('div');
+    loadingSpinner.classList.add('jp-SpinnerContent');
+    loadingSpinner.id = 's3-spinner';
     (browserContent as HTMLElement).appendChild(loadingSpinner);
   }
 
-  export function hideDirectoryLoadingSpinner() {
-    console.log("trying to hide loading spinner");
-    let loadingSpinner = document.querySelector("#s3-spinner");
-    (document.querySelector("#s3-filebrowser") as HTMLElement).classList.remove(
-      "loading"
+  export function hideDirectoryLoadingSpinner(): void {
+    console.log('trying to hide loading spinner');
+    const loadingSpinner = document.querySelector('#s3-spinner');
+    (document.querySelector('#s3-filebrowser') as HTMLElement).classList.remove(
+      'loading'
     );
     try {
       (loadingSpinner as HTMLElement).remove();

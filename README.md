@@ -45,4 +45,7 @@ You can also start without any configuration and fill in your endpoint/credentia
 ## Contributing
 
 Contributions to this extension are welcome! [View CONTRIBUTING.md to get started.](docs/CONTRIBUTING.md)
+
+```
+
 ```
