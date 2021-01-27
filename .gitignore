@@ -17,3 +17,4 @@ jupyterlab_s3_browser.egg-info/
 .coverage
 htmlcov/
 jupyterlab_s3_browser/labextension
+*.tsbuildinfo
