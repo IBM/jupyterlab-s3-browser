@@ -439,7 +439,7 @@ def load_jupyter_server_extension(nb_server_app):
     """
     web_app = nb_server_app.web_app
     base_url = web_app.settings["base_url"]
-    endpoint = url_path_join(base_url, "jupyterlab_s3_browser")
+    endpoint = url_path_join(base_url, "jupyterlab-s3-browser")
     handlers = [
         (url_path_join(endpoint, "auth") + "(.*)", AuthHandler),
         #  (url_path_join(endpoint, "files") + "(.*)", S3Handler),

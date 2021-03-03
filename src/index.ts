@@ -22,7 +22,7 @@ const NAMESPACE = 's3-filebrowser';
 /**
  * The ID for the plugin.
  */
-const PLUGIN_ID = 'jupyterlab-s3-browser:drive';
+const PLUGIN_ID = 'jupyterlab_s3_browser:drive';
 
 /**
  * The JupyterLab plugin for the S3 Filebrowser.
