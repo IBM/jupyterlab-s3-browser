@@ -33,7 +33,7 @@ package_data_spec = {
     name: ["*"],
 }
 
-labext_name = "jupyterlab_s3_browser"
+labext_name = "jupyterlab-s3-browser"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(lab_path), "**"),
