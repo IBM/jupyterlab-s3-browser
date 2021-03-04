@@ -1,0 +1,107 @@
+[data-jp-theme-light='true'] .jp-S3-icon {
+  background-image: url(bucket-light.svg);
+}
+
+[data-jp-theme-light='false'] .jp-S3-icon {
+  background-image: url(bucket-dark.svg);
+}
+
+.jp-SideBar .p-TabBar-content .p-TabBar-tab .jp-S3-icon {
+  background-size: 90%;
+}
+
+[data-jp-theme-light='true']
+  #s3-filebrowser
+  .jp-FileBrowser-crumbs
+  .jp-BreadCrumbs-item:first-child {
+  background-image: url(bucket-light.svg);
+}
+
+[data-jp-theme-light='false']
+  #s3-filebrowser
+  .jp-FileBrowser-crumbs
+  .jp-BreadCrumbs-item:first-child {
+  background-image: url(bucket-dark.svg);
+}
+
+[data-jp-theme-light='true']
+  #s3-filebrowser.root
+  .jp-DirListing-itemIcon.jp-MaterialIcon.jp-FolderIcon {
+  background-image: url(bucket-light.svg);
+}
+
+[data-jp-theme-light='false']
+  #s3-filebrowser.root
+  .jp-DirListing-itemIcon.jp-MaterialIcon.jp-FolderIcon {
+  background-image: url(bucket-dark.svg);
+}
+
+#s3-filebrowser.root .jp-DirListing-itemIcon.jp-MaterialIcon.jp-FolderIcon {
+  background-size: 65%;
+}
+
+#s3-filebrowser .jp-FileBrowser-crumbs .jp-BreadCrumbs-item:first-child {
+  background-size: 65%;
+}
+
+.s3-error {
+  padding: 30px;
+  border: 3px solid red;
+  font-size: 1.3em;
+}
+
+.s3form {
+  padding: 25px;
+  text-align: center;
+}
+
+.jp-S3Browser {
+  background-color: var(--jp-layout-color1);
+  height: 100%;
+}
+
+.jp-S3Browser .jp-FileBrowser {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.jp-S3Browser .jp-ToolbarButton.jp-Toolbar-item.jp-S3-toolbar-item {
+  display: block;
+}
+
+[data-jp-theme-light='false'] .s3form {
+  color: white;
+  font-size: 1.1em;
+}
+
+[data-jp-theme-light='true'] .s3form {
+  color: black;
+  font-size: 1.1em;
+}
+
+.s3-connect {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+#s3-filebrowser.loading > div > ul > li {
+  display: none;
+}
+
+/*
+Hide 'Upload' and 'New Folder' toolbar
+buttons until they are implemented
+*/
+#s3-filebrowser > div.jp-Toolbar > div:nth-child(1),
+#s3-filebrowser > div.jp-Toolbar > div:nth-child(2),
+#s3-filebrowser > div.jp-Toolbar > div:nth-child(3) {
+  display: none;
+}
+
+/*
+last modified isn't yet implemented, so hide it
+*/
+#s3-filebrowser .jp-DirListing-itemModified,
+#s3-filebrowser .jp-id-modified {
+  display: none;
+}

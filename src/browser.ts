@@ -1,18 +1,18 @@
-import { PanelLayout, Widget } from "@lumino/widgets";
+import { PanelLayout, Widget } from '@lumino/widgets';
 
-import { FileBrowser } from "@jupyterlab/filebrowser";
+import { FileBrowser } from '@jupyterlab/filebrowser';
 
-import { S3Drive } from "./contents";
+import { S3Drive } from './contents';
 
-import { IDocumentManager } from "@jupyterlab/docmanager";
+import { IDocumentManager } from '@jupyterlab/docmanager';
 
-import { h, VirtualDOM } from "@lumino/virtualdom";
+import { h, VirtualDOM } from '@lumino/virtualdom';
 
-import { ServerConnection } from "@jupyterlab/services";
+import { ServerConnection } from '@jupyterlab/services';
 
-import { URLExt } from "@jupyterlab/coreutils";
+import { URLExt } from '@jupyterlab/coreutils';
 
-import { showErrorMessage } from "@jupyterlab/apputils";
+import { showErrorMessage } from '@jupyterlab/apputils';
 
 /**
  * Widget for authenticating against
@@ -26,7 +26,7 @@ let s3AuthenticationForm: any;
 export class S3FileBrowser extends Widget {
   constructor(browser: FileBrowser, drive: S3Drive, manager: IDocumentManager) {
     super();
-    this.addClass("jp-S3Browser");
+    this.addClass('jp-S3Browser');
     this.layout = new PanelLayout();
 
     /**
@@ -34,7 +34,7 @@ export class S3FileBrowser extends Widget {
      * from the s3AuthenticationForm widget.
      */
     const s3AuthenticationFormSubmit = () => {
-      const form = document.querySelector("#s3form") as HTMLFormElement;
+      const form = document.querySelector('#s3form') as HTMLFormElement;
       const formData = new FormData(form);
       const formDataJSON: any = {};
       (formData as any).forEach((value: string, key: string) => {
@@ -42,9 +42,9 @@ export class S3FileBrowser extends Widget {
       });
       const settings = ServerConnection.makeSettings();
       ServerConnection.makeRequest(
-        URLExt.join(settings.baseUrl, "s3/auth"),
+        URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/auth'),
         {
-          method: "POST",
+          method: 'POST',
           body: JSON.stringify(formDataJSON)
         },
         settings
@@ -56,13 +56,13 @@ export class S3FileBrowser extends Widget {
             browser.model.refresh();
           } else {
             let errorMessage = data.message;
-            if (errorMessage.includes("InvalidAccessKeyId")) {
-              errorMessage = "The access key ID you entered was invalid.";
-            } else if (errorMessage.includes("SignatureDoesNotMatch")) {
-              errorMessage = "The secret access key you entered was invalid";
+            if (errorMessage.includes('InvalidAccessKeyId')) {
+              errorMessage = 'The access key ID you entered was invalid.';
+            } else if (errorMessage.includes('SignatureDoesNotMatch')) {
+              errorMessage = 'The secret access key you entered was invalid';
             }
             void showErrorMessage(
-              "S3 Authentication Error",
+              'S3 Authentication Error',
               Error(errorMessage)
             );
           }
@@ -76,9 +76,14 @@ export class S3FileBrowser extends Widget {
      * render the auth widget if they do.
      */
     Private.checkIfAuthenicated().then(authenticated => {
+      // console.log('Checking if authenticated');
       if (authenticated) {
         (this.layout as PanelLayout).addWidget(browser);
-        browser.model.refresh();
+        // console.log('refreshing...');
+        // not sure why this timeout is necessary
+        setTimeout(() => {
+          browser.model.refresh();
+        }, 1000);
       } else {
         s3AuthenticationForm = new Widget({
           node: Private.createS3AuthenticationForm(s3AuthenticationFormSubmit)
@@ -98,41 +103,41 @@ namespace Private {
   export function createS3AuthenticationForm(onSubmit: any): HTMLElement {
     return VirtualDOM.realize(
       h.div(
-        { className: "s3form" },
-        h.h4("S3 Object Storage Browser"),
+        { className: 's3form' },
+        h.h4('S3 Object Storage Browser'),
         h.div(
-          "This extension allows you to browse S3-compatible object storage instances, such as AWS S3 and IBM Cloud Object Storage."
+          'This extension allows you to browse S3-compatible object storage instances, such as AWS S3 and IBM Cloud Object Storage.'
         ),
         h.br(),
         h.form(
-          { id: "s3form", method: "post" },
+          { id: 's3form', method: 'post' },
           h.p(
-            h.label({}, "Endpoint URL"),
+            h.label({}, 'Endpoint URL'),
             h.br(),
-            h.input({ type: "url", name: "endpoint_url" })
+            h.input({ type: 'url', name: 'endpoint_url' })
           ),
           h.br(),
           h.p(
-            h.label({}, "Access Key ID"),
+            h.label({}, 'Access Key ID'),
             h.br(),
-            h.input({ type: "text", name: "client_id" })
+            h.input({ type: 'text', name: 'client_id' })
           ),
           h.br(),
           h.p(
-            h.label({}, "Secret Access Key"),
+            h.label({}, 'Secret Access Key'),
             h.br(),
-            h.input({ type: "password", name: "client_secret" })
+            h.input({ type: 'password', name: 'client_secret' })
           )
         ),
         h.br(),
         h.p(
-          { className: "s3-connect" },
+          { className: 's3-connect' },
           h.button(
             {
               onclick: onSubmit,
-              className: "jp-mod-accept jp-mod-styled"
+              className: 'jp-mod-accept jp-mod-styled'
             },
-            "Connect"
+            'Connect'
           )
         )
       )
@@ -147,9 +152,9 @@ namespace Private {
     return new Promise((resolve, reject) => {
       const settings = ServerConnection.makeSettings();
       ServerConnection.makeRequest(
-        URLExt.join(settings.baseUrl, "s3/auth"),
+        URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/auth'),
         {
-          method: "GET"
+          method: 'GET'
         },
         settings
       ).then(response => {

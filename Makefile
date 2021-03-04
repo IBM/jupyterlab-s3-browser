@@ -1,34 +1,19 @@
-SHELL=/bin/bash
-.ONESHELL:
-CONDA_ACTIVATE=source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate ; conda activate
-CONDA_ENV_NAME=jupyterlab-s3-browser
-PYTHON_PACKAGE_NAME=jupyterlab_s3_browser
+.PHONY: build
+build:
+	@docker-compose build
 
-default: setup
+.PHONY: build-labextension
+build-labextension:
+	@docker-compose run jupyterlab /bin/bash -c 'jupyter labextension build'
 
-setup: setup_pipenv build_lab_extension install_lab_extension
-
-setup_pipenv:
-	@pipenv install
-
-build_lab_extension:
-	@yarn install
-	@yarn run build
-
-install_lab_extension: build_lab_extension
-	@pipenv run jupyter labextension link .
-
-enable_server_extension:
-	@pipenv run jupyter serverextension enable --py $(PYTHON_PACKAGE_NAME)
-
-dev: setup install_lab_extension
-	@yarn run watch
-
+.PHONY: run
 run:
-	@pipenv run jupyter lab --watch
+	@docker-compose up
 
+.PHONY: test
 test:
-	@pipenv run coverage run -m pytest $(PYTHON_PACKAGE_NAME) && coverage report --fail-under 50
+	@echo "labextension tests not yet implemented" && echo "running serverextension tests" && docker-compose run jupyterlab /bin/bash -c 'coverage run -m pytest jupyterlab_s3_browser && coverage report --fail-under 50'
 
+.PHONY: clean
 clean:
-	@rm -rf node_modules/
+	@docker-compose down

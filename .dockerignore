@@ -1,1 +1,9 @@
 Dockerfile
+LICENSE
+MANIFEST.in
+Makefile
+README.md
+docker-compose.yaml
+docs/
+minio-data/
+*.ipynb
