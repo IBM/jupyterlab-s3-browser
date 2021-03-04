@@ -7,7 +7,7 @@ Contributions to this extension are welcome.
 ### Prerequisites
 
 - [Install pipenv](https://pipenv.pypa.io/en/latest/#install-pipenv-today)
-- [Install pre-commit](https://pre-commit.com/#installation) and run `pre-commit install`
+- [Install pre-commit](https://pre-commit.com/#installation)
 
 ### Development
 
