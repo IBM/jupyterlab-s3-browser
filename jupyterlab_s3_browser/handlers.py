@@ -6,17 +6,12 @@ import json
 import logging
 import traceback
 from collections import namedtuple
-from os import environ
 
 import boto3
 import tornado
-import botocore
 from botocore.exceptions import NoCredentialsError
 from jupyter_server.base.handlers import APIHandler
 from jupyter_server.utils import url_path_join
-from singleton_decorator import singleton
-from traitlets import Unicode
-from traitlets.config import SingletonConfigurable
 
 
 class RouteHandler(APIHandler):
@@ -30,50 +25,18 @@ class RouteHandler(APIHandler):
         )
 
 
-class S3Config(SingletonConfigurable):
-    """
-    Allows configuration of access to an S3 api
-    """
+def create_s3_resource(config):
 
-    endpoint_url = Unicode(
-        environ.get("JUPYTERLAB_S3_ENDPOINT", ""),
-        config=True,
-        help="The url for the S3 api",
-    )
-    client_id = Unicode(
-        environ.get("JUPYTERLAB_S3_ACCESS_KEY_ID", ""),
-        config=True,
-        help="The client ID for the S3 api",
-    )
-    client_secret = Unicode(
-        environ.get("JUPYTERLAB_S3_SECRET_ACCESS_KEY", ""),
-        config=True,
-        help="The client secret for the S3 api",
-    )
+    if config.endpoint_url and config.client_id and config.client_secret:
 
-
-@singleton
-class S3Resource:  # pylint: disable=too-few-public-methods
-    """
-    Singleton wrapper around a boto3 resource
-    """
-
-    def __init__(self, config):
-        logging.error(
-            "************************************************************************"
+        return boto3.resource(
+            "s3",
+            aws_access_key_id=config.client_id,
+            aws_secret_access_key=config.client_secret,
+            endpoint_url=config.endpoint_url,
         )
-        config = S3Config().instance(config=config)
-
-        if config.endpoint_url and config.client_id and config.client_secret:
-
-            self.s3_resource = boto3.resource(
-                "s3",
-                aws_access_key_id=config.client_id,
-                aws_secret_access_key=config.client_secret,
-                endpoint_url=config.endpoint_url,
-            )
-        else:
-            self.s3_resource = boto3.resource("s3")
+    else:
+        return boto3.resource("s3")
 
 
 def _test_env_var_access():
@@ -111,6 +74,9 @@ def has_aws_s3_role_access():
         return True
     except NoCredentialsError:
         return False
+    except Exception as e:
+        logging.error(e)
+        return False
 
 
 def test_s3_credentials(endpoint_url, client_id, client_secret):
@@ -118,6 +84,7 @@ def test_s3_credentials(endpoint_url, client_id, client_secret):
     Checks if we're able to list buckets with these credentials.
     If not, it throws an exception.
     """
+    logging.debug("testing s3 credentials")
     test = boto3.resource(
         "s3",
         aws_access_key_id=client_id,
@@ -138,6 +105,10 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
     handle api requests to change auth info
     """
 
+    @property
+    def config(self):
+        return self.settings["s3_config"]
+
     @tornado.web.authenticated
     def get(self, path=""):
         """
@@ -145,39 +116,18 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
         against an s3 instance.
         """
         authenticated = False
-        try:
-            _test_aws_s3_role_access()
-            # if no exceptions, assume authenticated
+        if has_aws_s3_role_access():
             authenticated = True
-        except Exception as err:
-            logging.error(err)
-        try:
-            _test_aws_s3_role_access()
-            # if no exceptions, assume authenticated
-            authenticated = True
-        except Exception as err:
-            logging.error(err)
 
         if not authenticated:
 
             try:
-                # hmm
-                config = S3Config.instance()
-                if not has_aws_s3_role_access():
-                    config.endpoint_url = environ.get("JUPYTERLAB_S3_ENDPOINT", "")
-                    config.client_id = environ.get("JUPYTERLAB_S3_ACCESS_KEY_ID", "")
-                    config.client_secret = environ.get(
-                        "JUPYTERLAB_S3_SECRET_ACCESS_KEY", ""
-                    )
+                config = self.config
                 if config.endpoint_url and config.client_id and config.client_secret:
-                    logging.warning("Testing s3 credentials")
-                    logging.warning(config.endpoint_url)
-                    logging.warning(config.client_id)
-                    logging.warning(config.client_secret)
                     test_s3_credentials(
                         config.endpoint_url, config.client_id, config.client_secret
                     )
-                    logging.warning("AUTHENTICATED!")
+                    logging.debug("...successfully authenticated")
 
                     # If no exceptions were encountered during testS3Credentials,
                     # then assume we're authenticated
@@ -187,8 +137,8 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
                 # If an exception was encountered,
                 # assume that we're not yet authenticated
                 # or invalid credentials were provided
-                logging.warning("FAILED TO AUTHENTICATE")
-                logging.warning(err)
+                logging.debug("...failed to authenticate")
+                logging.debug(err)
 
         self.finish(json.dumps({"authenticated": authenticated}))
 
@@ -206,11 +156,9 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
 
             test_s3_credentials(endpoint_url, client_id, client_secret)
 
-            c = S3Config.instance()
-            c.endpoint_url = endpoint_url
-            c.client_id = client_id
-            c.client_secret = client_secret
-            S3Resource(self.config)
+            self.config.endpoint_url = endpoint_url
+            self.config.client_id = client_id
+            self.config.client_secret = client_secret
 
             self.finish(json.dumps({"success": True}))
         except Exception as err:
@@ -235,8 +183,6 @@ def parse_bucket_name_and_path(raw_path):
         path = ""
     else:
         bucket_name, path = raw_path[1:].split("/", 1)
-    print("bucket: {}".format(bucket_name))
-    print("path: {}".format(path))
     return (bucket_name, path)
 
 
@@ -266,9 +212,6 @@ def get_basename(request_prefix, response_prefix):
 def do_list_objects_v2(s3client, bucket_name, prefix):
     list_of_objects = []
     list_of_directories = []
-    buckets = s3client.list_buckets()
-    print(buckets)
-    print("bucket_name just before: {}".format(bucket_name))
     try:
         response = s3client.list_objects_v2(
             Bucket=bucket_name, Delimiter="/", EncodingType="url", Prefix=prefix,
@@ -318,8 +261,6 @@ def do_get_object(s3client, bucket_name, path):
 
 def get_s3_objects_from_path(s3, path):
 
-    logging.info("????????????????")
-    logging.info("path: {}".format(path))
     if path in ["", "/"]:
         # requesting the root path, just return all buckets
         all_buckets = s3.buckets.all()
@@ -355,19 +296,6 @@ def get_s3_objects_from_path(s3, path):
             ]
             return result
         else:
-            try:
-                s3.Object(bucket_name=bucket_name, key=path).load()
-            except botocore.exceptions.ClientError as e:
-                if e.response["Error"]["Code"] == "404":
-                    # The object does not exist.
-                    logging.info("no object, probably a directory?")
-                else:
-                    # Something else has gone wrong.
-                    logging.info(e.response)
-                    raise
-            else:
-                # The object does exist.
-                logging.info("object exists")
             object_content_type, object_data = do_get_object(
                 s3client, bucket_name, path
             )
@@ -391,6 +319,10 @@ class S3Handler(APIHandler):
     Handles requests for getting S3 objects
     """
 
+    @property
+    def config(self):
+        return self.settings["s3_config"]
+
     s3 = None  # an S3Resource instance to be used for requests
 
     @tornado.web.authenticated
@@ -400,13 +332,12 @@ class S3Handler(APIHandler):
         and directories/prefixes based on the path.
         """
         logging.info("GET: {}".format(path))
-        logging.info(self)
 
         #  boto3.set_stream_logger("boto3.resources", logging.DEBUG)
         #  boto3.set_stream_logger("botocore", logging.DEBUG)
         try:
             if not self.s3:
-                self.s3 = S3Resource(self.config).s3_resource
+                self.s3 = create_s3_resource(self.config)
             result = get_s3_objects_from_path(self.s3, path)
         except S3ResourceNotFoundException as e:
             logging.info(e)
@@ -421,32 +352,6 @@ class S3Handler(APIHandler):
         self.finish(json.dumps(result))
 
 
-def _jupyter_server_extension_points():
-    return [{"module": "jupyterlab_s3_browser"}]
-
-
-def _jupyter_server_extension_paths():
-    return [{"module": "jupyterlab_s3_browser"}]
-
-
-def load_jupyter_server_extension(nb_server_app):
-    """
-    Called when the extension is loaded.
-
-    Args:
-        nb_server_app (NotebookWebApplication):
-        handle to the Notebook webserver instance.
-    """
-    web_app = nb_server_app.web_app
-    base_url = web_app.settings["base_url"]
-    endpoint = url_path_join(base_url, "jupyterlab-s3-browser")
-    handlers = [
-        (url_path_join(endpoint, "auth") + "(.*)", AuthHandler),
-        #  (url_path_join(endpoint, "files") + "(.*)", S3Handler),
-    ]
-    web_app.add_handlers(".*$", handlers)
-
-
 def setup_handlers(web_app):
     host_pattern = ".*"
 
@@ -454,7 +359,7 @@ def setup_handlers(web_app):
     route_pattern = url_path_join(base_url, "jupyterlab_s3_browser", "get_example")
     handlers = [
         (route_pattern, RouteHandler),
-        (url_path_join(base_url, "jupyterlab_s3_browser", "auth"), AuthHandler),
+        (url_path_join(base_url, "jupyterlab_s3_browser", "auth(.*)"), AuthHandler),
         (url_path_join(base_url, "jupyterlab_s3_browser", "files(.*)"), S3Handler),
     ]
     web_app.add_handlers(host_pattern, handlers)

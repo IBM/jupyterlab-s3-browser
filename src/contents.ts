@@ -219,7 +219,6 @@ export class S3Drive implements Contents.IDrive {
     } else if (isDir) {
       path += '/';
     }
-    console.log(`path: ${path}`);
     return path;
   }
 
@@ -246,7 +245,7 @@ export class S3Drive implements Contents.IDrive {
       if (Private.showingError) {
         Private.hideErrorMessage();
       }
-      // Private.showDirectoryLoadingSpinner();
+      Private.showDirectoryLoadingSpinner();
     }
     let s3path: string;
     if (Private.availableContentTypes[path] !== 'file') {
@@ -259,17 +258,7 @@ export class S3Drive implements Contents.IDrive {
     return new Promise((resolve, reject) => {
       const settings = ServerConnection.makeSettings(); // can be stored as class var
       // s3path = s3path.substring(1, s3path.length)
-      console.log(`s3path: ${s3path}`);
 
-      var completePath = `${settings.baseUrl}/jupyterlab_s3_browser/files/${s3path}`;
-      console.log(`completePath: ${completePath}`);
-      console.log(
-        `urlext: ${URLExt.join(
-          settings.baseUrl,
-          'jupyterlab_s3_browser/files',
-          s3path
-        )}`
-      );
       ServerConnection.makeRequest(
         // Q: Why not use urlext.join? A: because I don't want to strip trailing /
         URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', s3path),
@@ -289,7 +278,7 @@ export class S3Drive implements Contents.IDrive {
             }
             if (Array.isArray(content)) {
               // why is everything's name ''?
-              // Private.hideDirectoryLoadingSpinner();
+              Private.hideDirectoryLoadingSpinner();
               // why was this line here?
               // Private.availableContentTypes = {};
               content.forEach(i => {
@@ -386,10 +375,13 @@ namespace Private {
   export let showingError = false;
 
   export function showErrorMessage(message: string): void {
-    // Private.hideDirectoryLoadingSpinner();
+    Private.hideDirectoryLoadingSpinner();
     const filebrowserListing = document.querySelector(
       '#s3-filebrowser > .jp-DirListing'
     ) as HTMLElement;
+    if (!filebrowserListing) {
+      return;
+    }
     filebrowserListing.insertAdjacentHTML(
       'afterend',
       `<div class="s3-error"><p>${message}</p></div>`
@@ -410,7 +402,6 @@ namespace Private {
   }
 
   export function showDirectoryLoadingSpinner(): void {
-    console.log('showing loading spinner');
     if (document.querySelector('#s3-spinner')) {
       return;
     }
@@ -428,15 +419,16 @@ namespace Private {
   }
 
   export function hideDirectoryLoadingSpinner(): void {
-    console.log('trying to hide loading spinner');
     const loadingSpinner = document.querySelector('#s3-spinner');
     (document.querySelector('#s3-filebrowser') as HTMLElement).classList.remove(
       'loading'
     );
-    try {
-      (loadingSpinner as HTMLElement).remove();
-    } catch (err) {
-      console.log(err);
+    if (loadingSpinner) {
+      try {
+        (loadingSpinner as HTMLElement).remove();
+      } catch (err) {
+        console.error(err);
+      }
     }
   }
 }

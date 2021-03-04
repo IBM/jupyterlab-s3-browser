@@ -76,11 +76,14 @@ export class S3FileBrowser extends Widget {
      * render the auth widget if they do.
      */
     Private.checkIfAuthenicated().then(authenticated => {
-      console.log('Checking if authenticated');
+      // console.log('Checking if authenticated');
       if (authenticated) {
         (this.layout as PanelLayout).addWidget(browser);
-        console.log('refreshing');
-        browser.model.refresh();
+        // console.log('refreshing...');
+        // not sure why this timeout is necessary
+        setTimeout(() => {
+          browser.model.refresh();
+        }, 1000);
       } else {
         s3AuthenticationForm = new Widget({
           node: Private.createS3AuthenticationForm(s3AuthenticationFormSubmit)
