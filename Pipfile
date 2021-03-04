@@ -6,12 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-e1839a8 = {path = ".",editable = true}
-jupyterlab = "==2.1.1"
-coverage = "*"
-pytest = "*"
-moto = "*"
-boto3 = "*"
+jupyterlab = "~=3.0"
+jupyter-packaging = "~=0.7.9"
+jupyterlab-s3-browser = {editable = true, path = "."}
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"

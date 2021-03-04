@@ -50,7 +50,7 @@ def test_get_files_inside_bucket():
             "name": "test1.txt",
             "path": "test/test1.txt",
             "type": "file",
-            "mimetype": None,
+            "mimetype": "json",
         },
         {
             "name": "prefix",
