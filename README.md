@@ -6,9 +6,15 @@ A JupyterLab extension for browsing S3-compatible object storage.
 
 ## Installation
 
-To install, run:
+### JupyterLab 3
 
+```bash
+pip install jupyterlab-s3-browser
 ```
+
+### JupyterLab 2
+
+```bash
 jupyter labextension install jupyterlab-s3-browser
 pip install jupyterlab-s3-browser
 ```

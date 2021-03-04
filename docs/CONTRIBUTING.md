@@ -6,22 +6,35 @@ Contributions to this extension are welcome.
 
 ### Prerequisites
 
-- [Install docker](https://docs.docker.com/get-docker/)
-- [Install docker-compose](https://docs.docker.com/compose/install/)
+- [Install pipenv](https://pipenv.pypa.io/en/latest/#install-pipenv-today)
 - [Install pre-commit](https://pre-commit.com/#installation) and run `pre-commit install`
 
 ### Development
 
-- Run `make build` to build development docker images.
-- Run `make run` to start the docker images. JupyterLab will eventually start on [localhost:8888](http://localhost:8888) and a minio instance will start on [localhost:9000](http://localhost:9000). Changes made to either the labextension (typescript files) or serverextension (python files) will be picked up automatically, but will require a browser refresh. The reload is not instantaneous, so watch the logs to see when the reload is complete.
-- Run `make test` to run tests (work-in-progress, very little coverage right now)
+```bash
+git clone https://github.com/IBM/jupyterlab-s3-browser.git
+cd jupyterlab-s3-browser
+pre-commit install
+pipenv shell
+jupyter labextension develop . --overwrite
+```
+
+To start JupyterLab and automatically reload when changes are made to the serverextension (python code) run
+
+```bash
+jupyter lab --autoreload
+```
+
+To automatically watch and rebuild when changes are made to the labextension (typescript code), run (in a separate terminal):
+
+```bash
+jlpm run watch
+```
 
 ## Release Publishing
 
-To publish a new version of the lab extension and/or server extension:
+To publish a new version of the lab extension and server extension:
 
 - Update the version in [package.json](package.json)
-- Update the version in [setup.py](setup.py)
-  - note: you need to update _both_ versions, even if you modified just the lab extension or just the server extension one or the other
-- Merge/push to the master branch.
-- `git tag <TAG> && git push origin <TAG>` on the master branch to trigger a travis build/release.
+- Merge/push your changes to the master branch.
+- Create a new GitHub release to publish to pypi / npm.
