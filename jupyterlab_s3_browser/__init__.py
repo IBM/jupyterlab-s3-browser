@@ -52,9 +52,6 @@ def _load_jupyter_server_extension(server_app):
     s3_config = JupyterLabS3(config=server_app.config)
     server_app.web_app.settings["s3_config"] = s3_config
     setup_handlers(server_app.web_app)
-    server_app.log.info(
-        "Registered JupyterLab S3 Browser extension at URL path /jupyterlab_s3_browser"
-    )
 
 
 load_jupyter_server_extension = _load_jupyter_server_extension

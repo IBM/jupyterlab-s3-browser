@@ -112,6 +112,7 @@ export class S3Drive implements Contents.IDrive {
    * @returns A promise which resolves when the file is deleted.
    */
   delete(path: string): Promise<void> {
+    // if this is a file
     return Promise.reject('Not yet implemented');
   }
 
@@ -260,9 +261,7 @@ export class S3Drive implements Contents.IDrive {
       // s3path = s3path.substring(1, s3path.length)
 
       ServerConnection.makeRequest(
-        // Q: Why not use urlext.join? A: because I don't want to strip trailing /
         URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', s3path),
-        // completePath.substring(1, completePath.length),
         {},
         settings
       ).then(response => {
@@ -372,7 +371,7 @@ namespace Private {
 
   export const availableContentTypes: any = {};
   export let currentPath: string;
-  export let showingError = false;
+  export const showingError = false;
 
   export function showErrorMessage(message: string): void {
     Private.hideDirectoryLoadingSpinner();
