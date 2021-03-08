@@ -85,7 +85,7 @@ setup_args = dict(
         "Programming Language :: Python :: 3",
         "Framework :: Jupyter",
     ],
-    install_requires=["notebook", "boto3", "singleton-decorator", "jupyterlab>=3.0.0"],
+    install_requires=["notebook", "boto3", "singleton-decorator", "jupyterlab>=2.0.0"],
     extras_require={"dev": ["jupyter_packaging~=0.7.9", "pytest", "moto", "coverage"]},
 )
 
