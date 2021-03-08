@@ -54,4 +54,6 @@ def _load_jupyter_server_extension(server_app):
     setup_handlers(server_app.web_app)
 
 
+# backwards compatibility with jupyterlab 2.0
 load_jupyter_server_extension = _load_jupyter_server_extension
+_jupyter_server_extension_paths = _jupyter_server_extension_points
