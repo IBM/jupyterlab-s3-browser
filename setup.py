@@ -40,7 +40,12 @@ data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(HERE), "install.json"),
     (
         "etc/jupyter/jupyter_server_config.d",
-        "jupyter-config",
+        "jupyter-config/jupyter_server_config.d",
+        "jupyterlab_s3_browser.json",
+    ),
+    (
+        "etc/jupyter/jupyter_notebook_config.d",
+        "jupyter-config/jupyter_notebook_config.d",
         "jupyterlab_s3_browser.json",
     ),
 ]
@@ -85,7 +90,13 @@ setup_args = dict(
         "Programming Language :: Python :: 3",
         "Framework :: Jupyter",
     ],
-    install_requires=["notebook", "boto3", "singleton-decorator", "jupyterlab>=3.0.0"],
+    install_requires=[
+        "notebook",
+        "boto3",
+        "jupyter_server",
+        "singleton-decorator",
+        "jupyterlab>=2.0.0",
+    ],
     extras_require={"dev": ["jupyter_packaging~=0.7.9", "pytest", "moto", "coverage"]},
 )
 

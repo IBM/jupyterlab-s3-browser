@@ -371,7 +371,7 @@ namespace Private {
 
   export const availableContentTypes: any = {};
   export let currentPath: string;
-  export const showingError = false;
+  export let showingError = false;
 
   export function showErrorMessage(message: string): void {
     Private.hideDirectoryLoadingSpinner();
