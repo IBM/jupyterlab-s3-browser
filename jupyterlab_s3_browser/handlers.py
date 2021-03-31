@@ -16,7 +16,7 @@ from jupyter_server.utils import url_path_join
 
 def create_s3_resource(config):
 
-    if config.endpoint_url and config.client_id and config.client_secret and config.session_token:
+    if config.endpoint_url and config.client_id and config.client_secret:
 
         return boto3.resource(
             "s3",
@@ -114,9 +114,12 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
 
             try:
                 config = self.config
-                if config.endpoint_url and config.client_id and config.client_secret and config.session_token:
+                if config.endpoint_url and config.client_id and config.client_secret:
                     test_s3_credentials(
-                        config.endpoint_url, config.client_id, config.client_secret, config.session_token
+                        config.endpoint_url,
+                        config.client_id,
+                        config.client_secret,
+                        config.session_token,
                     )
                     logging.debug("...successfully authenticated")
 
