@@ -154,6 +154,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
             self.config.endpoint_url = endpoint_url
             self.config.client_id = client_id
             self.config.client_secret = client_secret
+            self.config.session_token = session_token
 
             self.finish(json.dumps({"success": True}))
         except Exception as err:
