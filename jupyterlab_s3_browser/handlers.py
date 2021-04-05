@@ -23,6 +23,7 @@ def create_s3_resource(config):
             aws_access_key_id=config.client_id,
             aws_secret_access_key=config.client_secret,
             endpoint_url=config.endpoint_url,
+            aws_session_token=config.session_token,
         )
     else:
         return boto3.resource("s3")
@@ -68,7 +69,7 @@ def has_aws_s3_role_access():
         return False
 
 
-def test_s3_credentials(endpoint_url, client_id, client_secret):
+def test_s3_credentials(endpoint_url, client_id, client_secret, session_token):
     """
     Checks if we're able to list buckets with these credentials.
     If not, it throws an exception.
@@ -79,6 +80,7 @@ def test_s3_credentials(endpoint_url, client_id, client_secret):
         aws_access_key_id=client_id,
         aws_secret_access_key=client_secret,
         endpoint_url=endpoint_url,
+        aws_session_token=session_token,
     )
     all_buckets = test.buckets.all()
     logging.debug(
@@ -114,7 +116,10 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
                 config = self.config
                 if config.endpoint_url and config.client_id and config.client_secret:
                     test_s3_credentials(
-                        config.endpoint_url, config.client_id, config.client_secret
+                        config.endpoint_url,
+                        config.client_id,
+                        config.client_secret,
+                        config.session_token,
                     )
                     logging.debug("...successfully authenticated")
 
@@ -142,12 +147,14 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
             endpoint_url = req["endpoint_url"]
             client_id = req["client_id"]
             client_secret = req["client_secret"]
+            session_token = req["session_token"]
 
-            test_s3_credentials(endpoint_url, client_id, client_secret)
+            test_s3_credentials(endpoint_url, client_id, client_secret, session_token)
 
             self.config.endpoint_url = endpoint_url
             self.config.client_id = client_id
             self.config.client_secret = client_secret
+            self.config.session_token = session_token
 
             self.finish(json.dumps({"success": True}))
         except Exception as err:

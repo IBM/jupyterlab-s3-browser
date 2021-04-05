@@ -40,6 +40,12 @@ class JupyterLabS3(Configurable):
         help="The client secret for the S3 api",
     )
 
+    session_token = Unicode(
+        default_value=environ.get("JUPYTERLAB_S3_SESSION_TOKEN", ""),
+        config=True,
+        help="(Optional) Token if you use STS as auth method",
+    )
+
 
 def _load_jupyter_server_extension(server_app):
     """Registers the API handler to receive HTTP requests from the frontend extension.
