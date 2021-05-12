@@ -29,19 +29,6 @@ def create_s3_resource(config):
         return boto3.resource("s3")
 
 
-def _test_env_var_access():
-    """
-  Checks if we have access to through environment variable configuration
-  """
-    test = boto3.resource("s3")
-    all_buckets = test.buckets.all()
-    result = [
-        {"name": bucket.name + "/", "path": bucket.name + "/", "type": "directory"}
-        for bucket in all_buckets
-    ]
-    return result
-
-
 def _test_aws_s3_role_access():
     """
   Checks if we have access to AWS S3 through role-based access
