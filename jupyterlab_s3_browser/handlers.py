@@ -12,6 +12,7 @@ import tornado
 from botocore.exceptions import NoCredentialsError
 from jupyter_server.base.handlers import APIHandler
 from jupyter_server.utils import url_path_join
+from pathlib import Path
 
 
 def create_s3_resource(config):
@@ -44,8 +45,28 @@ def _test_aws_s3_role_access():
 
 def has_aws_s3_role_access():
     """
-    Returns true if the user has access to an S3 bucket
+    Returns true if the user has access to an aws S3 bucket
     """
+
+    # avoid making requests to AWS if the user's ~/.aws/credentials file has credentials for a different provider,
+    # e.g. https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli#aws-cli-config
+    aws_credentials_file = Path("{}/.aws/credentials".format(Path.home()))
+    if aws_credentials_file.exists():
+        with aws_credentials_file.open() as credentials_file:
+            for line in credentials_file.readlines():
+                if line.startswith("aws_access_key_id"):
+                    access_key_id = line.split("=", 1)[1]
+                    # aws keys reliably start with AKIA for long-term or ASIA for short-term
+                    if not access_key_id.startswith(
+                        "AKIA"
+                    ) and not access_key_id.startswith("ASIA"):
+                        # if any keys are not valid AWS keys, don't try to authenticate
+                        logging.info(
+                            "Found invalid AWS aws_access_key_id in ~/.aws/credentials file, "
+                            "will not attempt to authenticate through ~/.aws/credentials."
+                        )
+                        return False
+
     try:
         _test_aws_s3_role_access()
         return True
