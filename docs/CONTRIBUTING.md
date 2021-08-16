@@ -22,8 +22,10 @@ jupyter labextension develop . --overwrite
 To start JupyterLab and automatically reload when changes are made to the serverextension (python code) run
 
 ```bash
-jupyter lab --autoreload
+jupyter lab --autoreload --no-browser
 ```
+
+`--no-browser` prevents a new tab from opening every time you make a change
 
 To automatically watch and rebuild when changes are made to the labextension (typescript code), run (in a separate terminal):
 

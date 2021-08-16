@@ -19,3 +19,4 @@ jupyterlab_s3_browser.egg-info/
 htmlcov/
 jupyterlab_s3_browser/labextension
 *.tsbuildinfo
+*.txt

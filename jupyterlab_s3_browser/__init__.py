@@ -21,8 +21,8 @@ def _jupyter_server_extension_points():
 
 class JupyterLabS3(Configurable):
     """
-  Config options for jupyterlab_s3_browser
-  """
+    Config options for jupyterlab_s3_browser
+    """
 
     endpoint_url = Unicode(
         default_value=environ.get("JUPYTERLAB_S3_ENDPOINT", ""),
