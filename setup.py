@@ -94,6 +94,7 @@ setup_args = dict(
     install_requires=[
         "notebook",
         "boto3",
+        "s3fs",
         "jupyter_server",
         "singleton-decorator",
         "jupyterlab>=2.0.0",

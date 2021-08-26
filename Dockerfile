@@ -1,13 +1,13 @@
-FROM python
+FROM python:3.6
 
 
-RUN pip install jupyterlab~=3.0
-# RUN pip install jupyterlab==2.2.9
+# RUN pip install jupyterlab~=3.0
+RUN pip install jupyterlab==2.2.9
 
 
 # COPY dist/jupyterlab_s3_browser-0.9.0.dev1-py3-none-any.whl .
 # RUN pip install jupyterlab_s3_browser-0.9.0.dev1-py3-none-any.whl
-RUN pip install jupyterlab-s3-browser==0.9.0.dev1
+RUN pip install jupyterlab-s3-browser==0.11.0.dev2
 
 
 # RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -

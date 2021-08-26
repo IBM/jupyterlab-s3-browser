@@ -9,6 +9,7 @@ verify_ssl = true
 jupyterlab = "~=3.0"
 jupyter-packaging = "~=0.7.9"
 jupyterlab-s3-browser = {editable = true, path = "."}
+twine = "*"
 
 [requires]
 python_version = "3.8"
