@@ -9,9 +9,17 @@ jobs:
     name: test
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - run: jlpm install:extension
+      - run: jupyter lab --version
+      - run: jupyter labextension
+      - run: jupyter serverextension list
+
       - uses: cypress-io/github-action@v2
         with:
-          start: docker-compose up
+          start: jupyter lab --no-browser --ServerApp.password='' --ServerApp.token=''
           browser: chrome
           headless: true
           wait-on: "http://localhost:8888/lab"
