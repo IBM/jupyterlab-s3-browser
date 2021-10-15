@@ -16,7 +16,7 @@ jobs:
         ports:
           - 9000:9000
         volumes:
-          - ./minio-data/:/data
+          - minio-data/:/data
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
