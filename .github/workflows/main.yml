@@ -97,15 +97,26 @@ jobs:
       uses: actions/download-artifact@v2
     - name: test
       run: ls && ls dist && ls lib
-    # - uses: actions/setup-python@v2
-      # with:
-        # python-version: '3.9'
-    # - name: Install dependencies
-      # run: |
-        # python -m pip install --upgrade pip
-        # pip install wheel twine setuptools packaging jupyterlab==${{ matrix.jupyterlab_version }} jupyter_packaging~=0.7.9
-        # jlpm
-      # - run: jupyter lab --version
-      # - run: jupyter labextension install .
-      # - run: jupyter labextension list
-      # - run: jupyter serverextension list
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        pip install jupyterlab==${{ matrix.jupyterlab_version }}
+        jlpm
+      - run: jupyter lab --version
+      - run: pip install dist/*.whl
+
+      - run: jupyter labextension install .
+        if: ${{ matrix.jupyterlab_version == "2.*" }}
+
+      - run: jupyter labextension list
+      - run: jupyter serverextension list
+      - uses: cypress-io/github-action@v2
+        with:
+          start: jupyter lab --no-browser --ServerApp.password='' --ServerApp.token=''
+          # start: docker-compose up
+          browser: chrome
+          headless: true
+          wait-on: "http://localhost:8888/lab"
+          wait-on-timeout: 120
