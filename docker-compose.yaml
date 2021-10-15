@@ -21,7 +21,7 @@ services:
 
   minio:
     image: minio/minio
-    command: server /data
+    entrypoint: minio server /data
     volumes:
       - ./minio-data/:/data
     ports:
