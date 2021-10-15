@@ -112,7 +112,7 @@ jobs:
     - run: jupyter serverextension list
     - uses: cypress-io/github-action@v2
       with:
-        start: jupyter lab --no-browser --ServerApp.password='' --ServerApp.token=''
+        start: jupyter lab --no-browser --ServerApp.password='' --ServerApp.token='' --NotebookApp.token='' --NotebookApp.password=''
         # start: docker-compose up
         browser: chrome
         headless: true
