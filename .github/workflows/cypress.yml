@@ -7,6 +7,16 @@ jobs:
   test:
     runs-on: ubuntu-20.04
     name: test
+    services:
+      minio:
+        image: minio/minio
+        env:
+          MINIO_ACCESS_KEY: ACCESS_KEY
+          MINIO_SECRET_KEY: SECRET_KEY
+        ports:
+          - 9000:9000
+        volumes:
+          - ./minio-data/:/data
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
