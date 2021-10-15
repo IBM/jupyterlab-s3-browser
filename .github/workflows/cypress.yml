@@ -14,3 +14,5 @@ jobs:
           start: docker-compose up
           browser: chrome
           headless: true
+          wait-on: "http://localhost:8888/lab"
+          wait-on-timeout: 120
