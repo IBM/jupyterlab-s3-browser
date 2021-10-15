@@ -22,16 +22,15 @@ jobs:
     - name: Install Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.7'
-        architecture: 'x64'
+        python-version: '3.9'
 
     - name: Setup pip cache
       uses: actions/cache@v2
       with:
         path: ~/.cache/pip
-        key: pip-3.7-${{ hashFiles('package.json') }}
+        key: pip-3.9-${{ hashFiles('package.json') }}
         restore-keys: |
-          pip-3.7-
+          pip-3.9-
           pip-
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
@@ -50,18 +49,64 @@ jobs:
         python -m pip install --upgrade pip
         pip install wheel twine setuptools packaging jupyterlab~=3.0 jupyter_packaging~=0.7.9
         jlpm
-        # python -m pip install -e .[dev]
 
     - name: Create server extension # and pip install
       run: |
         jlpm run build:prod
-        # jupyter labextension develop . --overwrite
-        # pip install .[dev] && jupyter serverextension enable --py jupyterlab_s3_browser
 
     - name: Package extension
       run: |
         python setup.py sdist bdist_wheel
+    - name: upload python build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist
 
+    - name: upload typescript build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: lib
+        path: lib
+
+  test:
+    needs: build
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        jupyterlab_version: ["2.*", "3.*"]
+    steps:
+    - uses: actions/checkout@v2
+    - name: download build artifacts
+      uses: actions/download-artifact@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install JupyterLab
+      run: pip install jupyterlab==${{ matrix.jupyterlab_version }}
+
+    - name: Install extension
+      run: pip install dist/*.whl
+
+    - name: Install extension (JupyterLab 2 only)
+      run: jupyter labextension install .
+      if: ${{ matrix.jupyterlab_version == '2.*' }}
+
+    - uses: cypress-io/github-action@v2
+      with:
+        start: jupyter lab --no-browser --ServerApp.password='' --ServerApp.token='' --NotebookApp.token='' --NotebookApp.password=''
+        browser: chrome
+        headless: true
+        wait-on: "http://localhost:8888/lab"
+        wait-on-timeout: 120
+
+  publish:
+    needs: [build, test]
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v2
     - name: Publish a Python distribution to PyPI
       if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
       uses: pypa/gh-action-pypi-publish@master
