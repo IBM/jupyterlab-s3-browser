@@ -20,8 +20,7 @@ services:
       # - /<home_folder>/.aws/:/root/.aws/ # replace <home_folder> with the path to your .aws folder and comment out the environment section below to use your aws account's s3 buckets instead
 
   minio:
-    image: minio/minio
-    entrypoint: minio server /data
+    image: bitnami/minio
     volumes:
       - ./minio-data/:/data
     ports:

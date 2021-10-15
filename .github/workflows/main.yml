@@ -77,13 +77,12 @@ jobs:
         jupyterlab_version: ["2.*", "3.*"]
     services:
       minio:
-        image: minio/minio
+        image: bitnami/minio
         ports:
           - 9000:9000
         env:
           MINIO_ACCESS_KEY: ACCESS_KEY
           MINIO_SECRET_KEY: SECRET_KEY
-        options: --entrypoint "minio server /data"
         volumes:
           - /minio-data:/data
     steps:
