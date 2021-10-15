@@ -75,6 +75,17 @@ jobs:
     strategy:
       matrix:
         jupyterlab_version: ["2.*", "3.*"]
+    services:
+      minio:
+        image: minio/minio
+        ports:
+          - 9000:9000
+        env:
+          MINIO_ACCESS_KEY: ACCESS_KEY
+          MINIO_SECRET_KEY: SECRET_KEY
+        command: server /data
+        volumes:
+          - /minio-data:/data
     steps:
     - uses: actions/checkout@v2
     - name: download build artifacts
@@ -92,6 +103,8 @@ jobs:
     - name: Install extension (JupyterLab 2 only)
       run: jupyter labextension install .
       if: ${{ matrix.jupyterlab_version == '2.*' }}
+
+    - run: cp -R ./minio-data /minio-data
 
     - uses: cypress-io/github-action@v2
       with:
