@@ -83,7 +83,7 @@ jobs:
         env:
           MINIO_ACCESS_KEY: ACCESS_KEY
           MINIO_SECRET_KEY: SECRET_KEY
-        options: --entrypoint minio server /data
+        options: --entrypoint "minio server /data"
         volumes:
           - /minio-data:/data
     steps:
