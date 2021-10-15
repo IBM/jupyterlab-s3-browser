@@ -102,6 +102,8 @@ jobs:
         wait-on-timeout: 120
 
   publish:
+    needs: [build, test]
+    runs-on: ubuntu-20.04
     steps:
     - name: Download build artifacts
       uses: actions/download-artifact@v2
