@@ -94,11 +94,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: test
-      run: ls dist && ls lib
+      run: ls && ls dist && ls lib
     - name: Download all workflow run artifacts
       uses: actions/download-artifact@v2
     - name: test
-      run: ls dist && ls lib
+      run: ls && ls dist && ls lib
     # - uses: actions/setup-python@v2
       # with:
         # python-version: '3.9'
