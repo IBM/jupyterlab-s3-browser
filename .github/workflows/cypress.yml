@@ -1,0 +1,16 @@
+name: Cypress Tests
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    name: test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          start: docker-compose up
+          browser: chrome
+          headless: true
