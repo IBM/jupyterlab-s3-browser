@@ -93,8 +93,6 @@ jobs:
         jupyterlab_version: ["2.*", "3.*"]
     steps:
     - uses: actions/checkout@v2
-    - name: test
-      run: ls && ls dist && ls lib
     - name: Download all workflow run artifacts
       uses: actions/download-artifact@v2
     - name: test
