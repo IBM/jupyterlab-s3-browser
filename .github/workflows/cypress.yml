@@ -12,10 +12,11 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.9'
-      - run: jlpm install:extension
+      - run: pip install jupyterlab~=3.0
       - run: jupyter lab --version
-      - run: jupyter labextension
+      - run: jupyter labextension list
       - run: jupyter serverextension list
+      - run: yarn install:extension
 
       - uses: cypress-io/github-action@v2
         with:
