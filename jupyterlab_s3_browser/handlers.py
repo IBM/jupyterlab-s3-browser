@@ -198,16 +198,17 @@ class S3Handler(APIHandler):
         Takes a path and returns lists of files/objects
         and directories/prefixes based on the path.
         """
-        logging.info("GET: {}".format(path))
 
         try:
             if not self.s3fs:
                 self.s3fs = create_s3_resource(self.config)
 
+            self.s3fs.invalidate_cache()
+
+
             if (path and not path.endswith("/")) and (
                 "X-Custom-S3-Is-Dir" not in self.request.headers
             ):  # TODO: replace with function
-                logging.info("getting file contents")
                 newpath = path[1:]
                 with self.s3fs.open(newpath, "rb") as f:
                     result = {
@@ -216,15 +217,12 @@ class S3Handler(APIHandler):
                         "content": base64.encodebytes(f.read()).decode("ascii"),
                     }
             else:
-                logging.info("getting directory contents")
-                logging.info(self.s3fs.listdir(path))
                 raw_result = list(
                     map(convertS3FStoJupyterFormat, self.s3fs.listdir(path))
                 )
                 result = list(filter(lambda x: x["name"] != "", raw_result))
 
         except S3ResourceNotFoundException as e:
-            logging.info(e)
             result = {
                 "error": 404,
                 "message": "The requested resource could not be found.",
@@ -234,7 +232,6 @@ class S3Handler(APIHandler):
             logging.error(e)
             result = {"error": 500, "message": str(e)}
 
-        logging.info(result)
         self.finish(json.dumps(result))
 
     @tornado.web.authenticated
@@ -244,8 +241,6 @@ class S3Handler(APIHandler):
         and directories/prefixes based on the path.
         """
         path = path[1:]
-        logging.info("PUT: {}".format(path))
-        logging.info(self.request.headers)
 
         result = {}
 
@@ -255,7 +250,6 @@ class S3Handler(APIHandler):
 
             if "X-Custom-S3-Src" in self.request.headers:
                 source = self.request.headers["X-Custom-S3-Src"]
-                logging.info("copying from {}".format(source))
                 self.s3fs.cp(source, path)
                 # why read again?
                 with self.s3fs.open(path, "rb") as f:
@@ -265,22 +259,25 @@ class S3Handler(APIHandler):
                         "content": base64.encodebytes(f.read()).decode("ascii"),
                     }
             elif "X-Custom-S3-Is-Dir" in self.request.headers:
-                logging.info("creating new dir: {}".format(path))
                 self.s3fs.mkdir(path)
-                logging.info("CREATED!")
             elif self.request.body:
                 request = json.loads(self.request.body)
                 with self.s3fs.open(path, "w") as f:
                     f.write(request["content"])
+                    # todo: optimize
+                    result = {
+                        "path": path,
+                        "type": "file",
+                        "content": request["content"],
+                    }
 
         except S3ResourceNotFoundException as e:
-            logging.info(e)
             result = {
                 "error": 404,
                 "message": "The requested resource could not be found.",
             }
         except Exception as e:
-            logging.error("what happened during copy?")
+            logging.error("what happened during file creation?")
             logging.error(e)
             result = {"error": 500, "message": str(e)}
 
@@ -293,7 +290,6 @@ class S3Handler(APIHandler):
         and directories/prefixes based on the path.
         """
         path = path[1:]
-        logging.info("DELETE: {}".format(path))
 
         result = {}
 
@@ -302,7 +298,6 @@ class S3Handler(APIHandler):
                 self.s3fs = create_s3_resource(self.config)
 
             self.s3fs.rm(path)
-            logging.info("removed {}".format(path))
 
         except S3ResourceNotFoundException as e:
             logging.error(e)
