@@ -1,5 +1,6 @@
 .env
 **/.minio.sys/*
+minio-data/*
 lib/
 dist/
 __pycache__/
@@ -21,3 +22,4 @@ jupyterlab_s3_browser/labextension
 *.tsbuildinfo
 *.txt
 cypress/videos/*
+cypress/screenshots/*

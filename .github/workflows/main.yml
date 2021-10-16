@@ -103,8 +103,6 @@ jobs:
       run: jupyter labextension install .
       if: ${{ matrix.jupyterlab_version == '2.*' }}
 
-    - run: cp -R ./minio-data /minio-data
-
     - uses: cypress-io/github-action@v2
       with:
         start: jupyter lab --no-browser --ServerApp.password='' --ServerApp.token='' --NotebookApp.token='' --NotebookApp.password=''

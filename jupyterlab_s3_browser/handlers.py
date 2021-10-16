@@ -204,6 +204,9 @@ class S3Handler(APIHandler):
             if not self.s3fs:
                 self.s3fs = create_s3_resource(self.config)
 
+            self.s3fs.invalidate_cache()
+
+
             if (path and not path.endswith("/")) and (
                 "X-Custom-S3-Is-Dir" not in self.request.headers
             ):  # TODO: replace with function
@@ -272,6 +275,12 @@ class S3Handler(APIHandler):
                 request = json.loads(self.request.body)
                 with self.s3fs.open(path, "w") as f:
                     f.write(request["content"])
+                    # todo: optimize
+                    result = {
+                        "path": path,
+                        "type": "file",
+                        "content": request["content"],
+                    }
 
         except S3ResourceNotFoundException as e:
             logging.info(e)
@@ -280,7 +289,7 @@ class S3Handler(APIHandler):
                 "message": "The requested resource could not be found.",
             }
         except Exception as e:
-            logging.error("what happened during copy?")
+            logging.error("what happened during file creation?")
             logging.error(e)
             result = {"error": 500, "message": str(e)}
 

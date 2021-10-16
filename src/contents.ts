@@ -112,6 +112,7 @@ export class S3Drive implements Contents.IDrive {
         mimetype
       };
 
+      console.log(contents);
       return contents;
     } else {
       return await s3.ls(path);
@@ -148,20 +149,37 @@ export class S3Drive implements Contents.IDrive {
   async newUntitled(
     options: Contents.ICreateOptions = {}
   ): Promise<Contents.IModel> {
-    let contents;
+    let s3contents;
     const baseName = 'Untitled';
     switch (options.type) {
       case 'file':
         console.log('new untitled file');
-        contents = await s3.writeFile(options.path + '/' + baseName, '');
+        s3contents = await s3.writeFile(options.path + '/' + baseName, '');
         break;
       case 'directory':
         console.log('new directory');
-        contents = await s3.createDirectory(options.path + '/' + baseName);
+        s3contents = await s3.createDirectory(options.path + '/' + baseName);
         break;
       default:
         throw new Error(`Unexpected type: ${options.type}`);
     }
+    const types = this._registry.getFileTypesForPath(s3contents.path);
+    const fileType =
+      types.length === 0 ? this._registry.getFileType('text')! : types[0];
+    const mimetype = fileType.mimeTypes[0];
+    const format = fileType.fileFormat;
+    const contents: Contents.IModel = {
+      type: 'file',
+      path: s3contents.path,
+      name: '',
+      format,
+      content: '',
+      created: '',
+      writable: true,
+      last_modified: '',
+      mimetype
+    };
+
     this._fileChanged.emit({
       type: 'new',
       oldValue: null,
