@@ -85,7 +85,7 @@ jobs:
           MINIO_SECRET_KEY: SECRET_KEY
         volumes:
           - /minio-data:/data
-        options: --health-cmd "wget --quiet --tries=1 --spider http://localhost:9000/minio/health/live" --health-interval 30s --health-timeout 5s --health-retries 3
+        options: --health-cmd "curl --fail http://localhost:9000/minio/health/live" --health-interval 30s --health-timeout 5s --health-retries 3
     steps:
     - uses: actions/checkout@v2
     - name: download build artifacts
