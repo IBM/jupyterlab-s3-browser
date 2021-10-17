@@ -28,3 +28,8 @@ Cypress.Commands.add('openJupyterLab', () => {
   // open jupyterlab with a clean workspace
   cy.visit('?reset').wait(5000);
 });
+
+Cypress.Commands.add('clearS3', () => {
+  const s3Folder = Cypress.config('s3Folder');
+  cy.task('emptyDirectory', s3Folder);
+});

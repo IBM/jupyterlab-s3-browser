@@ -198,6 +198,7 @@ class S3Handler(APIHandler):
         Takes a path and returns lists of files/objects
         and directories/prefixes based on the path.
         """
+        logging.info("GET {}".format(path))
 
         try:
             if not self.s3fs:
@@ -240,6 +241,7 @@ class S3Handler(APIHandler):
         Takes a path and returns lists of files/objects
         and directories/prefixes based on the path.
         """
+        logging.info("PUT {}, headers: {}".format(path, self.request.headers))
         path = path[1:]
 
         result = {}
@@ -248,9 +250,28 @@ class S3Handler(APIHandler):
             if not self.s3fs:
                 self.s3fs = create_s3_resource(self.config)
 
-            if "X-Custom-S3-Src" in self.request.headers:
-                source = self.request.headers["X-Custom-S3-Src"]
-                self.s3fs.cp(source, path)
+            if "X-Custom-S3-Copy-Src" in self.request.headers:
+                source = self.request.headers["X-Custom-S3-Copy-Src"]
+
+                # copying issue is because of dir/file mixup?
+                if "/" not in source:
+                  logging.info("TESTING")
+                  path = path + "/.keep"
+
+                logging.info("copying {} -> {}".format(source, path))
+                self.s3fs.cp(source, path, recursive=True)
+                # why read again?
+                with self.s3fs.open(path, "rb") as f:
+                    result = {
+                        "path": path,
+                        "type": "file",
+                        "content": base64.encodebytes(f.read()).decode("ascii"),
+                    }
+            elif "X-Custom-S3-Move-Src" in self.request.headers:
+                source = self.request.headers["X-Custom-S3-Move-Src"]
+
+                logging.info("moving {} -> {}".format(source, path))
+                self.s3fs.move(source, path, recursive=True)
                 # why read again?
                 with self.s3fs.open(path, "rb") as f:
                     result = {
@@ -259,7 +280,17 @@ class S3Handler(APIHandler):
                         "content": base64.encodebytes(f.read()).decode("ascii"),
                     }
             elif "X-Custom-S3-Is-Dir" in self.request.headers:
+                path = path.lower()
+                if not path[-1] == "/":
+                  path = path + "/"
+              #  is_bucket = (path.count("/") == 1)
+                #  if path == "Untitled":
+                    #  path = "untitled/untitled"
+
+                logging.info("creating new dir: {}".format(path))
                 self.s3fs.mkdir(path)
+                self.s3fs.touch(path+".keep")
+                logging.info("CREATED!")
             elif self.request.body:
                 request = json.loads(self.request.body)
                 with self.s3fs.open(path, "w") as f:
@@ -272,6 +303,7 @@ class S3Handler(APIHandler):
                     }
 
         except S3ResourceNotFoundException as e:
+            logging.info(e)
             result = {
                 "error": 404,
                 "message": "The requested resource could not be found.",
@@ -290,6 +322,7 @@ class S3Handler(APIHandler):
         and directories/prefixes based on the path.
         """
         path = path[1:]
+        logging.info("DELETE: {}".format(path))
 
         result = {}
 
@@ -297,7 +330,10 @@ class S3Handler(APIHandler):
             if not self.s3fs:
                 self.s3fs = create_s3_resource(self.config)
 
+            if self.s3fs.exists(path+"/.keep"):
+              self.s3fs.rm(path+"/.keep")
             self.s3fs.rm(path)
+            logging.info("removed {}".format(path))
 
         except S3ResourceNotFoundException as e:
             logging.error(e)

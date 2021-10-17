@@ -14,7 +14,25 @@ export async function copyFile(
   const response = await (
     await ServerConnection.makeRequest(
       URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', newPath),
-      { method: 'PUT', headers: { 'X-Custom-S3-Src': oldPath } },
+      { method: 'PUT', headers: { 'X-Custom-S3-Copy-Src': oldPath } },
+      settings
+    )
+  ).json();
+  return response;
+  // TODO: error handling
+}
+
+export async function moveFile(
+  oldPath: string,
+  newPath: string
+): Promise<Contents.IModel> {
+  console.log(`move ${oldPath} -> ${newPath}`);
+  // pass
+  const settings = ServerConnection.makeSettings(); // can be stored as class var
+  const response = await (
+    await ServerConnection.makeRequest(
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', newPath),
+      { method: 'PUT', headers: { 'X-Custom-S3-Move-Src': oldPath } },
       settings
     )
   ).json();
@@ -64,7 +82,7 @@ export async function createDirectory(path: string): Promise<Contents.IModel> {
     format: 'json',
     content: [],
     created: '',
-    writable: true,
+    writable: false,
     last_modified: '',
     mimetype: ''
   };
@@ -93,7 +111,7 @@ function s3ToJupyterContents(s3Content: any): Contents.IModel {
     format: 'json', // this._registry.getFileType('text').fileFormat,
     type: s3Content.type,
     created: '',
-    writable: true,
+    writable: false,
     last_modified: '',
     mimetype: s3Content.mimetype,
     content: s3Content.content
@@ -119,7 +137,7 @@ export async function ls(path: string): Promise<Contents.IModel> {
       return s3ToJupyterContents(s3Content);
     }),
     created: '',
-    writable: true,
+    writable: false,
     last_modified: '',
     mimetype: ''
   };
