@@ -83,7 +83,7 @@ def test_s3_credentials(endpoint_url, client_id, client_secret, session_token):
     Checks if we're able to list buckets with these credentials.
     If not, it throws an exception.
     """
-    logging.debug("testing s3 credentials")
+    logging.info("testing s3 credentials: access: {}, secret: {}, url: {}".format(client_id, client_secret, endpoint_url))
     test = boto3.resource(
         "s3",
         aws_access_key_id=client_id,
@@ -115,7 +115,6 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
         Checks if the user is already authenticated
         against an s3 instance.
         """
-        logging.info("env url: {}".format("env url: {}".format(os.environ.get("JUPYTERLAB_S3_ENDPOINT"))))
         authenticated = False
         if has_aws_s3_role_access():
             authenticated = True
@@ -168,6 +167,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
 
             self.finish(json.dumps({"success": True}))
         except Exception as err:
+            logging.info("unable to authenticate using credentials")
             self.finish(json.dumps({"success": False, "message": str(err)}))
 
 
