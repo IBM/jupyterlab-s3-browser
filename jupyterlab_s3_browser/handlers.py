@@ -4,6 +4,7 @@ Placeholder
 import base64
 import json
 import logging
+import os # TODO: remove
 
 import boto3
 import tornado
@@ -114,6 +115,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
         Checks if the user is already authenticated
         against an s3 instance.
         """
+        logging.info("env url: {}".format("env url: {}".format(os.environ.get("JUPYTERLAB_S3_ENDPOINT"))))
         authenticated = False
         if has_aws_s3_role_access():
             authenticated = True

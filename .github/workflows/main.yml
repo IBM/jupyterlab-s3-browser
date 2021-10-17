@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        jupyterlab_version: ["2.*", "3.*"]
+        jupyterlab_version: ["3.*"]
     services:
       minio:
         image: lazybit/minio
