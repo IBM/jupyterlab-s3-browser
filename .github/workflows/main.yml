@@ -112,15 +112,15 @@ jobs:
         wait-on-timeout: 120
         config-file: ci/cypress.json
     - uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-      - uses: actions/upload-artifact@v1
-        if: always()
-        with:
-          name: cypress-videos
-          path: cypress/videos
+      if: failure()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   publish:
     needs: [build, test]
