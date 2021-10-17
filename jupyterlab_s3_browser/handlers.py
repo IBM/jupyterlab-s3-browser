@@ -231,7 +231,7 @@ class S3Handler(APIHandler):
             }
         except Exception as e:
             logging.error("Exception encountered during GET {}: {}".format(path, e))
-            logging.info("testing s3 credentials: access: {}, secret: {}, url: {}".format(os.environ))
+            logging.info(os.environ)
             result = {"error": 500, "message": str(e)}
 
         self.finish(json.dumps(result))
