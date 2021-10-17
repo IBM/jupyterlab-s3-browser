@@ -110,6 +110,7 @@ jobs:
         headless: true
         wait-on: "http://localhost:8888/lab"
         wait-on-timeout: 120
+        config: defaultCommandTimeout=10000,baseUrl=http://localhost:8888/lab,s3Folder=/minio-data
 
   publish:
     needs: [build, test]
