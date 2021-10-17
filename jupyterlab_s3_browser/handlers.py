@@ -83,7 +83,6 @@ def test_s3_credentials(endpoint_url, client_id, client_secret, session_token):
     Checks if we're able to list buckets with these credentials.
     If not, it throws an exception.
     """
-    logging.info("testing s3 credentials: access: {}, secret: {}, url: {}".format(client_id, client_secret, endpoint_url))
     test = boto3.resource(
         "s3",
         aws_access_key_id=client_id,
@@ -231,8 +230,8 @@ class S3Handler(APIHandler):
                 "message": "The requested resource could not be found.",
             }
         except Exception as e:
-            logging.error("what happened during get?")
-            logging.error(e)
+            logging.error("Exception encountered during GET {}: {}".format(path, e))
+            logging.info("testing s3 credentials: access: {}, secret: {}, url: {}".format(os.environ))
             result = {"error": 500, "message": str(e)}
 
         self.finish(json.dumps(result))
