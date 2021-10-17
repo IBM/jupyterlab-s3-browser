@@ -30,6 +30,6 @@ Cypress.Commands.add('openJupyterLab', () => {
 });
 
 Cypress.Commands.add('clearS3', () => {
-  const s3Folder = Cypress.config('s3Folder');
+  const s3Folder = Cypress.env('S3_FOLDER') || 'minio-data';
   cy.task('emptyDirectory', s3Folder);
 });
