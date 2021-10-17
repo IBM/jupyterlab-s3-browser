@@ -116,12 +116,16 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
         """
         authenticated = False
         if has_aws_s3_role_access():
+            logging.info("has role-based access")
             authenticated = True
 
         if not authenticated:
+            logging.info("no role-based access")
 
             try:
                 config = self.config
+                logging.info("config:")
+                logging.info(config)
                 if config.endpoint_url and config.client_id and config.client_secret:
                     test_s3_credentials(
                         config.endpoint_url,
@@ -203,10 +207,11 @@ class S3Handler(APIHandler):
 
         try:
             if not self.s3fs:
+                logging.info("creating new s3 resource")
                 self.s3fs = create_s3_resource(self.config)
+                logging.info("created")
 
             self.s3fs.invalidate_cache()
-
 
             if (path and not path.endswith("/")) and (
                 "X-Custom-S3-Is-Dir" not in self.request.headers
