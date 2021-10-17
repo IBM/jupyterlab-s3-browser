@@ -94,11 +94,11 @@ jobs:
         python-version: '3.9'
 
     - name: Install JupyterLab
-      run: pip install jupyterlab==${{ matrix.jupyterlab_version }} && jupyter serverextension enable --py jupyterlab_s3_browser
+      run: pip install jupyterlab==${{ matrix.jupyterlab_version }}
 
 
     - name: Install extension
-      run: pip install dist/*.whl
+      run: pip install dist/*.whl && jupyter serverextension enable --py jupyterlab_s3_browser
 
     - name: Install extension (JupyterLab 2 only)
       run: jupyter labextension install .
