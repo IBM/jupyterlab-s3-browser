@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-s3-browser",
-  "version": "0.11.0-dev.0",
+  "version": "0.11.0-dev.4",
   "description": "JupyterLab extension for browsing S3-compatible object storage",
   "keywords": [
     "s3",
