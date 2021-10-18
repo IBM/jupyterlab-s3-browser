@@ -26,8 +26,6 @@ export async function moveFile(
   oldPath: string,
   newPath: string
 ): Promise<Contents.IModel> {
-  console.log(`move ${oldPath} -> ${newPath}`);
-  // pass
   const settings = ServerConnection.makeSettings(); // can be stored as class var
   const response = await (
     await ServerConnection.makeRequest(

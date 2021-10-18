@@ -155,13 +155,10 @@ export class S3Drive implements Contents.IDrive {
     const existingFilenames = existingFiles.content.map(
       (content: Contents.IModel) => content.name
     );
-    console.log(existingFiles);
-    console.log(existingFilenames);
     let uniqueSuffix = 0;
     while (existingFilenames.includes(filename)) {
       uniqueSuffix++;
       filename = basename + uniqueSuffix;
-      console.log(`is ${filename} unique?`);
     }
     switch (options.type) {
       case 'file':
@@ -189,7 +186,6 @@ export class S3Drive implements Contents.IDrive {
       last_modified: '',
       mimetype
     };
-    console.log(options.path);
 
     this._fileChanged.emit({
       type: 'new',

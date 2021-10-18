@@ -27,14 +27,11 @@ module.exports = (on, config) => {
   on('task', {
     async emptyDirectory(directory) {
       try {
-        console.log(`emptying ${directory}`);
         const filesToIgnore = ['.minio.sys'];
         const files = await readdir(directory);
-        console.log(files);
         const filesToDelete = files.filter(
           item => !filesToIgnore.includes(item)
         );
-        console.log(`deleting ${filesToDelete}`);
         const rmdirPromises = filesToDelete.map(filename => {
           rmdir(`${directory}/${filename}`, { recursive: true });
         });
