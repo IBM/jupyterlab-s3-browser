@@ -31,6 +31,7 @@ describe('The s3 browser works', () => {
     cy.get('.jp-DirListing-item').rightclick();
     cy.get('[data-command="filebrowser:delete"]').click();
     cy.get('.jp-mod-accept').click();
+    cy.wait(1000);
     cy.get(
       '#s3-filebrowser > .jp-Toolbar > :nth-child(3) > .bp3-button'
     ).click(); // TODO: why is this necessary?
