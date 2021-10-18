@@ -114,7 +114,7 @@ jobs:
         wait-on-timeout: 120
       env:
         JUPYTERLAB_S3_ENDPOINT: http://localhost:9000
-        JUPYTERLAB_S3_ACCESS_KEY: ACCESS_KEY
+        JUPYTERLAB_S3_ACCESS_KEY_ID: ACCESS_KEY
         JUPYTERLAB_S3_SECRET_ACCESS_KEY: SECRET_KEY
         CYPRESS_S3_FOLDER: /minio-data
     - uses: actions/upload-artifact@v1
