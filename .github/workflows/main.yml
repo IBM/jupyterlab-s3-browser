@@ -132,6 +132,8 @@ jobs:
     needs: [build, test]
     runs-on: ubuntu-20.04
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Download build artifacts
       uses: actions/download-artifact@v2
     - name: Publish a Python distribution to PyPI
