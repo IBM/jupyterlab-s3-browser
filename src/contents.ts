@@ -148,20 +148,45 @@ export class S3Drive implements Contents.IDrive {
   async newUntitled(
     options: Contents.ICreateOptions = {}
   ): Promise<Contents.IModel> {
-    let contents;
-    const baseName = 'Untitled';
+    let s3contents;
+    const basename = 'untitled';
+    let filename = basename;
+    const existingFiles = await s3.ls(options.path);
+    const existingFilenames = existingFiles.content.map(
+      (content: Contents.IModel) => content.name
+    );
+    let uniqueSuffix = 0;
+    while (existingFilenames.includes(filename)) {
+      uniqueSuffix++;
+      filename = basename + uniqueSuffix;
+    }
     switch (options.type) {
       case 'file':
-        console.log('new untitled file');
-        contents = await s3.writeFile(options.path + '/' + baseName, '');
+        s3contents = await s3.writeFile(options.path + '/' + filename, '');
         break;
       case 'directory':
-        console.log('new directory');
-        contents = await s3.createDirectory(options.path + '/' + baseName);
+        s3contents = await s3.createDirectory(options.path + '/' + filename);
         break;
       default:
         throw new Error(`Unexpected type: ${options.type}`);
     }
+    const types = this._registry.getFileTypesForPath(s3contents.path);
+    const fileType =
+      types.length === 0 ? this._registry.getFileType('text')! : types[0];
+    const mimetype = fileType.mimeTypes[0];
+    const format = fileType.fileFormat;
+    const contents: Contents.IModel = {
+      type: options.type,
+      path: options.path,
+      name: filename,
+      format,
+      content: '',
+      created: '',
+      writable: true,
+      last_modified: '',
+      mimetype
+    };
+
     this._fileChanged.emit({
       type: 'new',
       oldValue: null,
@@ -178,9 +203,7 @@ export class S3Drive implements Contents.IDrive {
    * @returns A promise which resolves when the file is deleted.
    */
   async delete(path: string): Promise<void> {
-    console.log(`deleting ${path}`);
     await s3.deleteFile(path);
-    console.log(`deleted ${path}`);
     this._fileChanged.emit({
       type: 'delete',
       oldValue: { path },
@@ -199,9 +222,15 @@ export class S3Drive implements Contents.IDrive {
    *   the file is renamed.
    */
   async rename(path: string, newPath: string): Promise<Contents.IModel> {
-    console.log(`renaming ${path} to ${newPath}`);
-    const content = await s3.copyFile(path, newPath);
-    await s3.deleteFile(path);
+    if (!path.includes('/')) {
+      throw Error('Renaming of buckets is not supported');
+    }
+    const content = await s3.moveFile(path, newPath);
+    this._fileChanged.emit({
+      type: 'rename',
+      oldValue: { path },
+      newValue: content
+    });
     return content;
   }
 
@@ -219,9 +248,36 @@ export class S3Drive implements Contents.IDrive {
     path: string,
     options: Partial<Contents.IModel>
   ): Promise<Contents.IModel> {
-    console.log(path);
+    console.log('save?');
     console.log(options);
-    return await s3.writeFile(path, options.content);
+    let content = options.content;
+    if (options.format === 'base64') {
+      content = Private.b64DecodeUTF8(options.content);
+    }
+    const s3contents = await s3.writeFile(path, content);
+    const types = this._registry.getFileTypesForPath(s3contents.path);
+    const fileType =
+      types.length === 0 ? this._registry.getFileType('text')! : types[0];
+    const mimetype = fileType.mimeTypes[0];
+    const format = fileType.fileFormat;
+    const contents: Contents.IModel = {
+      type: options.type,
+      path: options.path,
+      name: options.name,
+      format,
+      content: '',
+      created: '',
+      writable: true,
+      last_modified: '',
+      mimetype
+    };
+
+    this._fileChanged.emit({
+      type: 'save',
+      oldValue: null,
+      newValue: contents
+    });
+    return contents;
   }
 
   /**
@@ -235,12 +291,10 @@ export class S3Drive implements Contents.IDrive {
    *  file is copied.
    */
   async copy(fromFile: string, toDir: string): Promise<Contents.IModel> {
-    console.log(`copying from ${fromFile} to ${toDir}`);
     let basename = PathExt.basename(fromFile).split('.')[0];
     basename += '-copy';
     const ext = PathExt.extname(fromFile);
     const name = '/' + toDir + '/' + basename + ext;
-    console.log(`new file ${name}`);
     const content = await s3.copyFile(fromFile, name);
     this._fileChanged.emit({
       type: 'new',

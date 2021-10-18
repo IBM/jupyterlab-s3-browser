@@ -14,7 +14,23 @@ export async function copyFile(
   const response = await (
     await ServerConnection.makeRequest(
       URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', newPath),
-      { method: 'PUT', headers: { 'X-Custom-S3-Src': oldPath } },
+      { method: 'PUT', headers: { 'X-Custom-S3-Copy-Src': oldPath } },
+      settings
+    )
+  ).json();
+  return response;
+  // TODO: error handling
+}
+
+export async function moveFile(
+  oldPath: string,
+  newPath: string
+): Promise<Contents.IModel> {
+  const settings = ServerConnection.makeSettings(); // can be stored as class var
+  const response = await (
+    await ServerConnection.makeRequest(
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', newPath),
+      { method: 'PUT', headers: { 'X-Custom-S3-Move-Src': oldPath } },
       settings
     )
   ).json();
