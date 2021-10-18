@@ -124,7 +124,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
 
             try:
                 config = self.config
-                logging.info("config:")
+                logging.info("{}, {}, {}, {}".format(config.endpoint_url, config.client_id, config.client_secret, config.session_token))
                 logging.info(config)
                 if config.endpoint_url and config.client_id and config.client_secret:
                     test_s3_credentials(
@@ -146,6 +146,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
                 logging.debug("...failed to authenticate")
                 logging.debug(err)
 
+        logging.info("authenticated? {}".format(authenticated))
         self.finish(json.dumps({"authenticated": authenticated}))
 
     @tornado.web.authenticated
@@ -212,6 +213,7 @@ class S3Handler(APIHandler):
                 logging.info("created")
 
             self.s3fs.invalidate_cache()
+            logging.info("invalidated cache")
 
             if (path and not path.endswith("/")) and (
                 "X-Custom-S3-Is-Dir" not in self.request.headers
@@ -224,6 +226,7 @@ class S3Handler(APIHandler):
                         "content": base64.encodebytes(f.read()).decode("ascii"),
                     }
             else:
+                logging.info("listing...")
                 raw_result = list(
                     map(convertS3FStoJupyterFormat, self.s3fs.listdir(path))
                 )
