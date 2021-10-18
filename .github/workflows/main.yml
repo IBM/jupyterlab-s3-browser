@@ -103,7 +103,7 @@ jobs:
 
     - name: Install extension (JupyterLab 2 only)
       run: jupyter labextension install .
-      if: ${{ matrix.jupyterlab_version == '2.*' }}
+      if: ${{ matrix.jupyterlab_version == 'jupyterlab==2.*' }}
 
     - uses: cypress-io/github-action@v2
       with:
