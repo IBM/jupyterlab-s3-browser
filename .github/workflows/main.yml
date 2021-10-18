@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        jupyterlab_version: ["3.*"]
+        jupyterlab_version: ["jupyterlab==3.*", "jupyterlab==2.*"]
     services:
       minio:
         image: lazybit/minio
@@ -95,7 +95,7 @@ jobs:
         python-version: '3.9'
 
     - name: Install JupyterLab
-      run: pip install jupyterlab==${{ matrix.jupyterlab_version }}
+      run: pip install ${{ matrix.jupyterlab_version }}
 
 
     - name: Install extension

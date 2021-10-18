@@ -4,7 +4,6 @@ Placeholder
 import base64
 import json
 import logging
-import os # TODO: remove
 
 import boto3
 import tornado
@@ -116,16 +115,12 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
         """
         authenticated = False
         if has_aws_s3_role_access():
-            logging.info("has role-based access")
             authenticated = True
 
         if not authenticated:
-            logging.info("no role-based access")
 
             try:
                 config = self.config
-                logging.info("{}, {}, {}, {}".format(config.endpoint_url, config.client_id, config.client_secret, config.session_token))
-                logging.info(config)
                 if config.endpoint_url and config.client_id and config.client_secret:
                     test_s3_credentials(
                         config.endpoint_url,
@@ -146,7 +141,6 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
                 logging.debug("...failed to authenticate")
                 logging.debug(err)
 
-        logging.info("authenticated? {}".format(authenticated))
         self.finish(json.dumps({"authenticated": authenticated}))
 
     @tornado.web.authenticated
@@ -208,12 +202,9 @@ class S3Handler(APIHandler):
 
         try:
             if not self.s3fs:
-                logging.info("creating new s3 resource")
                 self.s3fs = create_s3_resource(self.config)
-                logging.info("created")
 
             self.s3fs.invalidate_cache()
-            logging.info("invalidated cache")
 
             if (path and not path.endswith("/")) and (
                 "X-Custom-S3-Is-Dir" not in self.request.headers
@@ -226,7 +217,6 @@ class S3Handler(APIHandler):
                         "content": base64.encodebytes(f.read()).decode("ascii"),
                     }
             else:
-                logging.info("listing...")
                 raw_result = list(
                     map(convertS3FStoJupyterFormat, self.s3fs.listdir(path))
                 )
@@ -239,7 +229,6 @@ class S3Handler(APIHandler):
             }
         except Exception as e:
             logging.error("Exception encountered during GET {}: {}".format(path, e))
-            logging.info(os.environ)
             result = {"error": 500, "message": str(e)}
 
         self.finish(json.dumps(result))
@@ -250,7 +239,6 @@ class S3Handler(APIHandler):
         Takes a path and returns lists of files/objects
         and directories/prefixes based on the path.
         """
-        logging.info("PUT {}, headers: {}".format(path, self.request.headers))
         path = path[1:]
 
         result = {}
@@ -264,7 +252,6 @@ class S3Handler(APIHandler):
 
                 # copying issue is because of dir/file mixup?
                 if "/" not in source:
-                  logging.info("TESTING")
                   path = path + "/.keep"
 
                 logging.info("copying {} -> {}".format(source, path))
@@ -299,7 +286,6 @@ class S3Handler(APIHandler):
                 logging.info("creating new dir: {}".format(path))
                 self.s3fs.mkdir(path)
                 self.s3fs.touch(path+".keep")
-                logging.info("CREATED!")
             elif self.request.body:
                 request = json.loads(self.request.body)
                 with self.s3fs.open(path, "w") as f:
@@ -342,7 +328,6 @@ class S3Handler(APIHandler):
             if self.s3fs.exists(path+"/.keep"):
               self.s3fs.rm(path+"/.keep")
             self.s3fs.rm(path)
-            logging.info("removed {}".format(path))
 
         except S3ResourceNotFoundException as e:
             logging.error(e)
