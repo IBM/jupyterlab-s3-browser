@@ -26,7 +26,11 @@
 
 Cypress.Commands.add('openJupyterLab', () => {
   // open jupyterlab with a clean workspace
-  cy.visit('?reset').wait(5000);
+  cy.visit('?reset');
+  cy.visit('/');
+  // make sure s3 browser is open
+  cy.get('[data-id="filebrowser"]').click();
+  cy.get('[data-id="s3-file-browser"]').click();
 });
 
 Cypress.Commands.add('clearS3', () => {
