@@ -89,16 +89,6 @@
 }
 
 /*
-Hide 'Upload' and 'New Folder' toolbar
-buttons until they are implemented
-*/
-#s3-filebrowser > div.jp-Toolbar > div:nth-child(1),
-#s3-filebrowser > div.jp-Toolbar > div:nth-child(2),
-#s3-filebrowser > div.jp-Toolbar > div:nth-child(3) {
-  display: none;
-}
-
-/*
 last modified isn't yet implemented, so hide it
 */
 #s3-filebrowser .jp-DirListing-itemModified,

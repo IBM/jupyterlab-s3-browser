@@ -4,8 +4,6 @@ Placeholder
 import base64
 import json
 import logging
-import traceback
-from collections import namedtuple
 
 import boto3
 import tornado
@@ -14,26 +12,46 @@ from jupyter_server.base.handlers import APIHandler
 from jupyter_server.utils import url_path_join
 from pathlib import Path
 
+import s3fs
+import boto3
+
+class DirectoryNotEmptyException(Exception):
+  """Raise for attempted deletions of non-empty directories"""
+  pass
+
+def create_s3fs(config):
+
+    if config.endpoint_url and config.client_id and config.client_secret:
+
+        return s3fs.S3FileSystem(
+            key=config.client_id,
+            secret=config.client_secret,
+            token=config.session_token,
+            client_kwargs={"endpoint_url": config.endpoint_url},
+        )
+
+    else:
+        return s3fs.S3FileSystem()
 
 def create_s3_resource(config):
 
     if config.endpoint_url and config.client_id and config.client_secret:
 
         return boto3.resource(
-            "s3",
             aws_access_key_id=config.client_id,
             aws_secret_access_key=config.client_secret,
-            endpoint_url=config.endpoint_url,
             aws_session_token=config.session_token,
+            endpoint_url=config.endpoint_url,
         )
+
     else:
-        return boto3.resource("s3")
+        return boto3.resource('s3')
 
 
 def _test_aws_s3_role_access():
     """
-  Checks if we have access to AWS S3 through role-based access
-  """
+    Checks if we have access to AWS S3 through role-based access
+    """
     test = boto3.resource("s3")
     all_buckets = test.buckets.all()
     result = [
@@ -82,7 +100,6 @@ def test_s3_credentials(endpoint_url, client_id, client_secret, session_token):
     Checks if we're able to list buckets with these credentials.
     If not, it throws an exception.
     """
-    logging.debug("testing s3 credentials")
     test = boto3.resource(
         "s3",
         aws_access_key_id=client_id,
@@ -166,6 +183,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
 
             self.finish(json.dumps({"success": True}))
         except Exception as err:
+            logging.info("unable to authenticate using credentials")
             self.finish(json.dumps({"success": False, "message": str(err)}))
 
 
@@ -173,149 +191,12 @@ class S3ResourceNotFoundException(Exception):
     pass
 
 
-# TODO: use this
-#  @dataclass
-#  class S3GetResult:
-#  name: str
-#  type: str
-#  path: str
-
-
-def parse_bucket_name_and_path(raw_path):
-    if "/" not in raw_path[1:]:
-        bucket_name = raw_path[1:]
-        path = ""
-    else:
-        bucket_name, path = raw_path[1:].split("/", 1)
-    return (bucket_name, path)
-
-
-Content = namedtuple("Content", ["name", "path", "type", "mimetype"])
-
-
-# call with
-# request_prefix: the prefix we sent to s3 with the request
-# response_prefix: full path of object or directory as returned by s3
-# returns:
-# subtracts the request_prefix from response_prefix and returns
-# the basename of request_prefix
-# e.g.
-# request_prefix=rawtransactions/2020-04-01
-# response_prefix=rawtransactions/2020-04-01/file1
-# this method returns file1
-def get_basename(request_prefix, response_prefix):
-    request_prefix_len = len(request_prefix)
-    response_prefix_len = len(response_prefix)
-    response_prefix = response_prefix[request_prefix_len:response_prefix_len]
-    if response_prefix.endswith("/"):
-        response_prefix_len = len(response_prefix) - 1
-        response_prefix = response_prefix[0:response_prefix_len]
-    return response_prefix
-
-
-def do_list_objects_v2(s3client, bucket_name, prefix):
-    list_of_objects = []
-    list_of_directories = []
-    try:
-        response = s3client.list_objects_v2(
-            Bucket=bucket_name, Delimiter="/", EncodingType="url", Prefix=prefix,
-        )
-        if "Contents" in response:
-            contents = response["Contents"]
-            for one_object in contents:
-                obj_key = one_object["Key"]
-                obj_key_basename = get_basename(prefix, obj_key)
-                if len(obj_key_basename) > 0:
-                    list_of_objects.append(
-                        Content(obj_key_basename, obj_key, "file", "json")
-                    )
-        if "CommonPrefixes" in response:
-            common_prefixes = response["CommonPrefixes"]
-            for common_prefix in common_prefixes:
-                prfx = common_prefix["Prefix"]
-                prfx_basename = get_basename(prefix, prfx)
-                list_of_directories.append(
-                    Content(prfx_basename, prfx, "directory", "json")
-                )
-    except Exception as e:
-        logging.error(e)
-        traceback.print_exc()
-
-    return list_of_objects, list_of_directories
-
-
-def do_get_object(s3client, bucket_name, path):
-    try:
-        response = s3client.get_object(Bucket=bucket_name, Key=path)
-        if "Body" in response:
-            if "ContentType" in response:
-                content_type = response["ContentType"]
-            else:
-                content_type = "Unknown"
-            streaming_body = response["Body"]
-            data = streaming_body.read()
-            return content_type, data
-        else:
-            return None
-    except Exception as e:
-        logging.error(e)
-        traceback.print_exc()
-        return None
-
-
-def get_s3_objects_from_path(s3, path):
-
-    if path in ["", "/"]:
-        # requesting the root path, just return all buckets
-        all_buckets = s3.buckets.all()
-        result = [
-            {"name": bucket.name, "path": bucket.name, "type": "directory"}
-            for bucket in all_buckets
-        ]
-        return result
-    else:
-        bucket_name, path = parse_bucket_name_and_path(path)
-        s3client = s3.meta.client
-        if path == "" or path.endswith("/"):
-            list_of_objects, list_of_directories = do_list_objects_v2(
-                s3client, bucket_name, path
-            )
-            result = set()
-            if len(list_of_directories) > 0:
-                for one_dir in list_of_directories:
-                    result.add(one_dir)
-            if len(list_of_objects) > 0:
-                for one_object in list_of_objects:
-                    result.add(one_object)
-
-            result = list(result)
-            result = [
-                {
-                    "name": content.name,
-                    "path": "{}/{}".format(bucket_name, content.path),
-                    "type": content.type,
-                    "mimetype": content.mimetype,
-                }
-                for content in result
-            ]
-            return result
-        else:
-            object_content_type, object_data = do_get_object(
-                s3client, bucket_name, path
-            )
-            if object_content_type is not None:
-                result = {
-                    "path": "{}/{}".format(bucket_name, path),
-                    "type": "file",
-                    "mimetype": object_content_type,
-                }
-                result["content"] = base64.encodebytes(object_data).decode("ascii")
-                return result
-            else:
-                result = {
-                    "error": 404,
-                    "message": "The requested resource could not be found.",
-                }
+def convertS3FStoJupyterFormat(result):
+    return {
+        "name": result["Key"].rsplit("/", 1)[-1],
+        "path": result["Key"],
+        "type": result["type"],
+    }
 
 
 class S3Handler(APIHandler):
@@ -327,7 +208,8 @@ class S3Handler(APIHandler):
     def config(self):
         return self.settings["s3_config"]
 
-    s3 = None  # an S3Resource instance to be used for requests
+    s3fs = None
+    s3_resource = None
 
     @tornado.web.authenticated
     def get(self, path=""):
@@ -335,21 +217,165 @@ class S3Handler(APIHandler):
         Takes a path and returns lists of files/objects
         and directories/prefixes based on the path.
         """
-        logging.info("GET: {}".format(path))
+        path = path[1:]
+        #  logging.info("GET {}".format(path))
 
-        #  boto3.set_stream_logger("boto3.resources", logging.DEBUG)
-        #  boto3.set_stream_logger("botocore", logging.DEBUG)
         try:
-            if not self.s3:
-                self.s3 = create_s3_resource(self.config)
-            result = get_s3_objects_from_path(self.s3, path)
+            if not self.s3fs:
+                self.s3fs = create_s3fs(self.config)
+
+            self.s3fs.invalidate_cache()
+
+            if (path and not path.endswith("/")) and (
+                "X-Custom-S3-Is-Dir" not in self.request.headers
+            ):  # TODO: replace with function
+                with self.s3fs.open(path, "rb") as f:
+                    result = {
+                        "path": path,
+                        "type": "file",
+                        "content": base64.encodebytes(f.read()).decode("ascii"),
+                    }
+            else:
+                raw_result = list(
+                    map(convertS3FStoJupyterFormat, self.s3fs.listdir(path))
+                )
+                result = list(filter(lambda x: x["name"] != "", raw_result))
+
         except S3ResourceNotFoundException as e:
-            logging.info(e)
             result = {
                 "error": 404,
                 "message": "The requested resource could not be found.",
             }
         except Exception as e:
+            logging.error("Exception encountered during GET {}: {}".format(path, e))
+            result = {"error": 500, "message": str(e)}
+
+        self.finish(json.dumps(result))
+
+    @tornado.web.authenticated
+    def put(self, path=""):
+        """
+        Takes a path and returns lists of files/objects
+        and directories/prefixes based on the path.
+        """
+        path = path[1:]
+
+        result = {}
+
+        try:
+            if not self.s3fs:
+                self.s3fs = create_s3fs(self.config)
+
+            if "X-Custom-S3-Copy-Src" in self.request.headers:
+                source = self.request.headers["X-Custom-S3-Copy-Src"]
+
+                # copying issue is because of dir/file mixup?
+                if "/" not in source:
+                  path = path + "/.keep"
+
+                #  logging.info("copying {} -> {}".format(source, path))
+                self.s3fs.cp(source, path, recursive=True)
+                # why read again?
+                with self.s3fs.open(path, "rb") as f:
+                    result = {
+                        "path": path,
+                        "type": "file",
+                        "content": base64.encodebytes(f.read()).decode("ascii"),
+                    }
+            elif "X-Custom-S3-Move-Src" in self.request.headers:
+                source = self.request.headers["X-Custom-S3-Move-Src"]
+
+                #  logging.info("moving {} -> {}".format(source, path))
+                self.s3fs.move(source, path, recursive=True)
+                # why read again?
+                with self.s3fs.open(path, "rb") as f:
+                    result = {
+                        "path": path,
+                        "type": "file",
+                        "content": base64.encodebytes(f.read()).decode("ascii"),
+                    }
+            elif "X-Custom-S3-Is-Dir" in self.request.headers:
+                path = path.lower()
+                if not path[-1] == "/":
+                  path = path + "/"
+
+                #  logging.info("creating new dir: {}".format(path))
+                self.s3fs.mkdir(path)
+                self.s3fs.touch(path+".keep")
+            elif self.request.body:
+                request = json.loads(self.request.body)
+                with self.s3fs.open(path, "w") as f:
+                    f.write(request["content"])
+                    # todo: optimize
+                    result = {
+                        "path": path,
+                        "type": "file",
+                        "content": request["content"],
+                    }
+
+        except S3ResourceNotFoundException as e:
+            #  logging.info(e)
+            result = {
+                "error": 404,
+                "message": "The requested resource could not be found.",
+            }
+        except Exception as e:
+            logging.error("what happened during file creation?")
+            logging.error(e)
+            result = {"error": 500, "message": str(e)}
+
+        self.finish(json.dumps(result))
+
+    @tornado.web.authenticated
+    def delete(self, path=""):
+        """
+        Takes a path and returns lists of files/objects
+        and directories/prefixes based on the path.
+        """
+        path = path[1:]
+        #  logging.info("DELETE: {}".format(path))
+
+        result = {}
+
+        try:
+            if not self.s3fs:
+                self.s3fs = create_s3fs(self.config)
+            if not self.s3_resource:
+                self.s3_resource = create_s3_resource(self.config)
+
+
+            if self.s3fs.exists(path+"/.keep"):
+              self.s3fs.rm(path+"/.keep")
+
+            objects_matching_prefix = self.s3fs.listdir(path+"/")
+            is_directory = (len(objects_matching_prefix) > 1) or ((len(objects_matching_prefix) == 1) and objects_matching_prefix[0]['Key'] != path)
+
+            if is_directory:
+              if (len(objects_matching_prefix) > 1) or ((len(objects_matching_prefix) == 1) and objects_matching_prefix[0]['Key'] != path+"/"):
+                raise DirectoryNotEmptyException()
+              else:
+                # for some reason s3fs.rm doesn't work reliably
+                if path.count("/") > 1:
+                  bucket_name, prefix = path.split("/", 1)
+                  bucket = self.s3_resource.Bucket(bucket_name)
+                  bucket.objects.filter(Prefix=prefix).delete()
+                else:
+                  self.s3fs.rm(path)
+            else:
+              self.s3fs.rm(path)
+
+
+        except S3ResourceNotFoundException as e:
+            logging.error(e)
+            result = {
+                "error": 404,
+                "message": "The requested resource could not be found.",
+            }
+        except DirectoryNotEmptyException as e:
+          #  logging.info("Attempted to delete non-empty directory")
+          result = {"error": 400, "error": "DIR_NOT_EMPTY"}
+        except Exception as e:
+            logging.error("what happened?")
             logging.error(e)
             result = {"error": 500, "message": str(e)}
 

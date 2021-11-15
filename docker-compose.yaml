@@ -1,6 +1,8 @@
 version: "3.4"
 services:
   jupyterlab:
+    depends_on:
+      - minio
     build: .
     ports:
       - "8888:8888"
@@ -15,17 +17,27 @@ services:
       - --no-browser
       - --ServerApp.password=''
       - --ServerApp.token=''
+      - --NotebookApp.password=''
+      - --NotebookApp.token=''
       - --allow-root
     # volumes:
       # - /<home_folder>/.aws/:/root/.aws/ # replace <home_folder> with the path to your .aws folder and comment out the environment section below to use your aws account's s3 buckets instead
 
   minio:
-    image: minio/minio
-    command: server /data
-    volumes:
-      - ./minio-data/:/data
+    image: lazybit/minio
     ports:
       - "9000:9000"
     environment:
       - "MINIO_ACCESS_KEY=ACCESS_KEY"
       - "MINIO_SECRET_KEY=SECRET_KEY"
+    volumes:
+      - ./minio-data/:/data
+    healthcheck:
+      test:
+      - CMD
+      - curl
+      - "--fail"
+      - http://localhost:9000/minio/health/live
+      interval: 30s
+      timeout: 5s
+      retries: 3
