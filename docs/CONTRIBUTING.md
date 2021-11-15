@@ -6,7 +6,7 @@ Contributions to this extension are welcome.
 
 ### Prerequisites
 
-- [Install pipenv](https://pipenv.pypa.io/en/latest/#install-pipenv-today)
+- [Install poetry](https://python-poetry.org/docs/#installation)
 - [Install pre-commit](https://pre-commit.com/#installation)
 
 ### Development
@@ -15,7 +15,7 @@ Contributions to this extension are welcome.
 git clone https://github.com/IBM/jupyterlab-s3-browser.git
 cd jupyterlab-s3-browser
 pre-commit install
-pipenv shell
+poetry shell
 jupyter labextension develop . --overwrite
 ```
 
