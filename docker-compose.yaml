@@ -21,7 +21,7 @@ services:
       - --NotebookApp.token=''
       - --allow-root
     # volumes:
-      # - /Users/jamesreeve/.aws/:/root/.aws/ # replace <home_folder> with the path to your .aws folder and comment out the environment section below to use your aws account's s3 buckets instead
+      # - /<home_folder>/.aws/:/root/.aws/ # replace <home_folder> with the path to your .aws folder and comment out the environment section below to use your aws account's s3 buckets instead
 
   minio:
     image: lazybit/minio

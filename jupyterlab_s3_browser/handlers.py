@@ -218,7 +218,7 @@ class S3Handler(APIHandler):
         and directories/prefixes based on the path.
         """
         path = path[1:]
-        logging.info("GET {}".format(path))
+        #  logging.info("GET {}".format(path))
 
         try:
             if not self.s3fs:
@@ -229,7 +229,6 @@ class S3Handler(APIHandler):
             if (path and not path.endswith("/")) and (
                 "X-Custom-S3-Is-Dir" not in self.request.headers
             ):  # TODO: replace with function
-                print("getting a filenow?")
                 with self.s3fs.open(path, "rb") as f:
                     result = {
                         "path": path,
@@ -274,7 +273,7 @@ class S3Handler(APIHandler):
                 if "/" not in source:
                   path = path + "/.keep"
 
-                logging.info("copying {} -> {}".format(source, path))
+                #  logging.info("copying {} -> {}".format(source, path))
                 self.s3fs.cp(source, path, recursive=True)
                 # why read again?
                 with self.s3fs.open(path, "rb") as f:
@@ -286,7 +285,7 @@ class S3Handler(APIHandler):
             elif "X-Custom-S3-Move-Src" in self.request.headers:
                 source = self.request.headers["X-Custom-S3-Move-Src"]
 
-                logging.info("moving {} -> {}".format(source, path))
+                #  logging.info("moving {} -> {}".format(source, path))
                 self.s3fs.move(source, path, recursive=True)
                 # why read again?
                 with self.s3fs.open(path, "rb") as f:
@@ -300,7 +299,7 @@ class S3Handler(APIHandler):
                 if not path[-1] == "/":
                   path = path + "/"
 
-                logging.info("creating new dir: {}".format(path))
+                #  logging.info("creating new dir: {}".format(path))
                 self.s3fs.mkdir(path)
                 self.s3fs.touch(path+".keep")
             elif self.request.body:
@@ -315,7 +314,7 @@ class S3Handler(APIHandler):
                     }
 
         except S3ResourceNotFoundException as e:
-            logging.info(e)
+            #  logging.info(e)
             result = {
                 "error": 404,
                 "message": "The requested resource could not be found.",
@@ -334,7 +333,7 @@ class S3Handler(APIHandler):
         and directories/prefixes based on the path.
         """
         path = path[1:]
-        logging.info("DELETE: {}".format(path))
+        #  logging.info("DELETE: {}".format(path))
 
         result = {}
 
@@ -348,23 +347,16 @@ class S3Handler(APIHandler):
             if self.s3fs.exists(path+"/.keep"):
               self.s3fs.rm(path+"/.keep")
 
-            print("want to delete {}".format(path))
-            print(self.s3fs.listdir(path))
-            print(self.s3fs.listdir(path+"/"))
             objects_matching_prefix = self.s3fs.listdir(path+"/")
-            print("objects matching prefix: {}".format(objects_matching_prefix))
             is_directory = (len(objects_matching_prefix) > 1) or ((len(objects_matching_prefix) == 1) and objects_matching_prefix[0]['Key'] != path)
-            print("is_directory: {}".format(is_directory))
 
             if is_directory:
               if (len(objects_matching_prefix) > 1) or ((len(objects_matching_prefix) == 1) and objects_matching_prefix[0]['Key'] != path+"/"):
-                print("directory not empty")
                 raise DirectoryNotEmptyException()
               else:
                 # for some reason s3fs.rm doesn't work reliably
                 if path.count("/") > 1:
                   bucket_name, prefix = path.split("/", 1)
-                  print("deleting {} in {}".format(prefix, bucket_name))
                   bucket = self.s3_resource.Bucket(bucket_name)
                   bucket.objects.filter(Prefix=prefix).delete()
                 else:
@@ -380,7 +372,7 @@ class S3Handler(APIHandler):
                 "message": "The requested resource could not be found.",
             }
         except DirectoryNotEmptyException as e:
-          logging.info("Attempted to delete non-empty directory")
+          #  logging.info("Attempted to delete non-empty directory")
           result = {"error": 400, "error": "DIR_NOT_EMPTY"}
         except Exception as e:
             logging.error("what happened?")
