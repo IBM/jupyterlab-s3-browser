@@ -13,9 +13,13 @@ from jupyter_server.utils import url_path_join
 from pathlib import Path
 
 import s3fs
+import boto3
 
+class DirectoryNotEmptyException(Exception):
+  """Raise for attempted deletions of non-empty directories"""
+  pass
 
-def create_s3_resource(config):
+def create_s3fs(config):
 
     if config.endpoint_url and config.client_id and config.client_secret:
 
@@ -28,6 +32,20 @@ def create_s3_resource(config):
 
     else:
         return s3fs.S3FileSystem()
+
+def create_s3_resource(config):
+
+    if config.endpoint_url and config.client_id and config.client_secret:
+
+        return boto3.resource(
+            aws_access_key_id=config.client_id,
+            aws_secret_access_key=config.client_secret,
+            aws_session_token=config.session_token,
+            endpoint_url=config.endpoint_url,
+        )
+
+    else:
+        return boto3.resource('s3')
 
 
 def _test_aws_s3_role_access():
@@ -191,6 +209,7 @@ class S3Handler(APIHandler):
         return self.settings["s3_config"]
 
     s3fs = None
+    s3_resource = None
 
     @tornado.web.authenticated
     def get(self, path=""):
@@ -198,21 +217,22 @@ class S3Handler(APIHandler):
         Takes a path and returns lists of files/objects
         and directories/prefixes based on the path.
         """
+        path = path[1:]
         logging.info("GET {}".format(path))
 
         try:
             if not self.s3fs:
-                self.s3fs = create_s3_resource(self.config)
+                self.s3fs = create_s3fs(self.config)
 
             self.s3fs.invalidate_cache()
 
             if (path and not path.endswith("/")) and (
                 "X-Custom-S3-Is-Dir" not in self.request.headers
             ):  # TODO: replace with function
-                newpath = path[1:]
-                with self.s3fs.open(newpath, "rb") as f:
+                print("getting a filenow?")
+                with self.s3fs.open(path, "rb") as f:
                     result = {
-                        "path": newpath,
+                        "path": path,
                         "type": "file",
                         "content": base64.encodebytes(f.read()).decode("ascii"),
                     }
@@ -245,7 +265,7 @@ class S3Handler(APIHandler):
 
         try:
             if not self.s3fs:
-                self.s3fs = create_s3_resource(self.config)
+                self.s3fs = create_s3fs(self.config)
 
             if "X-Custom-S3-Copy-Src" in self.request.headers:
                 source = self.request.headers["X-Custom-S3-Copy-Src"]
@@ -279,9 +299,6 @@ class S3Handler(APIHandler):
                 path = path.lower()
                 if not path[-1] == "/":
                   path = path + "/"
-              #  is_bucket = (path.count("/") == 1)
-                #  if path == "Untitled":
-                    #  path = "untitled/untitled"
 
                 logging.info("creating new dir: {}".format(path))
                 self.s3fs.mkdir(path)
@@ -323,11 +340,38 @@ class S3Handler(APIHandler):
 
         try:
             if not self.s3fs:
-                self.s3fs = create_s3_resource(self.config)
+                self.s3fs = create_s3fs(self.config)
+            if not self.s3_resource:
+                self.s3_resource = create_s3_resource(self.config)
+
 
             if self.s3fs.exists(path+"/.keep"):
               self.s3fs.rm(path+"/.keep")
-            self.s3fs.rm(path)
+
+            print("want to delete {}".format(path))
+            print(self.s3fs.listdir(path))
+            print(self.s3fs.listdir(path+"/"))
+            objects_matching_prefix = self.s3fs.listdir(path+"/")
+            print("objects matching prefix: {}".format(objects_matching_prefix))
+            is_directory = (len(objects_matching_prefix) > 1) or ((len(objects_matching_prefix) == 1) and objects_matching_prefix[0]['Key'] != path)
+            print("is_directory: {}".format(is_directory))
+
+            if is_directory:
+              if (len(objects_matching_prefix) > 1) or ((len(objects_matching_prefix) == 1) and objects_matching_prefix[0]['Key'] != path+"/"):
+                print("directory not empty")
+                raise DirectoryNotEmptyException()
+              else:
+                # for some reason s3fs.rm doesn't work reliably
+                if path.count("/") > 1:
+                  bucket_name, prefix = path.split("/", 1)
+                  print("deleting {} in {}".format(prefix, bucket_name))
+                  bucket = self.s3_resource.Bucket(bucket_name)
+                  bucket.objects.filter(Prefix=prefix).delete()
+                else:
+                  self.s3fs.rm(path)
+            else:
+              self.s3fs.rm(path)
+
 
         except S3ResourceNotFoundException as e:
             logging.error(e)
@@ -335,6 +379,9 @@ class S3Handler(APIHandler):
                 "error": 404,
                 "message": "The requested resource could not be found.",
             }
+        except DirectoryNotEmptyException as e:
+          logging.info("Attempted to delete non-empty directory")
+          result = {"error": 400, "error": "DIR_NOT_EMPTY"}
         except Exception as e:
             logging.error("what happened?")
             logging.error(e)

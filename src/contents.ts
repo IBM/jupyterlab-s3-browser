@@ -78,7 +78,7 @@ export class S3Drive implements Contents.IDrive {
     path: string,
     options?: Contents.IFetchOptions
   ): Promise<Contents.IModel> {
-    if (options.type === 'file') {
+    if (options.type === 'file' || options.type === 'notebook') {
       const s3Contents = await s3.read(path);
       const types = this._registry.getFileTypesForPath(path);
       const fileType =
@@ -165,6 +165,9 @@ export class S3Drive implements Contents.IDrive {
         s3contents = await s3.writeFile(options.path + '/' + filename, '');
         break;
       case 'directory':
+        if (options.path === '' && filename != 'untitled') {
+          throw new Error('Bucket creation is not currently supported.');
+        }
         s3contents = await s3.createDirectory(options.path + '/' + filename);
         break;
       default:
@@ -203,7 +206,12 @@ export class S3Drive implements Contents.IDrive {
    * @returns A promise which resolves when the file is deleted.
    */
   async delete(path: string): Promise<void> {
-    await s3.deleteFile(path);
+    const deletionRequest = await s3.deleteFile(path);
+    if (deletionRequest.error && deletionRequest.error === 'DIR_NOT_EMPTY') {
+      throw new Error(
+        `${path} is not empty. Deletion of non-empty directories is not currently supported.`
+      );
+    }
     this._fileChanged.emit({
       type: 'delete',
       oldValue: { path },
@@ -223,7 +231,7 @@ export class S3Drive implements Contents.IDrive {
    */
   async rename(path: string, newPath: string): Promise<Contents.IModel> {
     if (!path.includes('/')) {
-      throw Error('Renaming of buckets is not supported');
+      throw Error('Renaming of buckets is not currently supported.');
     }
     const content = await s3.moveFile(path, newPath);
     this._fileChanged.emit({
@@ -248,11 +256,11 @@ export class S3Drive implements Contents.IDrive {
     path: string,
     options: Partial<Contents.IModel>
   ): Promise<Contents.IModel> {
-    console.log('save?');
-    console.log(options);
     let content = options.content;
     if (options.format === 'base64') {
       content = Private.b64DecodeUTF8(options.content);
+    } else if (options.format === 'json') {
+      content = JSON.stringify(options.content);
     }
     const s3contents = await s3.writeFile(path, content);
     const types = this._registry.getFileTypesForPath(s3contents.path);
@@ -265,7 +273,7 @@ export class S3Drive implements Contents.IDrive {
       path: options.path,
       name: options.name,
       format,
-      content: '',
+      content,
       created: '',
       writable: true,
       last_modified: '',

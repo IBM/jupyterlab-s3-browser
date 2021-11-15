@@ -38,14 +38,17 @@ export async function moveFile(
   // TODO: error handling
 }
 
-export async function deleteFile(path: string): Promise<void> {
+export async function deleteFile(path: string): Promise<any> {
   const settings = ServerConnection.makeSettings(); // can be stored as class var
-  await ServerConnection.makeRequest(
-    URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', path),
-    { method: 'DELETE' },
-    settings
-  );
-  return;
+  const response = await (
+    await ServerConnection.makeRequest(
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', path),
+      { method: 'DELETE' },
+      settings
+    )
+  ).json();
+
+  return response;
 }
 
 export async function writeFile(
