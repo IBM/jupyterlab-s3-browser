@@ -206,12 +206,14 @@ describe('The s3 browser works', () => {
     cy.get('.jp-mod-accept').click();
   });
 
-  it('Can delete a bucket', () => {
-    const bucketName = createTestBucket();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
-    deleteTestBucket();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('not.exist');
-  });
+  if (!CI) {
+    it('Can delete a bucket', () => {
+      const bucketName = createTestBucket();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
+      deleteTestBucket();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('not.exist');
+    });
+  }
 
   it('Fails to delete buckets with objects inside', () => {
     const bucketName = createTestBucket();
