@@ -307,19 +307,19 @@ describe('The s3 browser works', () => {
       renameFile(fileLocation, newFileName);
       cy.get('.jp-DirListing-content').contains(newFileName).should('exist');
     });
-  }
 
-  it('Can create and delete prefixes/directories', () => {
-    const bucketName = createTestBucket();
-    const directoryName = 'test';
-    const directoryPath = `${bucketName}/${directoryName}`;
-    createDirectory(directoryPath);
-    cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
-    deleteDirectory(directoryPath);
-    cy.get('.jp-DirListing-content')
-      .contains(directoryName)
-      .should('not.exist');
-  });
+    it('Can create and delete prefixes/directories', () => {
+      const bucketName = createTestBucket();
+      const directoryName = 'test';
+      const directoryPath = `${bucketName}/${directoryName}`;
+      createDirectory(directoryPath);
+      cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
+      deleteDirectory(directoryPath);
+      cy.get('.jp-DirListing-content')
+        .contains(directoryName)
+        .should('not.exist');
+    });
+  }
 
   it('Fails to delete non-empty prefixes/directories', () => {
     const bucketName = createTestBucket();

@@ -321,7 +321,6 @@ class S3Handler(APIHandler):
                 "message": "The requested resource could not be found.",
             }
         except Exception as e:
-            logging.error("what happened during file creation?")
             logging.error(e)
             result = {"error": 500, "message": str(e)}
 
