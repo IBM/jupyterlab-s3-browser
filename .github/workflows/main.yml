@@ -105,7 +105,7 @@ jobs:
       if: ${{ matrix.jupyterlab_version == 'jupyterlab==2.*' }}
 
     - name: allow cypress to access minio-data mount
-      run: chown -R 1001:1001 /minio-data
+      run: sudo chown -R 1001:1001 /minio-data
 
     - uses: cypress-io/github-action@v2
       with:
