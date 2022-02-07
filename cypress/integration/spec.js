@@ -332,16 +332,16 @@ describe('The s3 browser works', () => {
       cy.get('.jp-mod-accept').click();
       cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
     });
-  }
 
-  it('Fails to delete a non-empty bucket', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const filePath = `${bucketName}/${fileName}`;
-    createFile(filePath);
-    navigateToRoot();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
-    deleteTestBucket();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
-  });
+    it('Fails to delete a non-empty bucket', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const filePath = `${bucketName}/${fileName}`;
+      createFile(filePath);
+      navigateToRoot();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
+      deleteTestBucket();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
+    });
+  }
 });
