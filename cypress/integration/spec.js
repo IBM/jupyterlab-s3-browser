@@ -1,3 +1,5 @@
+const CI = Cypress.env('CI') || false;
+
 const navigateToRoot = () => {
   cy.get('#s3-filebrowser > .jp-BreadCrumbs > .jp-BreadCrumbs-home').click();
   cy.wait(500);
@@ -204,140 +206,142 @@ describe('The s3 browser works', () => {
     cy.get('.jp-mod-accept').click();
   });
 
-  it('Can delete a bucket', () => {
-    const bucketName = createTestBucket();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
-    deleteTestBucket();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('not.exist');
-  });
+  if (!CI) {
+    it('Can delete a bucket', () => {
+      const bucketName = createTestBucket();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
+      deleteTestBucket();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('not.exist');
+    });
 
-  it('Fails to delete buckets with objects inside', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const fileLocation = `${bucketName}/${fileName}`;
-    const fileContent = 'test';
-    createFile(fileLocation);
-    deleteTestBucket();
+    it('Fails to delete buckets with objects inside', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const fileLocation = `${bucketName}/${fileName}`;
+      const fileContent = 'test';
+      createFile(fileLocation);
+      deleteTestBucket();
 
-    // error message should display
-    cy.get('.jp-Dialog-header').contains('Failed').should('exist');
-    cy.get('.jp-mod-accept').click();
+      // error message should display
+      cy.get('.jp-Dialog-header').contains('Failed').should('exist');
+      cy.get('.jp-mod-accept').click();
 
-    cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
-  });
+      cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
+    });
 
-  it('Can create files', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const fileLocation = `${bucketName}/${fileName}`;
-    createFile(fileLocation);
-    cy.get('.jp-DirListing-content').contains(fileName).should('exist');
-  });
+    it('Can create files', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const fileLocation = `${bucketName}/${fileName}`;
+      createFile(fileLocation);
+      cy.get('.jp-DirListing-content').contains(fileName).should('exist');
+    });
 
-  it('Can edit files', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const fileLocation = `${bucketName}/${fileName}`;
-    const fileContent = 'test';
-    createFile(fileLocation);
-    writeToFile(fileLocation, fileContent);
-    assertFileHasContent(fileLocation, fileContent);
-  });
+    it('Can edit files', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const fileLocation = `${bucketName}/${fileName}`;
+      const fileContent = 'test';
+      createFile(fileLocation);
+      writeToFile(fileLocation, fileContent);
+      assertFileHasContent(fileLocation, fileContent);
+    });
 
-  it('Can delete files', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const fileLocation = `${bucketName}/${fileName}`;
-    createFile(fileLocation);
-    deleteFile(fileLocation);
-    cy.get('.jp-DirListing-content').contains(fileName).should('not.exist');
-  });
+    it('Can delete files', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const fileLocation = `${bucketName}/${fileName}`;
+      createFile(fileLocation);
+      deleteFile(fileLocation);
+      cy.get('.jp-DirListing-content').contains(fileName).should('not.exist');
+    });
 
-  it('Can duplicate files', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const copiedFileName = 'test-copy.txt';
-    const fileLocation = `${bucketName}/${fileName}`;
-    const copiedFileLocation = `${bucketName}/${copiedFileName}`;
-    const fileContent = 'test';
-    createFile(fileLocation);
-    writeToFile(fileLocation, fileContent);
-    duplicateFile(fileLocation);
-    assertFileHasContent(copiedFileLocation, fileContent);
-  });
+    it('Can duplicate files', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const copiedFileName = 'test-copy.txt';
+      const fileLocation = `${bucketName}/${fileName}`;
+      const copiedFileLocation = `${bucketName}/${copiedFileName}`;
+      const fileContent = 'test';
+      createFile(fileLocation);
+      writeToFile(fileLocation, fileContent);
+      duplicateFile(fileLocation);
+      assertFileHasContent(copiedFileLocation, fileContent);
+    });
 
-  it('Can copy files', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const copiedFileName = 'test-copy.txt';
-    const fileLocation = `${bucketName}/${fileName}`;
-    const copyDestinationDirectory = `${bucketName}/test`;
-    createDirectory(`${copyDestinationDirectory}`);
-    const newFileLocation = `${copyDestinationDirectory}/${copiedFileName}`;
-    const fileContent = 'test';
-    createFile(fileLocation);
-    writeToFile(fileLocation, fileContent);
-    copyFile(fileLocation, newFileLocation);
-    assertFileHasContent(newFileLocation, fileContent);
-  });
+    it('Can copy files', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const copiedFileName = 'test-copy.txt';
+      const fileLocation = `${bucketName}/${fileName}`;
+      const copyDestinationDirectory = `${bucketName}/test`;
+      createDirectory(`${copyDestinationDirectory}`);
+      const newFileLocation = `${copyDestinationDirectory}/${copiedFileName}`;
+      const fileContent = 'test';
+      createFile(fileLocation);
+      writeToFile(fileLocation, fileContent);
+      copyFile(fileLocation, newFileLocation);
+      assertFileHasContent(newFileLocation, fileContent);
+    });
 
-  it('Can move files', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const fileLocation = `${bucketName}/${fileName}`;
-    const moveDestinationDirectory = `${bucketName}/test`;
-    createDirectory(`${moveDestinationDirectory}`);
-    const newFileLocation = `${moveDestinationDirectory}/${fileName}`;
-    const fileContent = 'test';
-    createFile(fileLocation);
-    writeToFile(fileLocation, fileContent);
-    moveFile(fileLocation, newFileLocation);
-    assertFileHasContent(newFileLocation, fileContent);
-  });
+    it('Can move files', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const fileLocation = `${bucketName}/${fileName}`;
+      const moveDestinationDirectory = `${bucketName}/test`;
+      createDirectory(`${moveDestinationDirectory}`);
+      const newFileLocation = `${moveDestinationDirectory}/${fileName}`;
+      const fileContent = 'test';
+      createFile(fileLocation);
+      writeToFile(fileLocation, fileContent);
+      moveFile(fileLocation, newFileLocation);
+      assertFileHasContent(newFileLocation, fileContent);
+    });
 
-  it('Can rename files', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const newFileName = 'test2';
-    const fileLocation = `${bucketName}/${fileName}`;
-    createFile(fileLocation);
-    renameFile(fileLocation, newFileName);
-    cy.get('.jp-DirListing-content').contains(newFileName).should('exist');
-  });
+    it('Can rename files', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const newFileName = 'test2';
+      const fileLocation = `${bucketName}/${fileName}`;
+      createFile(fileLocation);
+      renameFile(fileLocation, newFileName);
+      cy.get('.jp-DirListing-content').contains(newFileName).should('exist');
+    });
 
-  it('Can create and delete prefixes/directories', () => {
-    const bucketName = createTestBucket();
-    const directoryName = 'test';
-    const directoryPath = `${bucketName}/${directoryName}`;
-    createDirectory(directoryPath);
-    cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
-    deleteDirectory(directoryPath);
-    cy.get('.jp-DirListing-content')
-      .contains(directoryName)
-      .should('not.exist');
-  });
+    it('Can create and delete prefixes/directories', () => {
+      const bucketName = createTestBucket();
+      const directoryName = 'test';
+      const directoryPath = `${bucketName}/${directoryName}`;
+      createDirectory(directoryPath);
+      cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
+      deleteDirectory(directoryPath);
+      cy.get('.jp-DirListing-content')
+        .contains(directoryName)
+        .should('not.exist');
+    });
 
-  it('Fails to delete non-empty prefixes/directories', () => {
-    const bucketName = createTestBucket();
-    const directoryName = 'test';
-    const directoryPath = `${bucketName}/${directoryName}`;
-    createDirectory(directoryPath);
-    cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
-    createFile(`${directoryPath}/test`);
-    deleteDirectory(directoryPath);
-    cy.get('.jp-Dialog-header').contains('Failed').should('exist');
-    cy.get('.jp-mod-accept').click();
-    cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
-  });
+    it('Fails to delete non-empty prefixes/directories', () => {
+      const bucketName = createTestBucket();
+      const directoryName = 'test';
+      const directoryPath = `${bucketName}/${directoryName}`;
+      createDirectory(directoryPath);
+      cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
+      createFile(`${directoryPath}/test`);
+      deleteDirectory(directoryPath);
+      cy.get('.jp-Dialog-header').contains('Failed').should('exist');
+      cy.get('.jp-mod-accept').click();
+      cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
+    });
 
-  it('Fails to delete a non-empty bucket', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const filePath = `${bucketName}/${fileName}`;
-    createFile(filePath);
-    navigateToRoot();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
-    deleteTestBucket();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
-  });
+    it('Fails to delete a non-empty bucket', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const filePath = `${bucketName}/${fileName}`;
+      createFile(filePath);
+      navigateToRoot();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
+      deleteTestBucket();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
+    });
+  }
 });

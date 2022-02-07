@@ -119,11 +119,14 @@ jobs:
         JUPYTERLAB_S3_ACCESS_KEY_ID: ACCESS_KEY
         JUPYTERLAB_S3_SECRET_ACCESS_KEY: SECRET_KEY
         CYPRESS_S3_FOLDER: /minio-data
+        CYPRESS_CI: true
+
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
         name: cypress-screenshots
         path: cypress/screenshots
+
     - uses: actions/upload-artifact@v1
       if: always()
       with:
