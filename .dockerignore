@@ -1,9 +1,10 @@
 Dockerfile
-LICENSE
-MANIFEST.in
 Makefile
 README.md
 docker-compose.yaml
 docs/
+dist/*
+lib/*
 minio-data/
 *.ipynb
+**/node_modules

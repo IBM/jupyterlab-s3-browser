@@ -37,3 +37,8 @@ Cypress.Commands.add('clearS3', () => {
   const s3Folder = Cypress.env('S3_FOLDER') || 'minio-data';
   cy.task('emptyDirectory', s3Folder);
 });
+
+Cypress.Commands.add('createTestBucket', name => {
+  const s3Folder = Cypress.env('S3_FOLDER') || 'minio-data';
+  cy.writeFile(`${s3Folder}/${name}/.keep`, []);
+});
