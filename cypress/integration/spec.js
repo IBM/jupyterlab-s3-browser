@@ -319,20 +319,20 @@ describe('The s3 browser works', () => {
         .contains(directoryName)
         .should('not.exist');
     });
-  }
 
-  it('Fails to delete non-empty prefixes/directories', () => {
-    const bucketName = createTestBucket();
-    const directoryName = 'test';
-    const directoryPath = `${bucketName}/${directoryName}`;
-    createDirectory(directoryPath);
-    cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
-    createFile(`${directoryPath}/test`);
-    deleteDirectory(directoryPath);
-    cy.get('.jp-Dialog-header').contains('Failed').should('exist');
-    cy.get('.jp-mod-accept').click();
-    cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
-  });
+    it('Fails to delete non-empty prefixes/directories', () => {
+      const bucketName = createTestBucket();
+      const directoryName = 'test';
+      const directoryPath = `${bucketName}/${directoryName}`;
+      createDirectory(directoryPath);
+      cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
+      createFile(`${directoryPath}/test`);
+      deleteDirectory(directoryPath);
+      cy.get('.jp-Dialog-header').contains('Failed').should('exist');
+      cy.get('.jp-mod-accept').click();
+      cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
+    });
+  }
 
   it('Fails to delete a non-empty bucket', () => {
     const bucketName = createTestBucket();
