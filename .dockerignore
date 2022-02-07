@@ -8,3 +8,5 @@ lib/*
 minio-data/
 *.ipynb
 **/node_modules
+cypress/screenshots/*
+cypress/videos/*

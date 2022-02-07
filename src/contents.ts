@@ -165,7 +165,7 @@ export class S3Drive implements Contents.IDrive {
         s3contents = await s3.writeFile(options.path + '/' + filename, '');
         break;
       case 'directory':
-        if (options.path === '' && filename != 'untitled') {
+        if (options.path === '') {
           throw new Error('Bucket creation is not currently supported.');
         }
         s3contents = await s3.createDirectory(options.path + '/' + filename);

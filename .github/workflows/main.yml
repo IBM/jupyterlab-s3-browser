@@ -103,28 +103,28 @@ jobs:
       run: jupyter labextension install .
       if: ${{ matrix.jupyterlab_version == 'jupyterlab==2.*' }}
 
-    # - uses: cypress-io/github-action@v2
-      # with:
-        # start: jupyter lab --no-browser --ServerApp.password='' --ServerApp.token='' --NotebookApp.token='' --NotebookApp.password=''
-        # browser: chrome
-        # headless: true
-        # wait-on: "http://localhost:8888/lab"
-        # wait-on-timeout: 120
-      # env:
-        # JUPYTERLAB_S3_ENDPOINT: http://localhost:9000
-        # JUPYTERLAB_S3_ACCESS_KEY_ID: ACCESS_KEY
-        # JUPYTERLAB_S3_SECRET_ACCESS_KEY: SECRET_KEY
-        # CYPRESS_S3_FOLDER: /minio-data
-    # - uses: actions/upload-artifact@v1
-      # if: failure()
-      # with:
-        # name: cypress-screenshots
-        # path: cypress/screenshots
-    # - uses: actions/upload-artifact@v1
-      # if: always()
-      # with:
-        # name: cypress-videos
-        # path: cypress/videos
+    - uses: cypress-io/github-action@v2
+      with:
+        start: jupyter lab --no-browser --ServerApp.password='' --ServerApp.token='' --NotebookApp.token='' --NotebookApp.password=''
+        browser: chrome
+        headless: true
+        wait-on: "http://localhost:8888/lab"
+        wait-on-timeout: 120
+      env:
+        JUPYTERLAB_S3_ENDPOINT: http://localhost:9000
+        JUPYTERLAB_S3_ACCESS_KEY_ID: ACCESS_KEY
+        JUPYTERLAB_S3_SECRET_ACCESS_KEY: SECRET_KEY
+        CYPRESS_S3_FOLDER: /minio-data
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   publish:
     needs: [build, test]
