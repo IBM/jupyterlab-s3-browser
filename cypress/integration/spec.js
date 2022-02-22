@@ -1,3 +1,5 @@
+const CI = Cypress.env('CI') || false;
+
 const navigateToRoot = () => {
   cy.get('#s3-filebrowser > .jp-BreadCrumbs > .jp-BreadCrumbs-home').click();
   cy.wait(500);
@@ -5,18 +7,13 @@ const navigateToRoot = () => {
 
 const refreshFileBrowser = () => {
   // TODO: why is this ever necessary?
-  cy.get('#s3-filebrowser [title="Refresh File List"]').click();
+  cy.get('#s3-filebrowser [title="Refresh File List"]').click({ force: true });
 };
 const createTestBucket = () => {
-  navigateToRoot();
-  cy.get(
-    '#s3-filebrowser > .jp-DirListing > .jp-DirListing-content'
-  ).rightclick();
-  cy.get('[data-command="filebrowser:create-new-directory"]').click();
-  cy.get('#s3-filebrowser > .jp-DirListing > .jp-DirListing-content');
-  cy.get('.jp-DirListing-item').should('exist');
-  cy.get('.jp-DirListing-editor').type(`{enter}`);
-  return 'untitled';
+  const bucketName = 'untitled';
+  cy.createTestBucket(bucketName);
+  refreshFileBrowser();
+  return bucketName;
 };
 
 const deleteTestBucket = () => {
@@ -33,10 +30,7 @@ const deleteTestBucket = () => {
 };
 
 const navigateTo = path => {
-  // cy.get('[title="Object Storage Browser"]').click();
   navigateToRoot();
-  // cy.contains(path).dblclick();
-  console.log('??????');
   if (path === '/') {
     return;
   } else {
@@ -46,10 +40,11 @@ const navigateTo = path => {
       .forEach(prefix => {
         cy.wait(500);
         console.log(`going to ${prefix}`);
-        cy.get('.jp-DirListing-content').contains(prefix).dblclick();
+        cy.get('.jp-DirListing-content > .jp-DirListing-item[data-isdir=true]')
+          .contains(prefix)
+          .dblclick({ force: true });
       });
   }
-  // cy.get('[title="Object Storage Browser"]').click();
 };
 
 const createFile = path => {
@@ -201,12 +196,24 @@ describe('The s3 browser works', () => {
     cy.openJupyterLab();
   });
 
-  it('Can create and delete a bucket', () => {
-    const bucketName = createTestBucket();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
-    deleteTestBucket();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('not.exist');
+  it('Shows an error message when trying to create a bucket', () => {
+    navigateToRoot();
+    cy.get(
+      '#s3-filebrowser > .jp-DirListing > .jp-DirListing-content'
+    ).rightclick();
+    cy.get('[data-command="filebrowser:create-new-directory"]').click();
+    cy.get('.jp-Dialog-header').contains('Error').should('exist');
+    cy.get('.jp-mod-accept').click();
   });
+
+  if (!CI) {
+    it('Can delete a bucket', () => {
+      const bucketName = createTestBucket();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
+      deleteTestBucket();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('not.exist');
+    });
+  }
 
   it('Fails to delete buckets with objects inside', () => {
     const bucketName = createTestBucket();
@@ -215,6 +222,11 @@ describe('The s3 browser works', () => {
     const fileContent = 'test';
     createFile(fileLocation);
     deleteTestBucket();
+
+    // error message should display
+    cy.get('.jp-Dialog-header').contains('Failed').should('exist');
+    cy.get('.jp-mod-accept').click();
+
     cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
   });
 
@@ -273,61 +285,65 @@ describe('The s3 browser works', () => {
     assertFileHasContent(newFileLocation, fileContent);
   });
 
-  it('Can move files', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const fileLocation = `${bucketName}/${fileName}`;
-    const moveDestinationDirectory = `${bucketName}/test`;
-    createDirectory(`${moveDestinationDirectory}`);
-    const newFileLocation = `${moveDestinationDirectory}/${fileName}`;
-    const fileContent = 'test';
-    createFile(fileLocation);
-    writeToFile(fileLocation, fileContent);
-    moveFile(fileLocation, newFileLocation);
-    assertFileHasContent(newFileLocation, fileContent);
-  });
+  if (!CI) {
+    it('Can move files', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const fileLocation = `${bucketName}/${fileName}`;
+      const moveDestinationDirectory = `${bucketName}/test`;
+      createDirectory(`${moveDestinationDirectory}`);
+      const newFileLocation = `${moveDestinationDirectory}/${fileName}`;
+      const fileContent = 'test';
+      createFile(fileLocation);
+      writeToFile(fileLocation, fileContent);
+      moveFile(fileLocation, newFileLocation);
+      assertFileHasContent(newFileLocation, fileContent);
+    });
 
-  it('Can rename files', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const newFileName = 'test2';
-    const fileLocation = `${bucketName}/${fileName}`;
-    createFile(fileLocation);
-    renameFile(fileLocation, newFileName);
-    cy.get('.jp-DirListing-content').contains(newFileName).should('exist');
-  });
+    it('Can rename files', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const newFileName = 'test2';
+      const fileLocation = `${bucketName}/${fileName}`;
+      createFile(fileLocation);
+      renameFile(fileLocation, newFileName);
+      cy.get('.jp-DirListing-content').contains(newFileName).should('exist');
+    });
 
-  it('Can create and delete prefixes/directories', () => {
-    const bucketName = createTestBucket();
-    const directoryName = 'test';
-    const directoryPath = `${bucketName}/${directoryName}`;
-    createDirectory(directoryPath);
-    cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
-    deleteDirectory(directoryPath);
-    cy.get('.jp-DirListing-content')
-      .contains(directoryName)
-      .should('not.exist');
-  });
+    it('Can create and delete prefixes/directories', () => {
+      const bucketName = createTestBucket();
+      const directoryName = 'test';
+      const directoryPath = `${bucketName}/${directoryName}`;
+      createDirectory(directoryPath);
+      cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
+      deleteDirectory(directoryPath);
+      cy.get('.jp-DirListing-content')
+        .contains(directoryName)
+        .should('not.exist');
+    });
 
-  it('Fails to delete non-empty prefixes/directories', () => {
-    const bucketName = createTestBucket();
-    const directoryName = 'test';
-    const directoryPath = `${bucketName}/${directoryName}`;
-    createDirectory(directoryPath);
-    cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
-    createFile(`${directoryPath}/test`);
-    deleteDirectory(directoryPath);
-    cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
-  });
+    it('Fails to delete non-empty prefixes/directories', () => {
+      const bucketName = createTestBucket();
+      const directoryName = 'test';
+      const directoryPath = `${bucketName}/${directoryName}`;
+      createDirectory(directoryPath);
+      cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
+      createFile(`${directoryPath}/test`);
+      deleteDirectory(directoryPath);
+      cy.get('.jp-Dialog-header').contains('Failed').should('exist');
+      cy.get('.jp-mod-accept').click();
+      cy.get('.jp-DirListing-content').contains(directoryName).should('exist');
+    });
 
-  it('Fails to delete a non-empty bucket', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const filePath = `${bucketName}/${fileName}`;
-    createFile(filePath);
-    navigateToRoot();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
-    deleteTestBucket();
-    cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
-  });
+    it('Fails to delete a non-empty bucket', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const filePath = `${bucketName}/${fileName}`;
+      createFile(filePath);
+      navigateToRoot();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
+      deleteTestBucket();
+      cy.get('.jp-DirListing-content').contains(bucketName).should('exist');
+    });
+  }
 });

@@ -2,15 +2,21 @@ FROM python
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
 RUN apt-get -y install nodejs
+RUN npm install --global yarn
 
-# RUN pip install "jupyterlab==2.*"
-RUN pip install "jupyterlab==3.*"
+RUN python -m pip install --upgrade pip
+RUN pip install "poetry==1.1.12"
 
-# RUN jupyter labextension link .
-# RUN jupyter labextension install jupyterlab-s3-browser@0.11.0-rc.0 && pip install jupyterlab_s3_browser==0.11.0-rc.0
-# RUN pip install jupyterlab_s3_browser==0.11.0-rc.0
+WORKDIR /app
 
-COPY dist/*.whl .
-RUN pip install *.whl
+COPY pyproject.toml poetry.lock ./
+RUN poetry export --dev --without-hashes -f requirements.txt > requirements.txt
+RUN pip install -r requirements.txt
+
+COPY package.json .
+RUN yarn
+
+COPY . .
+RUN pip install .
 
 RUN jupyter serverextension enable --py jupyterlab_s3_browser

@@ -1,5 +1,6 @@
 {
   "defaultCommandTimeout": 10000,
   "baseUrl": "http://localhost:8888/lab",
-  "S3_FOLDER": "minio-data"
+  "S3_FOLDER": "minio-data",
+  "CI": true
 }

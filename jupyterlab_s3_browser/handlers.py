@@ -38,6 +38,7 @@ def create_s3_resource(config):
     if config.endpoint_url and config.client_id and config.client_secret:
 
         return boto3.resource(
+            "s3",
             aws_access_key_id=config.client_id,
             aws_secret_access_key=config.client_secret,
             aws_session_token=config.session_token,
@@ -320,7 +321,6 @@ class S3Handler(APIHandler):
                 "message": "The requested resource could not be found.",
             }
         except Exception as e:
-            logging.error("what happened during file creation?")
             logging.error(e)
             result = {"error": 500, "message": str(e)}
 
@@ -375,7 +375,7 @@ class S3Handler(APIHandler):
           #  logging.info("Attempted to delete non-empty directory")
           result = {"error": 400, "error": "DIR_NOT_EMPTY"}
         except Exception as e:
-            logging.error("what happened?")
+            logging.error("error while deleting")
             logging.error(e)
             result = {"error": 500, "message": str(e)}
 
