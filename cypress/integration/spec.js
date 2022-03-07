@@ -270,22 +270,22 @@ describe('The s3 browser works', () => {
     assertFileHasContent(copiedFileLocation, fileContent);
   });
 
-  it('Can copy files', () => {
-    const bucketName = createTestBucket();
-    const fileName = 'test.txt';
-    const copiedFileName = 'test-copy.txt';
-    const fileLocation = `${bucketName}/${fileName}`;
-    const copyDestinationDirectory = `${bucketName}/test`;
-    createDirectory(`${copyDestinationDirectory}`);
-    const newFileLocation = `${copyDestinationDirectory}/${copiedFileName}`;
-    const fileContent = 'test';
-    createFile(fileLocation);
-    writeToFile(fileLocation, fileContent);
-    copyFile(fileLocation, newFileLocation);
-    assertFileHasContent(newFileLocation, fileContent);
-  });
-
   if (!CI) {
+    it('Can copy files', () => {
+      const bucketName = createTestBucket();
+      const fileName = 'test.txt';
+      const copiedFileName = 'test-copy.txt';
+      const fileLocation = `${bucketName}/${fileName}`;
+      const copyDestinationDirectory = `${bucketName}/test`;
+      createDirectory(`${copyDestinationDirectory}`);
+      const newFileLocation = `${copyDestinationDirectory}/${copiedFileName}`;
+      const fileContent = 'test';
+      createFile(fileLocation);
+      writeToFile(fileLocation, fileContent);
+      copyFile(fileLocation, newFileLocation);
+      assertFileHasContent(newFileLocation, fileContent);
+    });
+
     it('Can move files', () => {
       const bucketName = createTestBucket();
       const fileName = 'test.txt';
