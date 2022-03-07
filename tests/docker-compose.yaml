@@ -1,0 +1,40 @@
+version: "3.4"
+services:
+  jupyterlab_test:
+    depends_on:
+      - minio
+    build: .
+    ports:
+      - "8888:8888"
+    environment:
+      - "JUPYTERLAB_S3_ENDPOINT=http://minio:9000"
+      - "JUPYTERLAB_S3_ACCESS_KEY_ID=ACCESS_KEY"
+      - "JUPYTERLAB_S3_SECRET_ACCESS_KEY=SECRET_KEY"
+    command:
+      - jupyter
+      - lab
+      - --ip=0.0.0.0
+      - --no-browser
+      - --ServerApp.password=''
+      - --ServerApp.token=''
+      - --NotebookApp.password=''
+      - --NotebookApp.token=''
+      - --allow-root
+  minio:
+    image: lazybit/minio
+    ports:
+      - "9000:9000"
+    environment:
+      - "MINIO_ACCESS_KEY=ACCESS_KEY"
+      - "MINIO_SECRET_KEY=SECRET_KEY"
+    volumes:
+      - ./minio-data/:/data
+    healthcheck:
+      test:
+      - CMD
+      - curl
+      - "--fail"
+      - http://localhost:9000/minio/health/live
+      interval: 30s
+      timeout: 5s
+      retries: 3
