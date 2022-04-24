@@ -4,6 +4,8 @@
 
 A JupyterLab extension for browsing S3-compatible object storage.
 
+![screenshot](s3-browser-screenshot.gif)
+
 ## Installation
 
 ### JupyterLab 3
