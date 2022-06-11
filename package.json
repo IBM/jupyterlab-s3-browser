@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/IBM/jupyterlab_s3_browser.git"
+    "url": "https://github.com/IBM/jupyterlab-s3-browser.git"
   },
   "scripts": {
     "build": "jlpm run build:lib && jlpm run build:labextension:dev",
