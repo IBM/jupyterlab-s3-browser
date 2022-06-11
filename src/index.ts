@@ -68,7 +68,7 @@ function activateFileBrowser(
 
   // Add the file browser widget to the application restorer.
   restorer.add(s3Browser, NAMESPACE);
-  app.shell.add(s3Browser, 'left', { rank: 100 });
+  app.shell.add(s3Browser, 'left', { rank: 501 });
 
   return;
 }
