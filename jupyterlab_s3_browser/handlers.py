@@ -199,8 +199,47 @@ def convertS3FStoJupyterFormat(result):
         "type": result["type"],
     }
 
+class FilesHandler(APIHandler):
+  """
+  Handles requests for getting files (e.g. for downloading)
+  """
 
-class S3Handler(APIHandler):
+  @property
+  def config(self):
+        return self.settings["s3_config"]
+
+  @tornado.web.authenticated
+  def get(self, path=""):
+      """
+      Takes a path and returns lists of files/objects
+      and directories/prefixes based on the path.
+      """
+      path = path.removeprefix("/")
+
+      try:
+          if not self.s3fs:
+              self.s3fs = create_s3fs(self.config)
+
+          self.s3fs.invalidate_cache()
+
+          with self.s3fs.open(path, "rb") as f:
+              result =  f.read()
+
+      except S3ResourceNotFoundException as e:
+          result = json.dumps({
+              "error": 404,
+              "message": "The requested resource could not be found.",
+          })
+      except Exception as e:
+          logging.error("Exception encountered during GET {}: {}".format(path, e))
+          result = json.dumps({"error": 500, "message": str(e)})
+
+      self.finish(result)
+
+  s3fs = None
+  s3_resource = None
+
+class ContentsHandler(APIHandler):
     """
     Handles requests for getting S3 objects
     """
@@ -388,6 +427,7 @@ def setup_handlers(web_app):
     base_url = web_app.settings["base_url"]
     handlers = [
         (url_path_join(base_url, "jupyterlab_s3_browser", "auth(.*)"), AuthHandler),
-        (url_path_join(base_url, "jupyterlab_s3_browser", "files(.*)"), S3Handler),
+        (url_path_join(base_url, "jupyterlab_s3_browser", "contents(.*)"), ContentsHandler),
+        (url_path_join(base_url, "jupyterlab_s3_browser", "files(.*)"), FilesHandler),
     ]
     web_app.add_handlers(host_pattern, handlers)

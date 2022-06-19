@@ -6,11 +6,11 @@ import { DocumentRegistry } from '@jupyterlab/docregistry';
 
 import { Contents, ServerConnection } from '@jupyterlab/services';
 
+import { URLExt } from '@jupyterlab/coreutils';
+
 import * as base64js from 'base64-js';
 
 import * as s3 from './s3';
-
-import { Dialog, showDialog } from '@jupyterlab/apputils';
 
 /**
  * A Contents.IDrive implementation for s3-api-compatible object storage.
@@ -129,12 +129,8 @@ export class S3Drive implements Contents.IDrive {
    * path if necessary.
    */
   async getDownloadUrl(path: string): Promise<string> {
-    await showDialog({
-      title: 'Sorry',
-      body: 'This feature is not yet implemented.',
-      buttons: [Dialog.cancelButton({ label: 'Cancel' })]
-    });
-    throw Error('Not yet implemented');
+    const settings = ServerConnection.makeSettings();
+    return URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', path);
   }
 
   /**
