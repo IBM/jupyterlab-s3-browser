@@ -13,7 +13,7 @@ export async function copyFile(
   const settings = ServerConnection.makeSettings(); // can be stored as class var
   const response = await (
     await ServerConnection.makeRequest(
-      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', newPath),
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/contents', newPath),
       { method: 'PUT', headers: { 'X-Custom-S3-Copy-Src': oldPath } },
       settings
     )
@@ -29,7 +29,7 @@ export async function moveFile(
   const settings = ServerConnection.makeSettings(); // can be stored as class var
   const response = await (
     await ServerConnection.makeRequest(
-      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', newPath),
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/contents', newPath),
       { method: 'PUT', headers: { 'X-Custom-S3-Move-Src': oldPath } },
       settings
     )
@@ -42,7 +42,7 @@ export async function deleteFile(path: string): Promise<any> {
   const settings = ServerConnection.makeSettings(); // can be stored as class var
   const response = await (
     await ServerConnection.makeRequest(
-      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', path),
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/contents', path),
       { method: 'DELETE' },
       settings
     )
@@ -58,7 +58,7 @@ export async function writeFile(
   const settings = ServerConnection.makeSettings(); // can be stored as class var
   const response = await (
     await ServerConnection.makeRequest(
-      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', path),
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/contents', path),
       { method: 'PUT', body: JSON.stringify({ content }) },
       settings
     )
@@ -70,7 +70,7 @@ export async function createDirectory(path: string): Promise<Contents.IModel> {
   const settings = ServerConnection.makeSettings(); // can be stored as class var
   await (
     await ServerConnection.makeRequest(
-      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', path),
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/contents', path),
       { method: 'PUT', headers: { 'X-Custom-S3-Is-Dir': 'true' } },
       settings
     )
@@ -97,7 +97,7 @@ export async function get(
   const settings = ServerConnection.makeSettings(); // can be stored as class var
   const response = await (
     await ServerConnection.makeRequest(
-      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', path),
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/contents', path),
       { method: 'GET' },
       settings
     )
@@ -124,7 +124,7 @@ export async function ls(path: string): Promise<Contents.IModel> {
   const settings = ServerConnection.makeSettings(); // can be stored as class var
   const response = await (
     await ServerConnection.makeRequest(
-      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', path),
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/contents', path),
       { method: 'GET', headers: { 'X-Custom-S3-Is-Dir': 'true' } },
       settings
     )
@@ -146,11 +146,10 @@ export async function ls(path: string): Promise<Contents.IModel> {
 }
 
 export async function read(path: string): Promise<Contents.IModel> {
-  // pass
   const settings = ServerConnection.makeSettings(); // can be stored as class var
   const response = (
     await ServerConnection.makeRequest(
-      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', path),
+      URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/contents', path),
       { method: 'GET' },
       settings
     )
