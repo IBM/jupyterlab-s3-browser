@@ -1,7 +1,7 @@
 {% set data = load_npm()%}
 package:
-  name: {{data.get('name').lower()}}
-  version: {{data.get('version').replace('-','_')}}
+  name: {{ data.get('name').lower() }}
+  version: {{ data.get('version').replace('-','.') }}
 
 source:
   path: ..
@@ -13,4 +13,4 @@ about:
 
 build:
   noarch: python
-  script: pip install
+  script: pip install dist/{{ data.get('name').lower() }}-{{ data.get('version').replace('_', '.') }}-py3-none-any.whl
