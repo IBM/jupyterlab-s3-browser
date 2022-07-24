@@ -48,6 +48,7 @@ jobs:
           jlpm
 
       - name: set version
+        if: startsWith(github.ref, 'refs/tags')
         run: npm version ${GITHUB_REF##*/} --no-git-tag-version
 
       - name: Create server extension # and pip install
@@ -148,8 +149,8 @@ jobs:
         uses: actions/download-artifact@v2
       - run: yarn
 
-      - name: set version
-        run: npm version ${GITHUB_REF##*/} --no-git-tag-version
+      # - name: set version
+      #   run: npm version ${GITHUB_REF##*/} --no-git-tag-version
 
       - name: Publish a Python distribution to PyPI
         uses: pypa/gh-action-pypi-publish@master
