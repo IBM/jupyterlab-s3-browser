@@ -1,0 +1,13 @@
+package:
+  name: "jupyterlab-s3-browser"
+  version: 0.0.1
+
+source:
+  path: ..
+
+about:
+  summary: "A JupyterLab extension for browsing S3-compatible object storage"
+
+build:
+  noarch: python
+  script: poetry install

@@ -131,7 +131,7 @@ jobs:
   #         name: cypress-videos
   #         path: cypress/videos
   #
-  publish:
+  publishPypi:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     needs: [build, test]
     runs-on: ubuntu-20.04
@@ -143,11 +143,25 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v2
       - run: yarn
+
       - name: Publish a Python distribution to PyPI
         uses: pypa/gh-action-pypi-publish@master
         with:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Render conda/meta.yaml template
+        uses: chuhlomin/render-template@v1.5
+        with:
+          template: conda/meta.yaml
+          vars: |
+            version: ${GITHUB_REF##*/}
+
+      - name: Publish to Conda
+        uses: maxibor/conda-package-publish-action@v1.1
+        with:
+          subdir: "conda"
+          anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
 
       - name: Publish labextension NPM
         uses: JS-DevTools/npm-publish@v1
