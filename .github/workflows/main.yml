@@ -146,7 +146,7 @@ jobs:
       - run: yarn
 
       - name: set version
-        run: npm version ${GITHUB_REF##*/}
+        run: npm version ${GITHUB_REF##*/} --no-git-tag-version
 
       - name: Publish a Python distribution to PyPI
         uses: pypa/gh-action-pypi-publish@master
