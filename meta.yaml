@@ -13,4 +13,4 @@ about:
 
 build:
   noarch: python
-  script: ls dist/ | xargs pip install --no-deps
+  script: pwd && ls && ls dist/ | xargs pip install --no-deps
