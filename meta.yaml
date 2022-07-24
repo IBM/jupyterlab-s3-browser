@@ -13,4 +13,4 @@ about:
 
 build:
   noarch: python
-  script: poetry install
+  script: pip install dist/*.whl
