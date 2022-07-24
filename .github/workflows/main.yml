@@ -161,7 +161,6 @@ jobs:
       - name: Publish to Conda
         uses: maxibor/conda-package-publish-action@v1.1
         with:
-          subdir: "conda"
           anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
 
       - name: Publish labextension NPM
