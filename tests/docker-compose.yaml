@@ -31,10 +31,10 @@ services:
       - ./minio-data/:/data
     healthcheck:
       test:
-      - CMD
-      - curl
-      - "--fail"
-      - http://localhost:9000/minio/health/live
+        - CMD
+        - curl
+        - "--fail"
+        - http://localhost:9000/minio/health/live
       interval: 30s
       timeout: 5s
       retries: 3

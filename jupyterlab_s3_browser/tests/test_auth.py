@@ -1,7 +1,7 @@
 import pytest
-import jupyterlab_s3_browser
 from moto import mock_s3
 
+import jupyterlab_s3_browser
 
 #  class TestTest(object):
 #  def test_succeed(self):

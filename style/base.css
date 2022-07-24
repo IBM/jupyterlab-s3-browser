@@ -1,8 +1,8 @@
-[data-jp-theme-light='true'] .jp-S3-icon {
+[data-jp-theme-light="true"] .jp-S3-icon {
   background-image: url(bucket-light.svg);
 }
 
-[data-jp-theme-light='false'] .jp-S3-icon {
+[data-jp-theme-light="false"] .jp-S3-icon {
   background-image: url(bucket-dark.svg);
 }
 
@@ -10,27 +10,27 @@
   background-size: 90%;
 }
 
-[data-jp-theme-light='true']
+[data-jp-theme-light="true"]
   #s3-filebrowser
   .jp-FileBrowser-crumbs
   .jp-BreadCrumbs-item:first-child {
   background-image: url(bucket-light.svg);
 }
 
-[data-jp-theme-light='false']
+[data-jp-theme-light="false"]
   #s3-filebrowser
   .jp-FileBrowser-crumbs
   .jp-BreadCrumbs-item:first-child {
   background-image: url(bucket-dark.svg);
 }
 
-[data-jp-theme-light='true']
+[data-jp-theme-light="true"]
   #s3-filebrowser.root
   .jp-DirListing-itemIcon.jp-MaterialIcon.jp-FolderIcon {
   background-image: url(bucket-light.svg);
 }
 
-[data-jp-theme-light='false']
+[data-jp-theme-light="false"]
   #s3-filebrowser.root
   .jp-DirListing-itemIcon.jp-MaterialIcon.jp-FolderIcon {
   background-image: url(bucket-dark.svg);
@@ -69,12 +69,12 @@
   display: block;
 }
 
-[data-jp-theme-light='false'] .s3form {
+[data-jp-theme-light="false"] .s3form {
   color: white;
   font-size: 1.1em;
 }
 
-[data-jp-theme-light='true'] .s3form {
+[data-jp-theme-light="true"] .s3form {
   color: black;
   font-size: 1.1em;
 }

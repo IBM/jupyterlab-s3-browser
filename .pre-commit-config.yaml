@@ -12,6 +12,6 @@ repos:
       - id: trailing-whitespace
   # maybe later
   # - repo: https://github.com/pre-commit/mirrors-pylint
-    # rev: v2.3.1
-    # hooks:
-      # - id: pylint
+  # rev: v2.3.1
+  # hooks:
+  # - id: pylint
