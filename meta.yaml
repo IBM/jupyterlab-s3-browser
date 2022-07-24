@@ -13,4 +13,4 @@ about:
 
 build:
   noarch: python
-  script: pip install dist/*.whl
+  script: pip install dist/{{ data.get('name') }}-{{ data.get('version').replace('-','_') }}-py3-none-any.whl
