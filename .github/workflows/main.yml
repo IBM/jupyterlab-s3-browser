@@ -16,10 +16,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "14.x"
+
       - name: Install Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.9"
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2.0.0
 
       - name: Setup pip cache
         uses: actions/cache@v2
@@ -152,19 +155,19 @@ jobs:
       - name: set version
         run: npm version ${GITHUB_REF##*/} --no-git-tag-version
 
-      - name: Publish a Python distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+      # - name: Publish a Python distribution to PyPI
+      #   uses: pypa/gh-action-pypi-publish@master
+      #   with:
+      #     user: __token__
+      #     password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Publish to Conda
         uses: maxibor/conda-package-publish-action@v1.1
         with:
           anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
 
-      - name: Publish labextension NPM
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          skip_existing: true
+      # - name: Publish labextension NPM
+      #   uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}
+      #     skip_existing: true
