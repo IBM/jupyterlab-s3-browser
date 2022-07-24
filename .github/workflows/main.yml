@@ -149,24 +149,14 @@ jobs:
         uses: actions/download-artifact@v2
       - run: yarn
 
-      # - name: set version
-      #   run: npm version ${GITHUB_REF##*/} --no-git-tag-version
+      - name: set version
+        run: npm version ${GITHUB_REF##*/} --no-git-tag-version
 
       - name: Publish a Python distribution to PyPI
         uses: pypa/gh-action-pypi-publish@master
         with:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
-
-      - name: Render conda/meta.yaml template
-        uses: chuhlomin/render-template@v1.5
-        with:
-          template: conda/meta.yaml
-          vars: |
-            version: ${GITHUB_REF##*/}
-
-      - name: print meta.yaml
-        run: cat conda/meta.yaml
 
       - name: Publish to Conda
         uses: maxibor/conda-package-publish-action@v1.1
