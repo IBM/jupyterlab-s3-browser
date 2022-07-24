@@ -131,7 +131,7 @@ jobs:
   #         name: cypress-videos
   #         path: cypress/videos
   #
-  publishPypi:
+  publish:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     # needs: [build, test]
     needs: [build]
@@ -144,6 +144,9 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v2
       - run: yarn
+
+      - name: set version
+        run: npm version ${GITHUB_REF##*/}
 
       - name: Publish a Python distribution to PyPI
         uses: pypa/gh-action-pypi-publish@master

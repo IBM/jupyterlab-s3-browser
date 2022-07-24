@@ -1,6 +1,6 @@
 package:
   name: "jupyterlab-s3-browser"
-  version: { { .version } }
+  version: {{ .version }}
 
 source:
   path: ..
