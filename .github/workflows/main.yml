@@ -47,6 +47,9 @@ jobs:
           pip install wheel twine setuptools packaging jupyterlab~=3.0 jupyter_packaging~=0.7.9
           jlpm
 
+      - name: set version
+        run: npm version ${GITHUB_REF##*/} --no-git-tag-version
+
       - name: Create server extension # and pip install
         run: |
           jlpm run build:prod
