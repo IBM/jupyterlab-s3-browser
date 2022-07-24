@@ -161,6 +161,9 @@ jobs:
           vars: |
             version: ${GITHUB_REF##*/}
 
+      - name: print meta.yaml
+        run: cat conda/meta.yaml
+
       - name: Publish to Conda
         uses: maxibor/conda-package-publish-action@v1.1
         with:
