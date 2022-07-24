@@ -158,11 +158,15 @@ jobs:
       #   with:
       #     user: __token__
       #     password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: debug
+        run: ls
+      - name: debug2
+        run: ls dist
 
-      - name: Publish to Conda
-        uses: maxibor/conda-package-publish-action@v1.1
-        with:
-          anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
+      # - name: Publish to Conda
+      #   uses: maxibor/conda-package-publish-action@v1.1
+      #   with:
+      #     anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
 
       # - name: Publish labextension NPM
       #   uses: JS-DevTools/npm-publish@v1
