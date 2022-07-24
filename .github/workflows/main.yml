@@ -163,6 +163,9 @@ jobs:
       - name: debug2
         run: ls dist
 
+      - name: move whl
+        run: cp dist/*.whl jupyterlab_s3_browser-py3-none-any.whl
+
       - name: Publish to Conda
         uses: maxibor/conda-package-publish-action@v1.1
         with:
