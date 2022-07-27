@@ -47,6 +47,12 @@ class JupyterLabS3(Configurable):
         config=True,
         help="(Optional) Token if you use STS as auth method",
     )
+    
+    signature_version = Unicode(
+        default_value="",
+        config=True,
+        help="Signature version variable to support older S3 interfaces",
+    )
 
 
 def _load_jupyter_server_extension(server_app):
