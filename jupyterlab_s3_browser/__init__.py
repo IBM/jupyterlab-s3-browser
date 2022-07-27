@@ -1,9 +1,11 @@
 import json
+from os import environ
 from pathlib import Path
-from .handlers import setup_handlers
+
 from traitlets import Unicode
 from traitlets.config import Configurable
-from os import environ
+
+from .handlers import setup_handlers
 
 HERE = Path(__file__).parent.resolve()
 

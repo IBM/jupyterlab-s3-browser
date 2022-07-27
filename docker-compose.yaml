@@ -21,7 +21,7 @@ services:
       - --NotebookApp.token=''
       - --allow-root
     # volumes:
-      # - /<home_folder>/.aws/:/root/.aws/ # replace <home_folder> with the path to your .aws folder and comment out the environment section below to use your aws account's s3 buckets instead
+    # - /<home_folder>/.aws/:/root/.aws/ # replace <home_folder> with the path to your .aws folder and comment out the environment section below to use your aws account's s3 buckets instead
 
   minio:
     image: lazybit/minio
@@ -34,10 +34,10 @@ services:
       - ./minio-data/:/data
     healthcheck:
       test:
-      - CMD
-      - curl
-      - "--fail"
-      - http://localhost:9000/minio/health/live
+        - CMD
+        - curl
+        - "--fail"
+        - http://localhost:9000/minio/health/live
       interval: 30s
       timeout: 5s
       retries: 3

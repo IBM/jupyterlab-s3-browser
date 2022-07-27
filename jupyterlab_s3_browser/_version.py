@@ -4,6 +4,7 @@ __all__ = ["__version__"]
 def _fetchVersion():
     import json
     import pathlib
+
     from packaging.version import parse
 
     HERE = pathlib.Path(__file__).parent

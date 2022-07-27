@@ -1,28 +1,28 @@
 import {
   ILayoutRestorer,
   JupyterFrontEnd,
-  JupyterFrontEndPlugin
-} from '@jupyterlab/application';
+  JupyterFrontEndPlugin,
+} from "@jupyterlab/application";
 
-import { ISettingRegistry } from '@jupyterlab/settingregistry';
+import { ISettingRegistry } from "@jupyterlab/settingregistry";
 
-import { IDocumentManager } from '@jupyterlab/docmanager';
+import { IDocumentManager } from "@jupyterlab/docmanager";
 
-import { IFileBrowserFactory } from '@jupyterlab/filebrowser';
+import { IFileBrowserFactory } from "@jupyterlab/filebrowser";
 
-import { S3Drive } from './contents';
+import { S3Drive } from "./contents";
 
-import { S3FileBrowser } from './browser';
+import { S3FileBrowser } from "./browser";
 
 /**
  * S3 filebrowser plugin state namespace.
  */
-const NAMESPACE = 's3-filebrowser';
+const NAMESPACE = "s3-filebrowser";
 
 /**
  * The ID for the plugin.
  */
-const PLUGIN_ID = 'jupyterlab_s3_browser:drive';
+const PLUGIN_ID = "jupyterlab_s3_browser:drive";
 
 /**
  * The JupyterLab plugin for the S3 Filebrowser.
@@ -33,10 +33,10 @@ const fileBrowserPlugin: JupyterFrontEndPlugin<void> = {
     IDocumentManager,
     IFileBrowserFactory,
     ILayoutRestorer,
-    ISettingRegistry
+    ISettingRegistry,
   ],
   activate: activateFileBrowser,
-  autoStart: true
+  autoStart: true,
 };
 
 /**
@@ -56,19 +56,19 @@ function activateFileBrowser(
   const browser = factory.createFileBrowser(NAMESPACE, {
     driveName: drive.name,
     state: null,
-    refreshInterval: 300000
+    refreshInterval: 300000,
   });
 
   const s3Browser = new S3FileBrowser(browser, drive, manager);
 
-  s3Browser.title.iconClass = 'jp-S3-icon jp-SideBar-tabIcon';
-  s3Browser.title.caption = 'Object Storage Browser';
+  s3Browser.title.iconClass = "jp-S3-icon jp-SideBar-tabIcon";
+  s3Browser.title.caption = "Object Storage Browser";
 
-  s3Browser.id = 's3-file-browser';
+  s3Browser.id = "s3-file-browser";
 
   // Add the file browser widget to the application restorer.
   restorer.add(s3Browser, NAMESPACE);
-  app.shell.add(s3Browser, 'left', { rank: 501 });
+  app.shell.add(s3Browser, "left", { rank: 501 });
 
   return;
 }
