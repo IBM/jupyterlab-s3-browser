@@ -4,20 +4,23 @@ Placeholder
 import base64
 import json
 import logging
-
-import boto3
-import tornado
-from botocore.exceptions import NoCredentialsError
-from jupyter_server.base.handlers import APIHandler
-from jupyter_server.utils import url_path_join
 from pathlib import Path
 
-import s3fs
 import boto3
+import s3fs
+import tornado
+from botocore.exceptions import NoCredentialsError
+from botocore.exceptions import ClientError
+from botocore.client import Config
+from jupyter_server.base.handlers import APIHandler
+from jupyter_server.utils import url_path_join
+
 
 class DirectoryNotEmptyException(Exception):
-  """Raise for attempted deletions of non-empty directories"""
-  pass
+    """Raise for attempted deletions of non-empty directories"""
+
+    pass
+
 
 def create_s3fs(config):
 
@@ -28,10 +31,12 @@ def create_s3fs(config):
             secret=config.client_secret,
             token=config.session_token,
             client_kwargs={"endpoint_url": config.endpoint_url},
+            config_kwargs={'signature_version': config.signature_version},
         )
 
     else:
         return s3fs.S3FileSystem()
+
 
 def create_s3_resource(config):
 
@@ -43,10 +48,11 @@ def create_s3_resource(config):
             aws_secret_access_key=config.client_secret,
             aws_session_token=config.session_token,
             endpoint_url=config.endpoint_url,
+            config=Config(signature_version=config.signature_version)
         )
 
     else:
-        return boto3.resource('s3')
+        return boto3.resource("s3")
 
 
 def _test_aws_s3_role_access():
@@ -96,7 +102,7 @@ def has_aws_s3_role_access():
         return False
 
 
-def test_s3_credentials(endpoint_url, client_id, client_secret, session_token):
+def test_s3_credentials(endpoint_url, client_id, client_secret, session_token, signature_version):
     """
     Checks if we're able to list buckets with these credentials.
     If not, it throws an exception.
@@ -107,6 +113,7 @@ def test_s3_credentials(endpoint_url, client_id, client_secret, session_token):
         aws_secret_access_key=client_secret,
         endpoint_url=endpoint_url,
         aws_session_token=session_token,
+        config=Config(signature_version=signature_version),
     )
     all_buckets = test.buckets.all()
     logging.debug(
@@ -146,6 +153,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
                         config.client_id,
                         config.client_secret,
                         config.session_token,
+                        config.signature_version
                     )
                     logging.debug("...successfully authenticated")
 
@@ -174,14 +182,34 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
             client_id = req["client_id"]
             client_secret = req["client_secret"]
             session_token = req["session_token"]
+            signature_version = 's3v4'
 
-            test_s3_credentials(endpoint_url, client_id, client_secret, session_token)
+            test_s3_credentials(endpoint_url, client_id, client_secret, session_token, signature_version)
 
             self.config.endpoint_url = endpoint_url
             self.config.client_id = client_id
             self.config.client_secret = client_secret
             self.config.session_token = session_token
+            self.config.signature_version = signature_version
 
+            self.finish(json.dumps({"success": True}))
+        except ClientError as pe:
+            req = json.loads(self.request.body)
+            endpoint_url = req["endpoint_url"]
+            client_id = req["client_id"]
+            client_secret = req["client_secret"]
+            session_token = req["session_token"]
+            signature_version = 's3'
+
+            test_s3_credentials(endpoint_url, client_id, client_secret, session_token,signature_version)
+
+            self.config.endpoint_url = endpoint_url
+            self.config.client_id = client_id
+            self.config.client_secret = client_secret
+            self.config.session_token = session_token
+            self.config.signature_version = signature_version
+            
+            logging.info("authenticated with s3 credentials signature_version")
             self.finish(json.dumps({"success": True}))
         except Exception as err:
             logging.info("unable to authenticate using credentials")
@@ -272,7 +300,7 @@ class S3Handler(APIHandler):
 
                 # copying issue is because of dir/file mixup?
                 if "/" not in source:
-                  path = path + "/.keep"
+                    path = path + "/.keep"
 
                 #  logging.info("copying {} -> {}".format(source, path))
                 self.s3fs.cp(source, path, recursive=True)
@@ -298,11 +326,11 @@ class S3Handler(APIHandler):
             elif "X-Custom-S3-Is-Dir" in self.request.headers:
                 path = path.lower()
                 if not path[-1] == "/":
-                  path = path + "/"
+                    path = path + "/"
 
                 #  logging.info("creating new dir: {}".format(path))
                 self.s3fs.mkdir(path)
-                self.s3fs.touch(path+".keep")
+                self.s3fs.touch(path + ".keep")
             elif self.request.body:
                 request = json.loads(self.request.body)
                 with self.s3fs.open(path, "w") as f:
@@ -343,27 +371,31 @@ class S3Handler(APIHandler):
             if not self.s3_resource:
                 self.s3_resource = create_s3_resource(self.config)
 
+            if self.s3fs.exists(path + "/.keep"):
+                self.s3fs.rm(path + "/.keep")
 
-            if self.s3fs.exists(path+"/.keep"):
-              self.s3fs.rm(path+"/.keep")
-
-            objects_matching_prefix = self.s3fs.listdir(path+"/")
-            is_directory = (len(objects_matching_prefix) > 1) or ((len(objects_matching_prefix) == 1) and objects_matching_prefix[0]['Key'] != path)
+            objects_matching_prefix = self.s3fs.listdir(path + "/")
+            is_directory = (len(objects_matching_prefix) > 1) or (
+                (len(objects_matching_prefix) == 1)
+                and objects_matching_prefix[0]["Key"] != path
+            )
 
             if is_directory:
-              if (len(objects_matching_prefix) > 1) or ((len(objects_matching_prefix) == 1) and objects_matching_prefix[0]['Key'] != path+"/"):
-                raise DirectoryNotEmptyException()
-              else:
-                # for some reason s3fs.rm doesn't work reliably
-                if path.count("/") > 1:
-                  bucket_name, prefix = path.split("/", 1)
-                  bucket = self.s3_resource.Bucket(bucket_name)
-                  bucket.objects.filter(Prefix=prefix).delete()
+                if (len(objects_matching_prefix) > 1) or (
+                    (len(objects_matching_prefix) == 1)
+                    and objects_matching_prefix[0]["Key"] != path + "/"
+                ):
+                    raise DirectoryNotEmptyException()
                 else:
-                  self.s3fs.rm(path)
+                    # for some reason s3fs.rm doesn't work reliably
+                    if path.count("/") > 1:
+                        bucket_name, prefix = path.split("/", 1)
+                        bucket = self.s3_resource.Bucket(bucket_name)
+                        bucket.objects.filter(Prefix=prefix).delete()
+                    else:
+                        self.s3fs.rm(path)
             else:
-              self.s3fs.rm(path)
-
+                self.s3fs.rm(path)
 
         except S3ResourceNotFoundException as e:
             logging.error(e)
@@ -372,8 +404,8 @@ class S3Handler(APIHandler):
                 "message": "The requested resource could not be found.",
             }
         except DirectoryNotEmptyException as e:
-          #  logging.info("Attempted to delete non-empty directory")
-          result = {"error": 400, "error": "DIR_NOT_EMPTY"}
+            #  logging.info("Attempted to delete non-empty directory")
+            result = {"error": 400, "error": "DIR_NOT_EMPTY"}
         except Exception as e:
             logging.error("error while deleting")
             logging.error(e)

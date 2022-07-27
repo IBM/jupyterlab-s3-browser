@@ -1,9 +1,11 @@
 import json
+from os import environ
 from pathlib import Path
-from .handlers import setup_handlers
+
 from traitlets import Unicode
 from traitlets.config import Configurable
-from os import environ
+
+from .handlers import setup_handlers
 
 HERE = Path(__file__).parent.resolve()
 
@@ -44,6 +46,12 @@ class JupyterLabS3(Configurable):
         default_value=environ.get("JUPYTERLAB_S3_SESSION_TOKEN", ""),
         config=True,
         help="(Optional) Token if you use STS as auth method",
+    )
+    
+    signature_version = Unicode(
+        default_value="",
+        config=True,
+        help="Signature version variable to support older S3 interfaces",
     )
 
 

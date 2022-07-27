@@ -11,8 +11,8 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-const fs = require('fs');
-const util = require('util');
+const fs = require("fs");
+const util = require("util");
 const readdir = util.promisify(fs.readdir);
 const rmdir = util.promisify(fs.rmdir);
 
@@ -24,15 +24,15 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
   //
-  on('task', {
+  on("task", {
     async emptyDirectory(directory) {
       try {
-        const filesToIgnore = ['.minio.sys'];
+        const filesToIgnore = [".minio.sys"];
         const files = await readdir(directory);
         const filesToDelete = files.filter(
-          item => !filesToIgnore.includes(item)
+          (item) => !filesToIgnore.includes(item)
         );
-        const rmdirPromises = filesToDelete.map(filename => {
+        const rmdirPromises = filesToDelete.map((filename) => {
           rmdir(`${directory}/${filename}`, { recursive: true });
         });
         return Promise.all(rmdirPromises);
@@ -40,6 +40,6 @@ module.exports = (on, config) => {
       } catch (err) {
         console.log(err);
       }
-    }
+    },
   });
 };
