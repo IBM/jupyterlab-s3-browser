@@ -100,7 +100,7 @@ def has_aws_s3_role_access():
         return False
 
 
-def test_s3_credentials(endpoint_url, client_id, client_secret, session_token):
+def test_s3_credentials(endpoint_url, client_id, client_secret, session_token, signature_version):
     """
     Checks if we're able to list buckets with these credentials.
     If not, it throws an exception.
