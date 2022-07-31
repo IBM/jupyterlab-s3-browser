@@ -151,6 +151,7 @@ jobs:
       # - run: yarn
 
       - name: set version
+        if: startsWith(github.ref, 'refs/tags') # TODO: remove conditional
         run: npm version ${GITHUB_REF##*/} --no-git-tag-version
 
       - uses: conda-incubator/setup-miniconda@v2
