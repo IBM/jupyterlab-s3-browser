@@ -137,39 +137,42 @@ jobs:
   #         path: cypress/videos
   #
   publish:
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+    # if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     # needs: [build, test]
     needs: [build]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "14.x"
-      - name: Download build artifacts
-        uses: actions/download-artifact@v2
-      - run: yarn
+      # - uses: actions/setup-node@v2
+      #   with:
+      #     node-version: "14.x"
+      # - name: Download build artifacts
+      #   uses: actions/download-artifact@v2
+      # - run: yarn
 
       - name: set version
         run: npm version ${GITHUB_REF##*/} --no-git-tag-version
+
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          activate-environment: ""
+          auto-activate-base: true
 
       # - name: Publish a Python distribution to PyPI
       #   uses: pypa/gh-action-pypi-publish@master
       #   with:
       #     user: __token__
       #     password: ${{ secrets.PYPI_API_TOKEN }}
-      - name: debug
-        run: ls
-      - name: debug2
-        run: ls dist
+      - name: build conda package
+        run: conda build --output-folder ./conda-out/ .
 
-      - name: move whl
-        run: cp dist/*.whl jupyterlab_s3_browser-py3-none-any.whl
-
-      - name: Publish to Conda
-        uses: maxibor/conda-package-publish-action@v1.1
-        with:
-          anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
+      - name: upload anaconda package
+        run: ls conda-out/noarch/*tar.bz2 | xargs anaconda -t $ANACONDA_TOKEN upload
+        env:
+          ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+        # with:
+        #   anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
 
       # - name: Publish labextension NPM
       #   uses: JS-DevTools/npm-publish@v1
