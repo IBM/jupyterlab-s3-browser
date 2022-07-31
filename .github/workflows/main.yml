@@ -146,8 +146,8 @@ jobs:
       # - uses: actions/setup-node@v2
       #   with:
       #     node-version: "14.x"
-      # - name: Download build artifacts
-      #   uses: actions/download-artifact@v2
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
       # - run: yarn
 
       - name: set version
