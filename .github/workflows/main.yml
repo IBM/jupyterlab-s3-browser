@@ -169,7 +169,7 @@ jobs:
       #     user: __token__
       #     password: ${{ secrets.PYPI_API_TOKEN }}
       - name: debug
-        run: ls
+        run: pwd
       - name: build conda package
         run: conda build --output-folder ./conda-out/ .
 
