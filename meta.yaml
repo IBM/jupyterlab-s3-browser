@@ -13,4 +13,4 @@ about:
 
 build:
   noarch: python
-  script: pwd && ls && ls dist/ | xargs pip install --no-deps
+  script: ls /home/runner/work/jupyterlab-s3-browser/jupyterlab-s3-browser/dist/ | xargs pip install --no-deps
