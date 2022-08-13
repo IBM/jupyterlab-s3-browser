@@ -162,7 +162,10 @@ jobs:
 
       - name: install conda-build and anaconda-client
         shell: bash -l {0}
-        run: conda install conda-build anaconda-client
+        run: |
+          conda install conda-build anaconda-client
+          conda list
+          anaconda -h
 
       - name: debug anaconda
         run: anaconda -h
