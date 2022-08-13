@@ -160,8 +160,8 @@ jobs:
           activate-environment: ""
           auto-activate-base: true
 
-      - name: install conda-build
-        run: conda install conda-build
+      - name: install conda-build and anaconda-client
+        run: conda install conda-build anaconda-client
 
       # - name: Publish a Python distribution to PyPI
       #   uses: pypa/gh-action-pypi-publish@master
