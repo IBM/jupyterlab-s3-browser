@@ -168,13 +168,14 @@ jobs:
       #   with:
       #     user: __token__
       #     password: ${{ secrets.PYPI_API_TOKEN }}
-      - name: debug
-        run: pwd
       - name: build conda package
         run: conda build --output-folder ./conda-out/ .
 
+      - name: debug
+        run: ls conda-out/noarch/*.tar.bz2
+
       - name: upload anaconda package
-        run: ls conda-out/noarch/*tar.bz2 | xargs -I@ anaconda -t $ANACONDA_TOKEN upload conda-out/noarch/@
+        run: ls conda-out/noarch/*.tar.bz2 | xargs -I@ anaconda -t $ANACONDA_TOKEN upload conda-out/noarch/@
         env:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
         # with:
