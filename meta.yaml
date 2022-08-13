@@ -11,6 +11,16 @@ about:
   home: {{data.get('url')}}
   license: {{data.get('license')}}
 
+requirements:
+  host:
+    - python >=3.6
+    - pip
+    - setuptools
+    - jupyter-packaging
+    - jupyterlab
+  run:
+    - python >=3.6
+
 build:
   noarch: python
   script: ls dist/ | xargs -I@ pip install --no-deps dist/@
