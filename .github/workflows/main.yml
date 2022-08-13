@@ -161,7 +161,11 @@ jobs:
           auto-activate-base: true
 
       - name: install conda-build and anaconda-client
+        shell: bash -l {0}
         run: conda install conda-build anaconda-client
+
+      - name: debug anaconda
+        run: anaconda -h
 
       # - name: Publish a Python distribution to PyPI
       #   uses: pypa/gh-action-pypi-publish@master
@@ -173,9 +177,6 @@ jobs:
 
       - name: debug
         run: ls conda-out/noarch/*.tar.bz2
-
-      - name: debug2
-        run: anaconda -h
 
       - name: upload anaconda package
         run: ls conda-out/noarch/*.tar.bz2 | xargs -I@ anaconda -t $ANACONDA_TOKEN upload conda-out/noarch/@
