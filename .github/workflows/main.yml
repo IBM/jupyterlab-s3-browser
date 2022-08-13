@@ -174,7 +174,7 @@ jobs:
         run: conda build --output-folder ./conda-out/ .
 
       - name: upload anaconda package
-        run: ls conda-out/noarch/*tar.bz2 | xargs anaconda -t $ANACONDA_TOKEN upload
+        run: ls conda-out/noarch/*tar.bz2 | xargs -I@ anaconda -t $ANACONDA_TOKEN upload conda-out/noarch/@
         env:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
         # with:
