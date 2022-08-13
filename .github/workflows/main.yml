@@ -161,7 +161,7 @@ jobs:
           auto-activate-base: true
 
       - name: install conda-build
-        run: conda install conda-build
+        run: conda install conda-build jupyter_packaging
 
       # - name: Publish a Python distribution to PyPI
       #   uses: pypa/gh-action-pypi-publish@master
