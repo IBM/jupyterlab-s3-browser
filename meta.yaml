@@ -11,6 +11,10 @@ about:
   home: {{data.get('url')}}
   license: {{data.get('license')}}
 
+requirements:
+  build:
+    - jupyter_packaging
+
 build:
   noarch: python
   script: ls dist/ | xargs -I@ pip install --no-deps dist/@
