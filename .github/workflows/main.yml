@@ -160,33 +160,29 @@ jobs:
           activate-environment: ""
           auto-activate-base: true
 
-      - name: install conda-build and anaconda-client
-        shell: bash -l {0}
-        run: |
-          conda install conda-build anaconda-client
-          conda list
-          anaconda -h
+      - name: install conda-build
+        run: conda install conda-build
 
-      - name: debug anaconda
-        run: anaconda -h
-
-      # - name: Publish a Python distribution to PyPI
-      #   uses: pypa/gh-action-pypi-publish@master
-      #   with:
-      #     user: __token__
-      #     password: ${{ secrets.PYPI_API_TOKEN }}
       - name: build conda package
         run: conda build --output-folder ./conda-out/ .
 
       - name: debug
         run: ls conda-out/noarch/*.tar.bz2
 
-      - name: upload anaconda package
-        run: ls conda-out/noarch/*.tar.bz2 | xargs -I@ anaconda -t $ANACONDA_TOKEN upload conda-out/noarch/@
+      - name: install conda-build and anaconda-client
+        shell: bash -l {0}
+        run: |
+          conda install anaconda-client
+          anaconda -h
+          ls conda-out/noarch/*.tar.bz2 | xargs -I@ anaconda -t $ANACONDA_TOKEN upload conda-out/noarch/@
         env:
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-        # with:
-        #   anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
+
+      # - name: Publish a Python distribution to PyPI
+      #   uses: pypa/gh-action-pypi-publish@master
+      #   with:
+      #     user: __token__
+      #     password: ${{ secrets.PYPI_API_TOKEN }}
 
       # - name: Publish labextension NPM
       #   uses: JS-DevTools/npm-publish@v1
