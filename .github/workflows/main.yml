@@ -164,7 +164,9 @@ jobs:
         run: conda install conda-build
 
       - name: install jupyter_packaging
-        run: conda install -c conda-forge jupyter_packaging
+        run: |
+          conda install -c conda-forge jupyter_packaging
+          pip install jupyter_packaging
 
       # - name: Publish a Python distribution to PyPI
       #   uses: pypa/gh-action-pypi-publish@master
