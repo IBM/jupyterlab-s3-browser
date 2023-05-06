@@ -1,16 +1,16 @@
-import { Signal, ISignal } from "@lumino/signaling";
+import { Signal, ISignal } from '@lumino/signaling';
 
-import { PathExt } from "@jupyterlab/coreutils";
+import { PathExt } from '@jupyterlab/coreutils';
 
-import { DocumentRegistry } from "@jupyterlab/docregistry";
+import { DocumentRegistry } from '@jupyterlab/docregistry';
 
-import { Contents, ServerConnection } from "@jupyterlab/services";
+import { Contents, ServerConnection } from '@jupyterlab/services';
 
-import * as base64js from "base64-js";
+import { URLExt } from '@jupyterlab/coreutils';
 
-import * as s3 from "./s3";
+import * as base64js from 'base64-js';
 
-import { Dialog, showDialog } from "@jupyterlab/apputils";
+import * as s3 from './s3';
 
 /**
  * A Contents.IDrive implementation for s3-api-compatible object storage.
@@ -31,8 +31,8 @@ export class S3Drive implements Contents.IDrive {
   /**
    * The name of the drive.
    */
-  get name(): "S3" {
-    return "S3";
+  get name(): 'S3' {
+    return 'S3';
   }
 
   /**
@@ -78,22 +78,22 @@ export class S3Drive implements Contents.IDrive {
     path: string,
     options?: Contents.IFetchOptions
   ): Promise<Contents.IModel> {
-    if (options.type === "file" || options.type === "notebook") {
+    if (options.type === 'file' || options.type === 'notebook') {
       const s3Contents = await s3.read(path);
       const types = this._registry.getFileTypesForPath(path);
       const fileType =
-        types.length === 0 ? this._registry.getFileType("text")! : types[0];
+        types.length === 0 ? this._registry.getFileType('text')! : types[0];
       const mimetype = fileType.mimeTypes[0];
       const format = fileType.fileFormat;
       let parsedContent;
       switch (format) {
-        case "text":
+        case 'text':
           parsedContent = Private.b64DecodeUTF8(s3Contents.content);
           break;
-        case "base64":
+        case 'base64':
           parsedContent = s3Contents.content;
           break;
-        case "json":
+        case 'json':
           parsedContent = JSON.parse(Private.b64DecodeUTF8(s3Contents.content));
           break;
         default:
@@ -101,15 +101,15 @@ export class S3Drive implements Contents.IDrive {
       }
 
       const contents: Contents.IModel = {
-        type: "file",
+        type: 'file',
         path,
-        name: "",
+        name: '',
         format,
         content: parsedContent,
-        created: "",
+        created: '',
         writable: true,
-        last_modified: "",
-        mimetype,
+        last_modified: '',
+        mimetype
       };
 
       return contents;
@@ -129,12 +129,8 @@ export class S3Drive implements Contents.IDrive {
    * path if necessary.
    */
   async getDownloadUrl(path: string): Promise<string> {
-    await showDialog({
-      title: "Sorry",
-      body: "This feature is not yet implemented.",
-      buttons: [Dialog.cancelButton({ label: "Cancel" })],
-    });
-    throw Error("Not yet implemented");
+    const settings = ServerConnection.makeSettings();
+    return URLExt.join(settings.baseUrl, 'jupyterlab_s3_browser/files', path);
   }
 
   /**
@@ -149,7 +145,7 @@ export class S3Drive implements Contents.IDrive {
     options: Contents.ICreateOptions = {}
   ): Promise<Contents.IModel> {
     let s3contents;
-    const basename = "untitled";
+    const basename = 'untitled';
     let filename = basename;
     const existingFiles = await s3.ls(options.path);
     const existingFilenames = existingFiles.content.map(
@@ -161,21 +157,21 @@ export class S3Drive implements Contents.IDrive {
       filename = basename + uniqueSuffix;
     }
     switch (options.type) {
-      case "file":
-        s3contents = await s3.writeFile(options.path + "/" + filename, "");
+      case 'file':
+        s3contents = await s3.writeFile(options.path + '/' + filename, '');
         break;
-      case "directory":
-        if (options.path === "") {
-          throw new Error("Bucket creation is not currently supported.");
+      case 'directory':
+        if (options.path === '') {
+          throw new Error('Bucket creation is not currently supported.');
         }
-        s3contents = await s3.createDirectory(options.path + "/" + filename);
+        s3contents = await s3.createDirectory(options.path + '/' + filename);
         break;
       default:
         throw new Error(`Unexpected type: ${options.type}`);
     }
     const types = this._registry.getFileTypesForPath(s3contents.path);
     const fileType =
-      types.length === 0 ? this._registry.getFileType("text")! : types[0];
+      types.length === 0 ? this._registry.getFileType('text')! : types[0];
     const mimetype = fileType.mimeTypes[0];
     const format = fileType.fileFormat;
     const contents: Contents.IModel = {
@@ -183,17 +179,17 @@ export class S3Drive implements Contents.IDrive {
       path: options.path,
       name: filename,
       format,
-      content: "",
-      created: "",
+      content: '',
+      created: '',
       writable: true,
-      last_modified: "",
-      mimetype,
+      last_modified: '',
+      mimetype
     };
 
     this._fileChanged.emit({
-      type: "new",
+      type: 'new',
       oldValue: null,
-      newValue: contents,
+      newValue: contents
     });
     return contents;
   }
@@ -207,15 +203,15 @@ export class S3Drive implements Contents.IDrive {
    */
   async delete(path: string): Promise<void> {
     const deletionRequest = await s3.deleteFile(path);
-    if (deletionRequest.error && deletionRequest.error === "DIR_NOT_EMPTY") {
+    if (deletionRequest.error && deletionRequest.error === 'DIR_NOT_EMPTY') {
       throw new Error(
         `${path} is not empty. Deletion of non-empty directories is not currently supported.`
       );
     }
     this._fileChanged.emit({
-      type: "delete",
+      type: 'delete',
       oldValue: { path },
-      newValue: null,
+      newValue: null
     });
   }
 
@@ -230,14 +226,14 @@ export class S3Drive implements Contents.IDrive {
    *   the file is renamed.
    */
   async rename(path: string, newPath: string): Promise<Contents.IModel> {
-    if (!path.includes("/")) {
-      throw Error("Renaming of buckets is not currently supported.");
+    if (!path.includes('/')) {
+      throw Error('Renaming of buckets is not currently supported.');
     }
     const content = await s3.moveFile(path, newPath);
     this._fileChanged.emit({
-      type: "rename",
+      type: 'rename',
       oldValue: { path },
-      newValue: content,
+      newValue: content
     });
     return content;
   }
@@ -257,15 +253,15 @@ export class S3Drive implements Contents.IDrive {
     options: Partial<Contents.IModel>
   ): Promise<Contents.IModel> {
     let content = options.content;
-    if (options.format === "base64") {
+    if (options.format === 'base64') {
       content = Private.b64DecodeUTF8(options.content);
-    } else if (options.format === "json") {
+    } else if (options.format === 'json') {
       content = JSON.stringify(options.content);
     }
     const s3contents = await s3.writeFile(path, content);
     const types = this._registry.getFileTypesForPath(s3contents.path);
     const fileType =
-      types.length === 0 ? this._registry.getFileType("text")! : types[0];
+      types.length === 0 ? this._registry.getFileType('text')! : types[0];
     const mimetype = fileType.mimeTypes[0];
     const format = fileType.fileFormat;
     const contents: Contents.IModel = {
@@ -274,16 +270,16 @@ export class S3Drive implements Contents.IDrive {
       name: options.name,
       format,
       content,
-      created: "",
+      created: '',
       writable: true,
-      last_modified: "",
-      mimetype,
+      last_modified: '',
+      mimetype
     };
 
     this._fileChanged.emit({
-      type: "save",
+      type: 'save',
       oldValue: null,
-      newValue: contents,
+      newValue: contents
     });
     return contents;
   }
@@ -299,15 +295,15 @@ export class S3Drive implements Contents.IDrive {
    *  file is copied.
    */
   async copy(fromFile: string, toDir: string): Promise<Contents.IModel> {
-    let basename = PathExt.basename(fromFile).split(".")[0];
-    basename += "-copy";
+    let basename = PathExt.basename(fromFile).split('.')[0];
+    basename += '-copy';
     const ext = PathExt.extname(fromFile);
-    const name = "/" + toDir + "/" + basename + ext;
+    const name = '/' + toDir + '/' + basename + ext;
     const content = await s3.copyFile(fromFile, name);
     this._fileChanged.emit({
-      type: "new",
+      type: 'new',
       oldValue: null,
-      newValue: content,
+      newValue: content
     });
     return content;
   }
@@ -346,7 +342,7 @@ export class S3Drive implements Contents.IDrive {
    * @returns A promise which resolves when the checkpoint is restored.
    */
   async restoreCheckpoint(path: string, checkpointID: string): Promise<void> {
-    throw Error("Not yet implemented");
+    throw Error('Not yet implemented');
   }
 
   /**
@@ -374,7 +370,7 @@ namespace Private {
   /**
    * Decoder from bytes to UTF-8.
    */
-  const decoder = new TextDecoder("utf8");
+  const decoder = new TextDecoder('utf8');
 
   /**
    * Decode a base-64 encoded string into unicode.
@@ -382,7 +378,7 @@ namespace Private {
    * See https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#Solution_2_%E2%80%93_rewrite_the_DOMs_atob()_and_btoa()_using_JavaScript's_TypedArrays_and_UTF-8
    */
   export function b64DecodeUTF8(str: string): string {
-    const bytes = base64js.toByteArray(str.replace(/\n/g, ""));
+    const bytes = base64js.toByteArray(str.replace(/\n/g, ''));
     return decoder.decode(bytes);
   }
 }

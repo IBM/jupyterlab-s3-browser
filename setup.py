@@ -37,7 +37,8 @@ labext_name = "jupyterlab-s3-browser"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(lab_path), "**"),
-    ("share/jupyter/labextensions/%s" % labext_name, str(HERE), "install.json"),
+    ("share/jupyter/labextensions/%s" % labext_name, str(HERE),
+     "install.json"),
     (
         "etc/jupyter/jupyter_server_config.d",
         "jupyter-config/jupyter_server_config.d",
@@ -50,10 +51,9 @@ data_files_spec = [
     ),
 ]
 
-
-cmdclass = create_cmdclass(
-    "jsdeps", package_data_spec=package_data_spec, data_files_spec=data_files_spec
-)
+cmdclass = create_cmdclass("jsdeps",
+                           package_data_spec=package_data_spec,
+                           data_files_spec=data_files_spec)
 
 js_command = combine_commands(
     install_npm(HERE, build_cmd="build:prod", npm=["jlpm"]),
@@ -99,7 +99,9 @@ setup_args = dict(
         "singleton-decorator",
         "jupyterlab>=2.0.0",
     ],
-    extras_require={"dev": ["jupyter_packaging~=0.7.9", "pytest", "moto", "coverage"]},
+    extras_require={
+        "dev": ["jupyter_packaging~=0.7.9", "pytest", "moto", "coverage"]
+    },
 )
 
 if __name__ == "__main__":
