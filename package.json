@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-s3-browser",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "JupyterLab extension for browsing S3-compatible object storage",
   "keywords": [
     "s3",
@@ -11,9 +11,9 @@
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "homepage": "https://github.com/IBM/jupyterlab_s3_browser",
+  "homepage": "https://github.com/adhithya10/jupyterlab-s3-browser",
   "bugs": {
-    "url": "https://github.com/IBM/jupyterlab_s3_browser/issues"
+    "url": "https://github.com/adhithya10/jupyterlab-s3-browser"
   },
   "license": "Apache-2.0",
   "author": "James Reeve",
@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/IBM/jupyterlab-s3-browser.git"
+    "url": "https://github.com/adhithya10/jupyterlab-s3-browser.git"
   },
   "scripts": {
     "build": "jlpm run build:lib && jlpm run build:labextension:dev",
