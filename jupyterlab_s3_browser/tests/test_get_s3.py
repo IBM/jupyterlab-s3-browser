@@ -12,7 +12,11 @@ def test_get_single_bucket():
     s3.create_bucket(Bucket=bucket_name)
 
     result = jupyterlab_s3_browser.get_s3_objects_from_path(s3, "/")
-    assert result == [{"name": bucket_name, "type": "directory", "path": bucket_name}]
+    assert result == [{
+        "name": bucket_name,
+        "type": "directory",
+        "path": bucket_name
+    }]
 
 
 @mock_s3
@@ -24,10 +28,11 @@ def test_get_multiple_buckets():
         s3.create_bucket(Bucket=bucket_name)
 
     result = jupyterlab_s3_browser.get_s3_objects_from_path(s3, "/")
-    expected_result = [
-        {"name": bucket_name, "type": "directory", "path": bucket_name}
-        for bucket_name in bucket_names
-    ]
+    expected_result = [{
+        "name": bucket_name,
+        "type": "directory",
+        "path": bucket_name
+    } for bucket_name in bucket_names]
     assert result == expected_result
 
 
@@ -60,6 +65,6 @@ def test_get_files_inside_bucket():
         },
     ]
     print(result)
-    assert sorted(result, key=lambda i: i["name"]) == sorted(
-        expected_result, key=lambda i: i["name"]
-    )
+    assert sorted(result,
+                  key=lambda i: i["name"]) == sorted(expected_result,
+                                                     key=lambda i: i["name"])

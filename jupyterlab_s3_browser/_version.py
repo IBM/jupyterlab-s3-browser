@@ -17,8 +17,7 @@ def _fetchVersion():
             pass
 
     raise FileNotFoundError(  # noqa: F821
-        "Could not find package.json under dir {}".format(HERE)
-    )
+        "Could not find package.json under dir {}".format(HERE))
 
 
 __version__ = _fetchVersion()
