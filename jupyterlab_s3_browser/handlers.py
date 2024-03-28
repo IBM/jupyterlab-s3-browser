@@ -3,7 +3,9 @@ Placeholder
 """
 import base64
 import json
+import os
 import logging
+from .logger import log
 from pathlib import Path
 
 import boto3
@@ -13,6 +15,11 @@ from botocore.exceptions import NoCredentialsError
 from jupyter_server.base.handlers import APIHandler
 from jupyter_server.utils import url_path_join
 
+for key, value in os.environ.items():
+    print(f'{key}={value}')
+myCustomBucket = os.getenv('S3_BROWSER_BUCKET')
+print(f"My Custom Bucket -> {myCustomBucket}")
+
 
 class DirectoryNotEmptyException(Exception):
     """Raise for attempted deletions of non-empty directories"""
@@ -21,9 +28,9 @@ class DirectoryNotEmptyException(Exception):
 
 
 def create_s3fs(config):
-
+    print("inside create_s3fs")
     if config.endpoint_url and config.client_id and config.client_secret:
-
+        print(f"key -> {config.client_id} , secret -> {config.client_secret} , token -> {config.session_token} , client_kwargs-> {config.endpoint_url}")
         return s3fs.S3FileSystem(
             key=config.client_id,
             secret=config.client_secret,
@@ -36,7 +43,7 @@ def create_s3fs(config):
 
 
 def create_s3_resource(config):
-
+    print("inside create_s3_resource")
     if config.endpoint_url and config.client_id and config.client_secret:
 
         return boto3.resource(
@@ -55,6 +62,7 @@ def _test_aws_s3_role_access():
     """
     Checks if we have access to AWS S3 through role-based access
     """
+    print("inside _test_aws_s3_role_access")
     test = boto3.resource("s3")
     all_buckets = test.buckets.all()
     result = [
@@ -68,7 +76,7 @@ def has_aws_s3_role_access():
     """
     Returns true if the user has access to an aws S3 bucket
     """
-
+    print("inside has_aws_s3_role_access")
     # avoid making requests to AWS if the user's ~/.aws/credentials file has credentials for a different provider,
     # e.g. https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-aws-cli#aws-cli-config
     aws_credentials_file = Path("{}/.aws/credentials".format(Path.home()))
@@ -82,7 +90,7 @@ def has_aws_s3_role_access():
                         "AKIA"
                     ) and not access_key_id.startswith("ASIA"):
                         # if any keys are not valid AWS keys, don't try to authenticate
-                        logging.info(
+                        log.info(
                             "Found invalid AWS aws_access_key_id in ~/.aws/credentials file, "
                             "will not attempt to authenticate through ~/.aws/credentials."
                         )
@@ -94,7 +102,7 @@ def has_aws_s3_role_access():
     except NoCredentialsError:
         return False
     except Exception as e:
-        logging.error(e)
+        log.error(e)
         return False
 
 
@@ -103,6 +111,7 @@ def test_s3_credentials(endpoint_url, client_id, client_secret, session_token):
     Checks if we're able to list buckets with these credentials.
     If not, it throws an exception.
     """
+    print("inside test_s3_credentials")
     test = boto3.resource(
         "s3",
         aws_access_key_id=client_id,
@@ -111,12 +120,21 @@ def test_s3_credentials(endpoint_url, client_id, client_secret, session_token):
         aws_session_token=session_token,
     )
     all_buckets = test.buckets.all()
-    logging.debug(
-        [
-            {"name": bucket.name + "/", "path": bucket.name + "/", "type": "directory"}
-            for bucket in all_buckets
-        ]
-    )
+    # logging.debug(
+    #     [
+    #         {"name": bucket.name + "/", "path": bucket.name + "/", "type": "directory"}
+    #         for bucket in all_buckets
+    #     ]
+    # )
+
+    # data = [
+    #     {"name": bucket.name + "/", "path": bucket.name + "/", "type": "directory"}
+    #     for bucket in all_buckets
+    # ]
+
+    print("Creating connection to my bucket")
+    print(f"List of buckets -> {all_buckets}")
+    # print(json.dumps(data, indent=4))
 
 
 class AuthHandler(APIHandler):  # pylint: disable=abstract-method
@@ -126,6 +144,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
 
     @property
     def config(self):
+        print("inside AuthHandler -> config")
         return self.settings["s3_config"]
 
     @tornado.web.authenticated
@@ -134,9 +153,13 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
         Checks if the user is already authenticated
         against an s3 instance.
         """
+        print("inside AuthHandler -> get")
+        print(self.settings["s3_config"])
+        print(dir(self.settings["s3_config"]))
         authenticated = False
         if has_aws_s3_role_access():
             authenticated = True
+        print(authenticated)
 
         if not authenticated:
 
@@ -149,7 +172,8 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
                         config.client_secret,
                         config.session_token,
                     )
-                    logging.debug("...successfully authenticated")
+                    print("")
+                    log.info("...successfully authenticated")
 
                     # If no exceptions were encountered during testS3Credentials,
                     # then assume we're authenticated
@@ -159,8 +183,8 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
                 # If an exception was encountered,
                 # assume that we're not yet authenticated
                 # or invalid credentials were provided
-                logging.debug("...failed to authenticate")
-                logging.debug(err)
+                log.info("...failed to authenticate")
+                log.error(err)
 
         self.finish(json.dumps({"authenticated": authenticated}))
 
@@ -169,7 +193,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
         """
         Sets s3 credentials.
         """
-
+        print("inside AuthHandler -> post")
         try:
             req = json.loads(self.request.body)
             endpoint_url = req["endpoint_url"]
@@ -186,7 +210,7 @@ class AuthHandler(APIHandler):  # pylint: disable=abstract-method
 
             self.finish(json.dumps({"success": True}))
         except Exception as err:
-            logging.info("unable to authenticate using credentials")
+            log.info("unable to authenticate using credentials")
             self.finish(json.dumps({"success": False, "message": str(err)}))
 
 
@@ -220,6 +244,7 @@ class S3Handler(APIHandler):
         Takes a path and returns lists of files/objects
         and directories/prefixes based on the path.
         """
+        print("inside S3Handler -> get")
         path = path[1:]
         #  logging.info("GET {}".format(path))
 
@@ -238,11 +263,29 @@ class S3Handler(APIHandler):
                         "type": "file",
                         "content": base64.encodebytes(f.read()).decode("ascii"),
                     }
+                    print("inside if")
+                    print(result)
             else:
                 raw_result = list(
                     map(convertS3FStoJupyterFormat, self.s3fs.listdir(path))
                 )
-                result = list(filter(lambda x: x["name"] != "", raw_result))
+                print(f"Raw result -> {raw_result}")
+                print(f"Length of raw_result -> {len(raw_result)}")
+
+                checkBucket = raw_result[0]['path'].split('/')[0]
+                print(f"Check bucket name for filtering -> {checkBucket}")
+
+                if checkBucket != myCustomBucket:
+                    filtered_result = [item for item in raw_result if item['name'] == myCustomBucket]
+                    result = list(filter(lambda x: x["name"] != "", filtered_result))
+
+                else:
+                    result = list(filter(lambda x: x["name"] != "", raw_result))
+
+                # print(f"Filtered List -> {filtered_result}")
+                # result = list(filter(lambda x: x["name"] != "", filtered_result))
+                print("inside else")
+                print(result)
 
         except S3ResourceNotFoundException as e:
             result = {
@@ -250,7 +293,7 @@ class S3Handler(APIHandler):
                 "message": "The requested resource could not be found.",
             }
         except Exception as e:
-            logging.error("Exception encountered during GET {}: {}".format(path, e))
+            log.error("Exception encountered during GET {}: {}".format(path, e))
             result = {"error": 500, "message": str(e)}
 
         self.finish(json.dumps(result))
@@ -261,6 +304,7 @@ class S3Handler(APIHandler):
         Takes a path and returns lists of files/objects
         and directories/prefixes based on the path.
         """
+        print("inside S3Handler -> put")
         path = path[1:]
 
         result = {}
@@ -323,7 +367,7 @@ class S3Handler(APIHandler):
                 "message": "The requested resource could not be found.",
             }
         except Exception as e:
-            logging.error(e)
+            log.error(e)
             result = {"error": 500, "message": str(e)}
 
         self.finish(json.dumps(result))
@@ -334,6 +378,7 @@ class S3Handler(APIHandler):
         Takes a path and returns lists of files/objects
         and directories/prefixes based on the path.
         """
+        print("inside S3Handler -> delete")
         path = path[1:]
         #  logging.info("DELETE: {}".format(path))
 
@@ -372,7 +417,7 @@ class S3Handler(APIHandler):
                 self.s3fs.rm(path)
 
         except S3ResourceNotFoundException as e:
-            logging.error(e)
+            log.error(e)
             result = {
                 "error": 404,
                 "message": "The requested resource could not be found.",
@@ -381,8 +426,8 @@ class S3Handler(APIHandler):
             #  logging.info("Attempted to delete non-empty directory")
             result = {"error": 400, "error": "DIR_NOT_EMPTY"}
         except Exception as e:
-            logging.error("error while deleting")
-            logging.error(e)
+            log.error("error while deleting")
+            log.error(e)
             result = {"error": 500, "message": str(e)}
 
         self.finish(json.dumps(result))
