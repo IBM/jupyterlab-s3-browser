@@ -11,9 +11,9 @@
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "homepage": "https://github.com/IBM/jupyterlab_s3_browser",
+  "homepage": "https://github.com/IBM/jupyterlab-s3-browser",
   "bugs": {
-    "url": "https://github.com/IBM/jupyterlab_s3_browser/issues"
+    "url": "https://github.com/IBM/jupyterlab-s3-browser/issues"
   },
   "license": "Apache-2.0",
   "author": "James Reeve",
