@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-s3-browser",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "JupyterLab extension for browsing S3-compatible object storage",
   "keywords": [
     "s3",
@@ -35,10 +35,10 @@
   },
   "scripts": {
     "build": "jlpm run build:lib && jlpm run build:labextension:dev",
-    "build:prod": "jlpm run build:lib && jlpm run build:labextension",
+    "build:prod": "jlpm run clean && jlpm run build:lib && jlpm run build:labextension",
     "build:labextension": "jupyter labextension build .",
     "build:labextension:dev": "jupyter labextension build --development True .",
-    "build:lib": "tsc",
+    "build:lib": "tsc --build",
     "clean": "jlpm run clean:lib",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "clean:labextension": "rimraf jupyterlab_s3_browser/labextension",
@@ -48,48 +48,50 @@
     "precommit": "lint-staged",
     "prettier": "prettier --write '**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}'",
     "test": "cd test && ./run-tests.sh",
-    "install:extension": "jupyter labextension develop --overwrite .",
+    "install:extension": "jlpm run build && pip install -e .",
     "watch": "run-p watch:src watch:labextension",
-    "watch:src": "tsc -w",
-    "watch:labextension": "jupyter labextension watch .",
-    "prepare": "husky install"
+    "watch:src": "tsc --build --watch",
+    "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^2.0.0 || ^3.0.0",
-    "@jupyterlab/apputils": "^2.0.0 || ^3.0.0",
-    "@jupyterlab/coreutils": "^4.0.0 || ^5.0.0",
-    "@jupyterlab/docmanager": "^2.0.0 || ^3.0.0",
-    "@jupyterlab/docregistry": "^2.0.0 || ^3.0.0",
-    "@jupyterlab/filebrowser": "^2.0.0 || ^3.0.0",
-    "@jupyterlab/mainmenu": "^3.1.4",
-    "@jupyterlab/services": "^5.0.0 || ^6.0.0",
-    "@jupyterlab/settingregistry": "^2.0.0 || ^3.0.0",
-    "@lumino/algorithm": "^1.2.3",
-    "@lumino/disposable": "^1.7.0",
-    "@lumino/messaging": "^1.3.3",
-    "@lumino/signaling": "^1.3.5",
-    "@types/react": "^17.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.14.1",
-    "@typescript-eslint/parser": "^4.14.1",
-    "base64-js": "^1.2.3",
-    "eslint": "^7.18.0",
-    "eslint-config-prettier": "^7.2.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.22.0",
-    "react": "^16.0.0 || ^17.0.0"
+    "@jupyterlab/application": "^4.0.0",
+    "@jupyterlab/apputils": "^4.0.0",
+    "@jupyterlab/coreutils": "^6.0.0",
+    "@jupyterlab/docmanager": "^4.0.0",
+    "@jupyterlab/docregistry": "^4.0.0",
+    "@jupyterlab/filebrowser": "^4.0.0",
+    "@jupyterlab/mainmenu": "^4.0.0",
+    "@jupyterlab/services": "^7.0.0",
+    "@jupyterlab/settingregistry": "^4.0.0",
+    "@lumino/algorithm": "^2.0.0",
+    "@lumino/disposable": "^2.0.0",
+    "@lumino/messaging": "^2.0.0",
+    "@lumino/signaling": "^2.0.0",
+    "@lumino/widgets": "^2.0.0",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "base64-js": "^1.5.1",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^2.0.0 || ^3.0.1",
-    "@types/base64-js": "^1.2.5",
-    "@types/text-encoding": "^0.0.32",
-    "cypress": "^9.0.0",
-    "husky": "^7.0.2",
-    "lint-staged": "^7.2.0",
+    "@jupyterlab/builder": "^4.0.0",
+    "@types/base64-js": "^1.3.0",
+    "@types/text-encoding": "^0.0.36",
+    "cypress": "^13.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1",
-    "rimraf": "^2.6.3",
+    "prettier": "^2.8.7",
+    "rimraf": "^5.0.0",
     "subpackage": "^1.1.0",
-    "typescript": "~4.1.3"
+    "typescript": "~5.0.4"
   },
   "sideEffects": [
     "style/*.css",
@@ -103,7 +105,9 @@
     ]
   },
   "resolutions": {
-    "@types/react": "^17.0.0"
+    "@types/react": "^18.0.0",
+    "yjs": "^13.6.8",
+    "@rjsf/core": "^5.13.0"
   },
   "jupyterlab": {
     "discovery": {
@@ -117,6 +121,12 @@
       }
     },
     "extension": true,
-    "outputDir": "jupyterlab_s3_browser/labextension"
+    "outputDir": "jupyterlab_s3_browser/labextension",
+    "sharedPackages": {
+      "react": {
+        "bundled": false,
+        "singleton": true
+      }
+    }
   }
 }

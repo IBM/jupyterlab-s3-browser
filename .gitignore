@@ -23,3 +23,4 @@ jupyterlab_s3_browser/labextension
 *.txt
 cypress/videos/*
 cypress/screenshots/*
+.yarn/*

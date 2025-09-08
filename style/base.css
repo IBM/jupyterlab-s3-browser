@@ -1,9 +1,28 @@
+/* For JupyterLab 3 */
 [data-jp-theme-light="true"] .jp-S3-icon {
   background-image: url(bucket-light.svg);
 }
 
 [data-jp-theme-light="false"] .jp-S3-icon {
   background-image: url(bucket-dark.svg);
+}
+
+/* For JupyterLab 4 */
+[data-jp-theme-name="JupyterLab Light"] .jp-S3-icon {
+  background-image: url(bucket-light.svg);
+}
+
+[data-jp-theme-name="JupyterLab Dark"] .jp-S3-icon {
+  background-image: url(bucket-dark.svg);
+}
+
+/* Ensure the icon is properly displayed */
+.jp-S3-icon {
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  min-width: 16px;
+  min-height: 16px;
 }
 
 .jp-SideBar .p-TabBar-content .p-TabBar-tab .jp-S3-icon {

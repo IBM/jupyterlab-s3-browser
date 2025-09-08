@@ -1,18 +1,75 @@
 [build-system]
-requires = ["jupyter_packaging~=0.7.9", "jupyterlab~=3.0", "setuptools>=40.8.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling>=1.5.0", "jupyterlab>=4.0.0", "hatch-nodejs-version"]
+build-backend = "hatchling.build"
 [tool.poetry]
 name = "jupyterlab-s3-browser"
-version = "0.1"
+version = "0.13.0"
 description = "JupyterLab extension for browsing S3-compatible object storage"
 authors = ["James Reeve"]
 
 [tool.poetry.dependencies]
-python = "3.10.*"
-jupyterlab = "^3.2.3"
+python = ">=3.8"
+jupyterlab = "^4.0.0"
 
 [tool.poetry.dev-dependencies]
-jupyter_packaging = "0.11.0"
 pytest = "*"
 moto = "*"
 coverage = "*"
+
+[project]
+name = "jupyterlab_s3_browser"
+description = "JupyterLab extension for browsing S3-compatible object storage"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+authors = [
+    {name = "James Reeve"}
+]
+keywords = [
+    "Jupyter",
+    "JupyterLab",
+    "JupyterLab4",
+    "S3"
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Framework :: Jupyter",
+]
+dependencies = [
+    "jupyter_server>=2.0.0",
+    "boto3",
+    "s3fs>=2021.10.1",
+    "singleton-decorator",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "moto",
+    "coverage"
+]
+
+[tool.hatch.version]
+source = "nodejs"
+
+[tool.hatch.build.targets.wheel.shared-data]
+"jupyter-config" = "etc/jupyter"
+
+[tool.hatch.build.targets.wheel]
+artifacts = ["jupyterlab_s3_browser/labextension"]
+exclude = [".github", "binder"]
+
+[tool.hatch.build.hooks.jupyter-builder]
+build-function = "hatch_jupyter_builder.npm_builder"
+ensured-targets = ["jupyterlab_s3_browser/labextension/package.json"]
+dependencies = ["hatch-jupyter-builder>=0.5.0"]
+
+[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
+build_cmd = "build:prod"
+npm = ["jlpm"]

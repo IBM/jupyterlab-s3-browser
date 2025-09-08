@@ -14,6 +14,8 @@ import { S3Drive } from "./contents";
 
 import { S3FileBrowser } from "./browser";
 
+import { logDebug } from "./debug";
+
 /**
  * S3 filebrowser plugin state namespace.
  */
@@ -55,21 +57,34 @@ function activateFileBrowser(
 
   const browser = factory.createFileBrowser(NAMESPACE, {
     driveName: drive.name,
-    state: null,
     refreshInterval: 300000,
   });
 
   const s3Browser = new S3FileBrowser(browser, drive, manager);
 
-  s3Browser.title.iconClass = "jp-S3-icon jp-SideBar-tabIcon";
+  // For JupyterLab 3 and 4 compatibility
+  s3Browser.title.iconClass = 'jp-S3-icon jp-SideBar-tabIcon';
   s3Browser.title.caption = "Object Storage Browser";
 
   s3Browser.id = "s3-file-browser";
 
   // Add the file browser widget to the application restorer.
   restorer.add(s3Browser, NAMESPACE);
-  app.shell.add(s3Browser, "left", { rank: 501 });
+  
+  logDebug('Adding S3 Browser to the left sidebar...');
+  
+  // In JupyterLab 4, we need to make sure we're adding the widget properly
+  if (app.shell.add) {
+    // JupyterLab 4 syntax
+    logDebug('Using JupyterLab 4 shell.add() method');
+    app.shell.add(s3Browser, 'left', { rank: 501 });
+  } else {
+    // Fallback for compatibility
+    logDebug('Using legacy addToLeftArea method');
+    (app.shell as any).addToLeftArea(s3Browser, { rank: 501 });
+  }
 
+  logDebug('S3 Browser extension activated!');
   return;
 }
 
